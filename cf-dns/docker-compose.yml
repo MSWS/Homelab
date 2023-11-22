@@ -1,0 +1,38 @@
+version: "3"
+services:
+  cf-public:
+    image: favonia/cloudflare-ddns:latest
+    network_mode: host
+    restart: always
+    cap_add:
+      - SETUID
+      - SETGID
+    cap_drop:
+      - all
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - CF_API_TOKEN=${CF_API_TOKEN}
+      - DOMAINS=*.code.msws.xyz
+      - PROXIED=false
+  cf-internal:
+    image: favonia/cloudflare-ddns:latest
+    network_mode: host
+    restart: always
+    cap_add:
+      - SETUID
+      - SETGID
+    cap_drop:
+      - all
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      PUID: 1000
+      PGID: 1000
+      CF_API_TOKEN: ${CF_API_TOKEN}
+      DOMAINS: "cloud.msws.xyz,code.msws.xyz,drive.msws.xyz,msws.xyz,www.msws.xyz,uptime-kuma.msws.xyz,status.msws.xyz,waka.msws.xyz,stats.msws.xyz,proxmox.msws.xyz,twilio.msws.xyz"
+      PROXIED: "true"

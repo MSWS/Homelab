@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  crypto-miner:
+    image: ghcr.io/lpsm-dev/docker-crypto-miner:main
+    container_name: crypto-miner
+    restart: unless-stopped
+    environment:
+      - MINING_POOL=rx.unmineable.com:3333
+      - MINING_COIN=XMR
+      - REFERRAL_CODE=7lkr-kmhq
+      - WALLET_ADDRESS=${WALLET_ADDRESS}
+      - WORKER_NAME=docker-mining
+      - CPU_LIMIT=800

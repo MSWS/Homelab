@@ -1,0 +1,30 @@
+version: "2"
+services:
+  swag:
+    image: linuxserver/swag         #swag is the replacement for letsencrypt (see link below)
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000 #change PUID if needed
+      - PGID=1000  #change PGID if needed
+      - "TZ=Europe/Berlin" # change Time Zone if needed
+      - "URL=msws.xyz" #insert your domain name - yourdomain.url
+      - "SUBDOMAINS=wildcard"
+      - "EXTRA_DOMAINS=*.code.msws.xyz"
+      - "VALIDATION=dns"
+      - "DNSPLUGIN=cloudflare"
+      - "EMAIL=imodmaker@gmail.com" # define email; required to renew certificate
+    volumes:
+      - /home/iboaz/appdata/swag:/config
+    networks:
+      - monolith_default
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
+
+networks:
+  monolith_default:
+    name: monolith_default
+    external: true

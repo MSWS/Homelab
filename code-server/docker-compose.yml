@@ -1,0 +1,27 @@
+version: '3'
+services:
+  code-server:
+      build: .
+      container_name: code-server
+      networks:
+        - monolith_default
+      environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=Etc/UTC
+        - HASHED_PASSWORD=${HASHED_PASSWORD} #optional
+        - SUDO_PASSWORD_HASH=${HASHED_PASSWORD} #optional
+        - PROXY_DOMAIN=code.msws.xyz #optional
+        - DEFAULT_WORKSPACE=/config/workspace #optional
+      volumes:
+        - "project-data:/config"
+        - "install-data:/home/abc/.local/share/code-server"
+      restart: unless-stopped
+
+networks:
+  monolith_default:
+    external: true
+
+volumes:
+  project-data:
+  install-data:

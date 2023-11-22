@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  phone:
+    container_name: phone
+    image: ghcr.io/msws/phone:main
+    restart: always
+    environment:
+      DISCORD_TOKEN: ${DISCORD_TOKEN}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
+      TWILIO_SENDER: ${TWILIO_SENDER}
+      TWILIO_WEBHOOK: ${TWILIO_WEBHOOK}
+    networks:
+      - monolith_default
+    ports:
+      - 4567:4567
+
+networks:
+  monolith_default:
+    external: true
