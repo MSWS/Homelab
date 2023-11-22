@@ -10,7 +10,7 @@ services:
         - PGID=1000
         - TZ=Etc/UTC
         - HASHED_PASSWORD=${HASHED_PASSWORD} #optional
-        - SUDO_PASSWORD_HASH=${HASHED_PASSWORD} #optional
+        - SUDO_PASSWORD_HASH=${SUDO_PASSWORD_HASH} #optional
         - PROXY_DOMAIN=code.msws.xyz #optional
         - DEFAULT_WORKSPACE=/config/workspace #optional
       volumes:
