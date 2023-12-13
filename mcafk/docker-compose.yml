@@ -1,0 +1,22 @@
+version: '3'
+services:
+  smpafk:
+    image: ghcr.io/msws/mcafk:main
+    env_file: .env
+    environment:
+      - MC_EMAIL=mswsluca@gmail.com
+      - MC_SERVER_IP=51.81.142.14
+      - MC_SERVER_PORT=25586
+      - DISCORD_CHANNEL=1143560934955167764
+      - DISCORD_AUTHOR=219601562048135168
+    volumes:
+      - smp-mc-data:/usr/src/app/profiles
+    secrets:
+      - DISCORD_TOKEN
+
+volumes:
+  smp-mc-data:
+
+secrets:
+  DISCORD_TOKEN:
+    environment: DISCORD_TOKEN

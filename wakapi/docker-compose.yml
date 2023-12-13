@@ -20,6 +20,8 @@ services:
       WAKAPI_ALLOW_SIGNUP: "false"
       WAKAPI_DISABLE_FRONTPAGE: "true"
       WAKAPI_EXPOSE_METRICS: "true"
+      WAKAPI_LEADERBOARD_ENABLED: "true"
+      WAKAPI_LEADERBOARD_SCOPE: "month"
     volumes:
       - wakapi-data:/data
     networks:
