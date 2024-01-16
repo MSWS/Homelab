@@ -31,6 +31,9 @@ COPY extensions /extensions
 # Install VSCode extensions
 RUN /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension James-Yu.latex-workshop && \
     /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension WakaTime.vscode-wakatime && \
+    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension ms-python.python && \
+    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension ms-vscode.live-server && \
+    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension vscodevim.vim && \
     for file in ./extensions/*.vsix; do \
         /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension $file; \
     done
