@@ -34,5 +34,5 @@ services:
       PUID: 1000
       PGID: 1000
       CF_API_TOKEN: ${CF_API_TOKEN}
-      DOMAINS: "cloud.msws.xyz,code.msws.xyz,drive.msws.xyz,msws.xyz,www.msws.xyz,uptime-kuma.msws.xyz,status.msws.xyz,waka.msws.xyz,stats.msws.xyz,proxmox.msws.xyz,twilio.msws.xyz,dynmap.msws.xyz"
+      DOMAINS: "cloud.msws.xyz,code.msws.xyz,drive.msws.xyz,msws.xyz,www.msws.xyz,uptime-kuma.msws.xyz,status.msws.xyz,waka.msws.xyz,stats.msws.xyz,proxmox.msws.xyz,twilio.msws.xyz"
       PROXIED: "true"
