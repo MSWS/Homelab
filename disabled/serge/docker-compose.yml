@@ -1,0 +1,20 @@
+services:
+  serge:
+    image: ghcr.io/serge-chat/serge:latest
+    container_name: serge
+    restart: unless-stopped
+    ports:
+      - 8008:8008
+    volumes:
+      - weights:/usr/src/app/weights
+      - datadb:/data/db/
+    networks:
+      - monolith_default
+
+networks:
+  monolith_default:
+    external: true
+
+volumes:
+  weights:
+  datadb:
