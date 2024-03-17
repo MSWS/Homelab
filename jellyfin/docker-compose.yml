@@ -11,7 +11,7 @@ services:
       - type: bind
         source: /home/iboaz/jellyfin/media
         target: /media
-    restart: 'unless-stopped'
+    restart: always
     # Optional - alternative address used for autodiscovery
     environment:
       - JELLYFIN_PublishedServerUrl=https://watch.msws.xyz
