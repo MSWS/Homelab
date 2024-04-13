@@ -18,6 +18,7 @@ services:
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
     extra_hosts:
       - 'host.docker.internal:host-gateway'
+
 networks:
   monolith_default:
     external: true
