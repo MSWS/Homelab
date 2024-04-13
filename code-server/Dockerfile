@@ -1,6 +1,5 @@
 # Use linuxserver/code-server base image
-# FROM lscr.io/linuxserver/code-server:latest
-FROM ghcr.io/linuxserver/code-server:4.22.1-ls203
+FROM lscr.io/linuxserver/code-server:latest
 
 # Set the maintainer label
 LABEL maintainer="me@msws.xyz"
