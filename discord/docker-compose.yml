@@ -1,0 +1,7 @@
+services:
+  selfbot:
+    image: ghcr.io/msws/selfbot-24:main
+    restart: always
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - OPENAI_TOKEN=${OPENAI_TOKEN}
