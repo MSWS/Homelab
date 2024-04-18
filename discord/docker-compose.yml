@@ -1,6 +1,6 @@
 services:
   selfbot:
-    image: ghcr.io/msws/selfbot-24:main
+    image: ghcr.io/msws/selfbot-24:latest
     restart: always
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
