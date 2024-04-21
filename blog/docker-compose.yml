@@ -1,0 +1,38 @@
+version: "2.1"
+services:
+  chyrplite:
+    # image: nicholaswilde/chyrp-lite:latest
+    # build: .
+    # image: mychyrp
+    image: ghcr.io/msws/docker-chyrp-lite:latest
+    container_name: chyrp-lite-default
+    restart: unless-stopped
+    volumes:
+      - data:/data
+      - html:/var/www/html
+    networks:
+      - monolith_default
+      - chyrp_internal
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - chyrp_internal
+    ports:
+      - "3306:3306"
+
+
+volumes:
+  data:
+  html:
+  dbdata:
+networks:
+  monolith_default:
+    external: true
+  chyrp_internal:

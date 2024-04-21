@@ -5,3 +5,9 @@ services:
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - OPENAI_TOKEN=${OPENAI_TOKEN}
+      - WEBHOOK_URL=${WEBHOOK_URL}
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"   # number of files or file count
+        max-size: "10m" # file size
