@@ -1,9 +1,6 @@
 version: "2.1"
 services:
   chyrplite:
-    # image: nicholaswilde/chyrp-lite:latest
-    # build: .
-    # image: mychyrp
     image: ghcr.io/msws/docker-chyrp-lite:latest
     container_name: chyrp-lite-default
     restart: unless-stopped

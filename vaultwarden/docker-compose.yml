@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden  
+    volumes:
+      - vaultwarden_data:/data/   
+    environment:
+      SIGNUPS_ALLOWED: false
+      DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@vaultwarden_db/${MYSQL_DATABASE}"
+      ADMIN_TOKEN: "${ADMIN_TOKEN}"
+    restart: always
+    networks:
+      - monolith_default
+      - vaultwarden_db_network
+  mariadb:
+    image: mariadb
+    container_name: vaultwarden_db 
+    restart: always
+    volumes:
+      - "vaultwarden_db:/var/lib/mysql"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}"
+      - "MYSQL_PASSWORD=${MYSQL_PASSWORD}"
+      - "MYSQL_DATABASE=${MYSQL_DATABASE}"
+      - "MYSQL_USER=${MYSQL_USER}"
+    networks:
+      - vaultwarden_db_network
+
+volumes:
+  vaultwarden_data: 
+  vaultwarden_db:
+
+networks:
+  monolith_default:
+    external: true
+  vaultwarden_db_network:
