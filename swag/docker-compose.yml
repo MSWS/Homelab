@@ -17,6 +17,8 @@ services:
       - "EMAIL=imodmaker@gmail.com" # define email; required to renew certificate
     volumes:
       - /home/iboaz/appdata/swag:/config
+      - /home/iboaz/jellyfin/config/log:/jellyfin-logs:ro
+      - /home/iboaz/vaultwarden/logs:/vaultwarden-logs:ro
     networks:
       - monolith_default
     ports:

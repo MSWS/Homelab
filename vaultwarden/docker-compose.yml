@@ -4,11 +4,14 @@ services:
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden  
+    user: 1000:1000
     volumes:
       - vaultwarden_data:/data/   
+      - ./logs:/logs
     environment:
       SIGNUPS_ALLOWED: false
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@vaultwarden_db/${MYSQL_DATABASE}"
+      LOG_FILE: "/logs/vaultwarden.log"
       ADMIN_TOKEN: "${ADMIN_TOKEN}"
     restart: always
     networks:
