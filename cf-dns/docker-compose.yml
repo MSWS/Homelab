@@ -16,7 +16,7 @@ services:
       - PUID=1000
       - PGID=1000
       - CF_API_TOKEN=${CF_API_TOKEN}
-      - DOMAINS=*.code.msws.xyz,*.senior-project.msws.xyz
+      - DOMAINS=*.code.msws.xyz
       - PROXIED=false
   cf-internal:
     image: favonia/cloudflare-ddns:latest
@@ -34,5 +34,5 @@ services:
       PUID: 1000
       PGID: 1000
       CF_API_TOKEN: ${CF_API_TOKEN}
-      DOMAINS: "cloud.msws.xyz,code.msws.xyz,drive.msws.xyz,msws.xyz,www.msws.xyz,uptime-kuma.msws.xyz,status.msws.xyz,waka.msws.xyz,stats.msws.xyz,proxmox.msws.xyz,watch.msws.xyz,go.msws.xyz,blog.msws.xyz,pass.msws.xyz"
+      DOMAINS: "cloud.msws.xyz,drive.msws.xyz,msws.xyz,www.msws.xyz,uptime-kuma.msws.xyz,status.msws.xyz,waka.msws.xyz,stats.msws.xyz,watch.msws.xyz,go.msws.xyz,blog.msws.xyz,pass.msws.xyz"
       PROXIED: "true"

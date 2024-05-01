@@ -1,0 +1,15 @@
+version: '3'  # Adjust if you need a different Compose file version
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: always  # Ensures the tunnel restarts if it fails
+    command: tunnel --no-autoupdate run 
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiMjMyMTcyNzhlYzNjOTM1NmMwYmVhMGIyNDg2NTFmZjAiLCJ0IjoiMGVhMzQ1YTAtMTRlNy00YjQzLTkwMTgtNzI4YjdiMDlmYjYzIiwicyI6Ik9HUXpNRE5tWlRFdFpURTNNQzAwT0dNd0xUazFOVGN0T1RKa016QmtaRFZqTmpJNSJ9
+    networks:
+      - monolith_default
+
+networks:
+  monolith_default:
+    external: true
+

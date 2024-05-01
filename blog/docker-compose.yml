@@ -3,7 +3,7 @@ services:
   chyrplite:
     image: ghcr.io/msws/docker-chyrp-lite:latest
     container_name: chyrp-lite-default
-    restart: unless-stopped
+    restart: always
     volumes:
       - data:/data
       - html:/var/www/html
@@ -12,6 +12,7 @@ services:
       - chyrp_internal
   database:
     image: mariadb
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
