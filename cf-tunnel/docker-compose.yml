@@ -1,0 +1,15 @@
+version: '3' # Use a common Docker Compose file version
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: always  # Restart the container if it fails
+    command: tunnel --no-autoupdate run  # Your main command 
+    environment:
+      TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
+    networks:
+      - monolith_default
+
+networks:
+  monolith_default:
+    external: true
