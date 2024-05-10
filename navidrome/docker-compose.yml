@@ -1,0 +1,86 @@
+version: "3"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    user: 1000:1000 # should be owner of volumes
+    restart: unless-stopped
+    volumes:
+      - "${PWD}/data:/data"
+      - "${PWD}/music:/music"
+    networks:
+        - monolith_default
+    environment:
+      ND_SPOTIFY_ID: "${ND_SPOTIFY_ID}"
+      ND_SPOTIFY_SECRET: "${ND_SPOTIFY_SECRET}"
+      ND_PLAYLISTSPATH: "playlists"
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - "${PWD}/lidarr/config:/config"
+      - "${PWD}/music:/music"
+      - "${PWD}/downloads:/downloads"
+    restart: unless-stopped
+    networks:
+      - monolith_default
+      - tor
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - "${PWD}/radarr/data:/config"
+      - "/home/iboaz/jellyfin/media/movies:/movies"
+      - "${PWD}/downloads:/downloads"
+    #    ports:
+    #      - 7878:7878
+    restart: unless-stopped
+    networks:
+        - monolith_default
+        - tor
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - WEBUI_PORT=8080
+      - TORRENTING_PORT=6881
+    volumes:
+      - "${PWD}/bittorrent/config"
+      - "${PWD}/downloads:/downloads"
+    restart: unless-stopped
+    networks:
+      - monolith_default
+      - tor
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ${PWD}/prowlar/config:/config
+    restart: unless-stopped
+    networks:
+      - tor
+      - monolith_default
+
+networks:
+  monolith_default:
+    external: true
+  tor:
