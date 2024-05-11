@@ -18,9 +18,9 @@ services:
           host: invidious-db
           port: 5432
         check_tables: true
-        # external_port:
-        # domain:
-        # https_only: false
+        external_port: 443
+        domain: yt.msws.xyz
+        https_only: true
         # statistics_enabled: false
         hmac_key: ${HMAC_KEY}
     healthcheck:
