@@ -8,8 +8,8 @@ services:
     environment:
       TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
     networks:
-      - monolith_default
+      - cloudflared
 
 networks:
-  monolith_default:
-    external: true
+  cloudflared:
+    name: cloudflared

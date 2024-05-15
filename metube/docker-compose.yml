@@ -4,15 +4,15 @@ services:
     image: ghcr.io/alexta69/metube
     container_name: metube
     restart: unless-stopped
-    ports:
-      - "8081:8081"
+    # ports:
+    #   - "8081:8081"
     volumes:
       - /home/iboaz/navidrome/music/metube:/downloads
     networks:
-      - monolith_default
+      - cloudflared
     environment:
       - 'YTDL_OPTIONS={"ignore_no_formats_error": true, "no-abort-on-error": true}'
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true

@@ -12,7 +12,7 @@ RUN apt-get update && \
     add-apt-repository -y ppa:git-core/ppa && \
     add-apt-repository ppa:neovim-ppa/unstable && \
     apt-get update && \
-    apt-get install -y texlive-full curl wget git neovim && \
+    apt-get install -y texlive-full curl wget git && \
     rm -rf /var/lib/apt/lists/*
 
 # Set global git config

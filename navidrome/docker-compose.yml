@@ -9,7 +9,7 @@ services:
       - "${PWD}/data:/data"
       - "${PWD}/music:/music"
     networks:
-        - monolith_default
+        - cloudflared
     environment:
       ND_SPOTIFY_ID: "${ND_SPOTIFY_ID}"
       ND_SPOTIFY_SECRET: "${ND_SPOTIFY_SECRET}"
@@ -28,7 +28,7 @@ services:
       - "${PWD}/downloads:/downloads"
     restart: unless-stopped
     networks:
-      - monolith_default
+      - cloudflared
       - tor
 
   radarr:
@@ -46,7 +46,7 @@ services:
     #      - 7878:7878
     restart: unless-stopped
     networks:
-        - monolith_default
+        - cloudflared
         - tor
 
   qbittorrent:
@@ -63,7 +63,7 @@ services:
       - "${PWD}/downloads:/downloads"
     restart: unless-stopped
     networks:
-      - monolith_default
+      - cloudflared
       - tor
 
   prowlarr:
@@ -78,9 +78,9 @@ services:
     restart: unless-stopped
     networks:
       - tor
-      - monolith_default
+      - cloudflared
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true
   tor:

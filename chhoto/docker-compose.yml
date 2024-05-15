@@ -3,8 +3,8 @@ services:
         image: sintan1729/chhoto-url:latest
         restart: unless-stopped
         container_name: chhoto-url
-        ports:
-            - 4567:4567
+        # ports:
+            # - 4567:4567
         environment:
             # Change if you want to mount the database somewhere else
             # In this case, you can get rid of the db volume below
@@ -22,10 +22,10 @@ services:
             # are accepted values, defaults to PERMANENT
             # - redirect_method=TEMPORARY
         volumes:
-            - /home/iboaz/chhoto:/data/
+            - "${PWD}:/data/"
         networks:
-            - monolith_default
+            - cloudflared
 
 networks:
-    monolith_default:
+    cloudflared:
         external: true

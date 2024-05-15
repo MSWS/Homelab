@@ -35,8 +35,8 @@ services:
     depends_on:
       - invidious-db
     networks:
-     - monolith_default
      - invidious-db
+     - cloudflared
 
   invidious-db:
     image: docker.io/library/postgres:14
@@ -54,11 +54,12 @@ services:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
     networks:
       - invidious-db
+      - cloudflared
 
 volumes:
   postgresdata:
 
 networks:
-  monolith_default:
-    external: true
   invidious-db:
+  cloudflared:
+    external: true

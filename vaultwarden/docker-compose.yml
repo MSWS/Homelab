@@ -7,15 +7,13 @@ services:
     user: 1000:1000
     volumes:
       - vaultwarden_data:/data/   
-      - ./logs:/logs
     environment:
       SIGNUPS_ALLOWED: false
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@vaultwarden_db/${MYSQL_DATABASE}"
-      LOG_FILE: "/logs/vaultwarden.log"
       ADMIN_TOKEN: "${ADMIN_TOKEN}"
     restart: always
     networks:
-      - monolith_default
+      - cloudflared
       - vaultwarden_db_network
   mariadb:
     image: mariadb
@@ -37,6 +35,6 @@ volumes:
   vaultwarden_db:
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true
   vaultwarden_db_network:
