@@ -1,14 +1,15 @@
 version: "2.1"
 services:
   chyrplite:
-    image: ghcr.io/msws/docker-chyrp-lite:latest
+    # image: ghcr.io/msws/docker-chyrp-lite:latest
+    image: docker.io/library/chryp-lite:test
     container_name: chyrp-lite-default
     restart: always
     volumes:
       - data:/data
       - html:/var/www/html
     networks:
-      - monolith_default
+      - cloudflared
       - chyrp_internal
   database:
     image: mariadb
@@ -22,8 +23,8 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - chyrp_internal
-    ports:
-      - "3306:3306"
+    #    ports:
+    #      - "3306:3306"
 
 
 volumes:
@@ -31,6 +32,6 @@ volumes:
   html:
   dbdata:
 networks:
-  monolith_default:
+  cloudflared:
     external: true
   chyrp_internal:

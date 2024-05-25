@@ -2,20 +2,20 @@ version: '3.8'
 
 services:
   wakapi:
-    image: ghcr.io/muety/wakapi:latest
+    image: wakapi:test
     container_name: wakapi
     restart: always
-    ports:
-      - "3002:3002"
+#    ports:
+#      - "3002:3002"
     environment:
       WAKAPI_PASSWORD_SALT: "${WAKAPI_PASSWORD_SALT}"
       WAKAPI_PORT: "3002"
       WAKAPI_PUBLIC_URL: "https://waka.msws.xyz"
-      WAKAPI_DB_HOST: "nextclouddb"
+      WAKAPI_DB_HOST: "wakapi-database-1"
       WAKAPI_DB_PORT: "3306"
-      WAKAPI_DB_USER: "wakapi_user"
-      WAKAPI_DB_PASSWORD: "your-password"
-      WAKAPI_DB_NAME: "wakapi"
+      WAKAPI_DB_USER: "${MYSQL_USER}"
+      WAKAPI_DB_PASSWORD: "${MYSQL_PASSWORD}"
+      WAKAPI_DB_NAME: "${MYSQL_DATABASE}"
       WAKAPI_DB_TYPE: "mysql"
       WAKAPI_ALLOW_SIGNUP: "false"
       WAKAPI_DISABLE_FRONTPAGE: "true"
@@ -28,17 +28,30 @@ services:
       WAKAPI_MAIL_SMTP_USER: "${WAKAPI_MAIL_SMTP_USER}"
       WAKAPI_MAIL_SMTP_PASS: "${WAKAPI_MAIL_SMTP_PASS}"
       WAKAPI_MAIL_SENDER: "${WAKAPI_MAIL_SENDER}"
+      WAKAPI_IMPORT_MAX_RATE: 0
     volumes:
       - wakapi-data:/data
     networks:
-      - monolith_default
-      - nextcloud_maria_internal
+      - cloudflared
+      - mariadb
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - wakapi-db:/var/lib/mysql
+    networks:
+      - mariadb
 
 volumes:
   wakapi-data:
+  wakapi-db:
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true
-  nextcloud_maria_internal:
-    external: true
+  mariadb:

@@ -4,15 +4,13 @@ services:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     restart: always
-    ports:
-      - "3001:3001"
     volumes:
       - uptime-kuma:/app/data
     networks:
-      - monolith_default
+      - cloudflared
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true
 
 volumes:

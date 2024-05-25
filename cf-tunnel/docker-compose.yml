@@ -1,14 +1,21 @@
 version: '3' # Use a common Docker Compose file version
 
 services:
-  cloudflared:
+  cloudflared-public:
     image: cloudflare/cloudflared:latest
     restart: always  # Restart the container if it fails
     command: tunnel --no-autoupdate run  # Your main command 
     environment:
-      TUNNEL_TOKEN: "${TUNNEL_TOKEN}"
+      TUNNEL_TOKEN: "${PUBLIC_TUNNEL_TOKEN}"
     networks:
       - cloudflared
+  cloudflared-internal:
+    image: cloudflare/cloudflared:latest
+    restart: always  # Restart the container if it fails
+    command: tunnel --no-autoupdate run  # Your main command 
+    environment:
+      TUNNEL_TOKEN: "${PRIVATE_TUNNEL_TOKEN}"
+    network_mode: "host"
 
 networks:
   cloudflared:

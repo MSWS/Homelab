@@ -27,9 +27,9 @@ RUN git config --global user.name MSWS && \
 RUN git clone https://github.com/MSWS/nvim-config.git /config/.config/nvim
 
 # Set up SSH and permissions
-RUN mkdir -p /home/abc/.ssh/ && chmod 0700 /home/abc/.ssh/
+RUN mkdir -p /config/.ssh/ && chmod 0700 /config/.ssh/
 
-COPY --chown=abc:abc .ssh /home/abc/.ssh
+COPY --chown=abc:abc .ssh /config/.ssh
 COPY extensions /extensions
 
 # Install VSCode extensions

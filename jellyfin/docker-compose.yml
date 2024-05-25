@@ -4,7 +4,7 @@ services:
     image: jellyfin/jellyfin
     container_name: jellyfin
     networks:
-      - monolith_default
+      - cloudflared
     volumes:
       - /home/iboaz/jellyfin/config:/config
       - /home/iboaz/jellyfin/cache:/cache
@@ -20,5 +20,5 @@ services:
       - 'host.docker.internal:host-gateway'
 
 networks:
-  monolith_default:
+  cloudflared:
     external: true

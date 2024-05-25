@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  nodifts-backend:
+    image: ghcr.io/msws/nodifts-backend:latest
+    container_name: nodifts-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - SUBPATH=nodifts
+      - WEATHER_URL=${WEATHER_URL}
+      - WAKA_KEY=${WAKA_KEY}
+      - WAKA_URL=${WAKA_URL}
+    networks:
+      - cloudflared
+  nodifts-frontend:
+    image: ghcr.io/msws/nodifts-frontend:latest
+    container_name: nodifts-frontend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - API_URL=${API_URL}
+      - REFRESH_RATE=50
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    external: true
