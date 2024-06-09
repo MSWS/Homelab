@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   wakapi:
-    image: wakapi:test
+    image: ghcr.io/muety/wakapi:latest
     container_name: wakapi
     restart: always
 #    ports:
