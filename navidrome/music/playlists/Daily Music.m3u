@@ -1,5 +1,9 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:179,The Chalkeaters - Roll out the Fallout!
+/music/metube/Roll out the Fallout!.opus
+#EXTINF:278,fun. - Carry On
+/music/fun/Carry On.opus
 #EXTINF:154,Jeff Lewis, Mitchell Hope, Disney - Did I Mention
 /music/metube/Did I Mention.opus
 #EXTINF:187,Matoma, Josie Dunne - Sunday Morning (feat. Josie Dunne)
@@ -120,8 +124,6 @@
 /music/metube/Someone To You.opus
 #EXTINF:181,Jonas Brothers - What a Man Gotta Do
 /music/metube/What A Man Gotta Do.opus
-#EXTINF:203,5 Seconds of Summer - She Looks So Perfect
-/music/metube/She Looks So Perfect.opus
 #EXTINF:249,The Longest Johns - Oak & Ash & Thorn
 /music/metube/Oak & Ash & Thorn.opus
 #EXTINF:156,NathanEvanss - Nathan Evans - Wellerman (Sea Shanty)
@@ -178,8 +180,6 @@
 /music/metube/Roundtable Rival.opus
 #EXTINF:199,Rag’n’Bone Man - Human
 /music/metube/Human.opus
-#EXTINF:144,Noah Cyrus - Lonely
-/music/metube/Lonely.opus
 #EXTINF:167,The Piano Guys, Steven Sharp Nelson, Al van der Beek - Celloopa
 /music/metube/Celloopa.opus
 #EXTINF:194,Pentatonix - Carol of the Bells
