@@ -17,7 +17,7 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
-      - ${PWD}/imports:/imports
+      - ${PWD}/imports:/imports:ro
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env

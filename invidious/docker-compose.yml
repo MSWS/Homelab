@@ -5,7 +5,7 @@ services:
     image: quay.io/invidious/invidious:latest
     container_name: invidious
     # image: quay.io/invidious/invidious:latest-arm64 # ARM64/AArch64 devices
-    restart: unless-stopped
+    restart: always
     environment:
       # Please read the following file for a comprehensive list of all available
       # configuration options and their associated syntax:
@@ -40,7 +40,7 @@ services:
 
   invidious-db:
     image: docker.io/library/postgres:14
-    restart: unless-stopped
+    restart: always
     container_name: invidious-db
     volumes:
       - postgresdata:/var/lib/postgresql/data

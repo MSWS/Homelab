@@ -15,7 +15,7 @@ services:
       volumes:
         - "project-data:/config"
         - "install-data:/home/abc/.local/share/code-server"
-      restart: unless-stopped
+      restart: always
       networks:
         - cloudflared
 networks:

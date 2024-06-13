@@ -21,7 +21,7 @@ services:
       - "${PWD}/config:/config"
     networks:
       - cloudflared
-    restart: unless-stopped
+    restart: always
 
 networks:
   cloudflared:
