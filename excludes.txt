@@ -1,0 +1,13 @@
+/home/iboaz/jellyfin/media
+/proc
+/sys
+/tmp
+/var/tmp
+/var/cache
+/var/log
+/dev
+/mnt
+/media
+/lost+found
+node_modules
+__pycache__
