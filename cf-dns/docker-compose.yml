@@ -4,17 +4,13 @@ services:
      image: favonia/cloudflare-ddns:latest
      network_mode: host
      restart: always
-     cap_add:
-       - SETUID
-       - SETGID
+     user: "1000:1000"
      cap_drop:
        - all
      read_only: true
      security_opt:
        - no-new-privileges:true
      environment:
-       - PUID=1000
-       - PGID=1000
        - CF_API_TOKEN=${CF_API_TOKEN}
        - DOMAINS=*.code.msws.xyz
        - PROXIED=false
@@ -22,17 +18,13 @@ services:
 #   image: favonia/cloudflare-ddns:latest
 #    network_mode: host
 #    restart: always
-#    cap_add:
-#      - SETUID
-#      - SETGID
+#    user: "1000:1000"
 #    cap_drop:
 #      - all
 #    read_only: true
 #    security_opt:
 #      - no-new-privileges:true
 #    environment:
-#      PUID: 1000
-#      PGID: 1000
 #      CF_API_TOKEN: ${CF_API_TOKEN}
 #      DOMAINS: "go.msws.xyz"
 #      PROXIED: "true"
