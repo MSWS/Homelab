@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  youtrack:
+    image: jetbrains/youtrack:2024.2.38971
+    container_name: youtrack
+    restart: unless-stopped
+    volumes:
+      - youtrack_data:/opt/youtrack/data
+      - youtrack_conf:/opt/youtrack/conf
+      - youtrack_logs:/opt/youtrack/logs
+      - youtrack_backups:/opt/youtrack/backups
+    environment:
+      - YOUTRACK_MEMORY=2g  # Adjust based on your server's memory
+    networks:
+      - cloudflared
+
+volumes:
+  youtrack_data:
+  youtrack_conf:
+  youtrack_logs:
+  youtrack_backups:
+
+networks:
+  cloudflared:
+    external: true
