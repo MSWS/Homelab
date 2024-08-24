@@ -9,7 +9,7 @@ services:
       - youtrack_logs:/opt/youtrack/logs
       - youtrack_backups:/opt/youtrack/backups
     environment:
-      - YOUTRACK_MEMORY=2g  # Adjust based on your server's memory
+      - YOUTRACK_MEMORY=2g
     networks:
       - cloudflared
 

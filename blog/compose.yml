@@ -22,9 +22,6 @@ services:
       - dbdata:/var/lib/mysql
     networks:
       - chyrp_internal
-    #    ports:
-    #      - "3306:3306"
-
 
 volumes:
   data:

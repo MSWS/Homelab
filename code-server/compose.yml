@@ -6,11 +6,9 @@ services:
         - PUID=1000
         - PGID=1000
         - TZ=Etc/UTC
-          # - HASHED_PASSWORD=${HASHED_PASSWORD} #optional
-          # - SUDO_PASSWORD_HASH=${SUDO_PASSWORD_HASH} #optional
         - SUDO_PASSWORD=${SUDO_PASSWORD}
-        - PROXY_DOMAIN=code.msws.xyz #optional
-        - DEFAULT_WORKSPACE=/config/workspace #optional
+        - PROXY_DOMAIN=code.msws.xyz
+        - DEFAULT_WORKSPACE=/config/workspace
       volumes:
         - "project-data:/config"
         - "install-data:/home/abc/.local/share/code-server"

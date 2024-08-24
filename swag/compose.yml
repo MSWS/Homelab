@@ -1,21 +1,21 @@
 services:
   swag:
-    image: linuxserver/swag         #swag is the replacement for letsencrypt (see link below)
+    image: linuxserver/swag
     container_name: swag
     cap_add:
       - NET_ADMIN
     ports:
       - 443:443
     environment:
-      - PUID=1000 #change PUID if needed
-      - PGID=1000  #change PGID if needed
-      - "TZ=Europe/Berlin" # change Time Zone if needed
-      - "URL=msws.xyz" #insert your domain name - yourdomain.url
+      - PUID=1000
+      - PGID=1000
+      - "TZ=Europe/Berlin"
+      - "URL=msws.xyz"
       - "SUBDOMAINS=wildcard"
       - "EXTRA_DOMAINS=*.code.msws.xyz"
       - "VALIDATION=dns"
       - "DNSPLUGIN=cloudflare"
-      - "EMAIL=imodmaker@gmail.com" # define email; required to renew certificate
+      - "EMAIL=imodmaker@gmail.com"
     volumes:
       - "${PWD}/config:/config"
     networks:
