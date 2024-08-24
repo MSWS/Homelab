@@ -1,21 +1,23 @@
-version: '3' # Use a common Docker Compose file version
-
 services:
   cloudflared-public:
     image: cloudflare/cloudflared:latest
-    restart: always  # Restart the container if it fails
-    command: tunnel --no-autoupdate run  # Your main command 
+    restart: always 
+    command: tunnel --no-autoupdate run
     environment:
       TUNNEL_TOKEN: "${PUBLIC_TUNNEL_TOKEN}"
     networks:
       - cloudflared
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
   cloudflared-internal:
     image: cloudflare/cloudflared:latest
-    restart: always  # Restart the container if it fails
-    command: tunnel --no-autoupdate run  # Your main command 
+    restart: always
+    command: tunnel --no-autoupdate run
     environment:
       TUNNEL_TOKEN: "${PRIVATE_TUNNEL_TOKEN}"
     network_mode: "host"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
 
 networks:
   cloudflared:

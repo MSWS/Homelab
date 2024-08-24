@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   nodifts-backend:
     image: ghcr.io/msws/nodifts-backend:latest

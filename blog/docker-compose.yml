@@ -1,4 +1,3 @@
-version: "2.1"
 services:
   chyrplite:
     # image: ghcr.io/msws/docker-chyrp-lite:latest

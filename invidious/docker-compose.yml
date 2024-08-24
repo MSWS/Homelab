@@ -1,6 +1,4 @@
-version: "3"
 services:
-
   invidious:
     image: quay.io/invidious/invidious:latest
     container_name: invidious

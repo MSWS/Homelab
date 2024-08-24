@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   youtrack:
     image: jetbrains/youtrack:2024.2.38971
