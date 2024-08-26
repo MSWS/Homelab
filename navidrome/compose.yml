@@ -39,10 +39,9 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/radarr/data:/config"
-      - "/home/iboaz/jellyfin/media/movies:/movies"
+      # - "/home/iboaz/jellyfin/media/movies:/movies"
       - "${PWD}/downloads:/downloads"
-    #    ports:
-    #      - 7878:7878
+      - "/mnt/usb/media/jellyfin/movies:/movies"
     restart: always
     networks:
         - cloudflared
