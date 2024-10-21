@@ -1,5 +1,3 @@
-version: "3.5"
-
 services:
   dind:
     image: docker:20-dind
