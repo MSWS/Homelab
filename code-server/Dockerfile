@@ -12,7 +12,7 @@ RUN apt-get update && \
     add-apt-repository -y ppa:git-core/ppa && \
     add-apt-repository ppa:neovim-ppa/unstable && \
     apt-get update && \
-    apt-get install -y texlive-full curl wget git && \
+    apt-get install -y texlive-full curl wget git zoxide && \
     rm -rf /var/lib/apt/lists/*
 
 # Set global git config
@@ -31,6 +31,8 @@ RUN mkdir -p /config/.ssh/ && chmod 0700 /config/.ssh/
 
 COPY --chown=abc:abc .ssh /config/.ssh
 COPY extensions /extensions
+
+RUN echo "eval \"\$(zoxide init bash)\"" >> /config/.bashrc
 
 # Install VSCode extensions
 RUN /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension James-Yu.latex-workshop && \

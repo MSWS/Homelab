@@ -20,6 +20,10 @@ services:
         domain: yt.msws.xyz
         https_only: true
         # statistics_enabled: true
+        signature_server: inv_sig_helper:12999
+        visitor_data: ${VISITOR_DATA}
+        po_token: ${PO_TOKEN}
+        # external_port:
         hmac_key: ${HMAC_KEY}
     healthcheck:
       test: wget -nv --tries=1 --spider http://invidious:3000/api/v1/trending || exit 1
@@ -33,8 +37,23 @@ services:
     depends_on:
       - invidious-db
     networks:
+     - sig-helper
      - invidious-db
      - cloudflared
+
+  inv_sig_helper:
+    image: quay.io/invidious/inv-sig-helper:latest
+    command: ["--tcp", "0.0.0.0:12999"]
+    environment:
+      - RUST_LOG=info
+    restart: unless-stopped
+    cap_drop:
+      - ALL
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - sig-helper
 
   invidious-db:
     image: docker.io/library/postgres:14
@@ -58,5 +77,6 @@ volumes:
 
 networks:
   invidious-db:
+  sig-helper:
   cloudflared:
     external: true
