@@ -2,7 +2,6 @@ services:
   invidious:
     image: quay.io/invidious/invidious:latest
     container_name: invidious
-    # image: quay.io/invidious/invidious:latest-arm64 # ARM64/AArch64 devices
     restart: always
     environment:
       # Please read the following file for a comprehensive list of all available
