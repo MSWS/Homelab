@@ -1,5 +1,9 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:159,Sea of Thieves - Maiden Voyage (Original Game Soundtrack)
+/music/metube/Sea of Thieves/Sea of Thieves OST/Maiden Voyage (Original Game Soundtrack).opus
+#EXTINF:126,Sea of Thieves - We Shall Sail Together (Original Game Soundtrack)
+/music/metube/Sea of Thieves/Sea of Thieves OST/We Shall Sail Together (Original Game Soundtrack).opus
 #EXTINF:171,the atriarchy, gRRiever, StoneEars, SofiUH, Beautiful Panda, JPecs - God Gamer (feat. gRRiever, StoneEars, SofiUH & Beautiful Panda)
 /music/metube/God Gamer (feat. gRRiever, StoneEars, SofiUH & Beautiful Panda).opus
 #EXTINF:150,Maroon 5 - Remedy
@@ -14,7 +18,7 @@
 /music/fun/Carry On.opus
 #EXTINF:154,Jeff Lewis, Mitchell Hope, Disney - Did I Mention
 /music/metube/Did I Mention.opus
-#EXTINF:187,Matoma, Josie Dunne - Sunday Morning (feat. Josie Dunne)
+#EXTINF:187,Matoma - Sunday Morning
 /music/metube/Sunday Morning (feat. Josie Dunne).opus
 #EXTINF:164,Sunflower Garden - Cotton Candy | Helluva Boss | Lyrics
 /music/metube/Cotton Candy ｜ Helluva Boss ｜ Lyrics.opus

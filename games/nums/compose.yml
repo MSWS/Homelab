@@ -1,0 +1,9 @@
+services:
+  numbers:
+    image: ghcr.io/msws/gonumbers:latest
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    external: true
