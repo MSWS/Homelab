@@ -1,5 +1,11 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:190,Maroon 5 - Memories
+/music/Maroon 5/11 - Memories .mp3
+#EXTINF:196,Tom Walker - Head Underwater
+/music/metube/Tom Walker - I AM (ALBUM 2024)/Head Underwater.opus
+#EXTINF:205,Maisie Peters - Maisie Peters - The List [Fan Lyric Video]
+/music/metube/Maisie Peters - The List [Fan Lyric Video].opus
 #EXTINF:159,Sea of Thieves - Maiden Voyage (Original Game Soundtrack)
 /music/metube/Sea of Thieves/Sea of Thieves OST/Maiden Voyage (Original Game Soundtrack).opus
 #EXTINF:126,Sea of Thieves - We Shall Sail Together (Original Game Soundtrack)
@@ -468,3 +474,4 @@
 /music/metube/Best Song Ever.opus
 #EXTINF:189,MC Jams - Hacker
 /music/metube/Hacker.opus
+

@@ -6,6 +6,7 @@ services:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - OPENAI_TOKEN=${OPENAI_TOKEN}
       - WEBHOOK_URL=${WEBHOOK_URL}
+      - TZ=America/Los_Angeles
     logging:
       driver: "json-file"
       options:
