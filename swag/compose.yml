@@ -6,6 +6,7 @@ services:
       - NET_ADMIN
     ports:
       - 443:443
+      - 22:22
     environment:
       - PUID=1000
       - PGID=1000
@@ -16,6 +17,7 @@ services:
       - "VALIDATION=dns"
       - "DNSPLUGIN=cloudflare"
       - "EMAIL=imodmaker@gmail.com"
+      - "PROPOGATION=60"
     volumes:
       - "${PWD}/config:/config"
     networks:

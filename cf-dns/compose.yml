@@ -11,5 +11,5 @@ services:
        - no-new-privileges:true
      environment:
        - CF_API_TOKEN=${CF_API_TOKEN}
-       - DOMAINS=*.code.msws.xyz
+       - DOMAINS=*.code.msws.xyz,git.msws.xyz,registry.msws.xyz
        - PROXIED=false

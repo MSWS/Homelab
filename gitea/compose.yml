@@ -1,0 +1,94 @@
+services:
+  server:
+    image: docker.gitea.com/gitea:latest-rootless
+    restart: always
+    depends_on:
+      elastic:
+        condition: service_started
+    environment:
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=db:3306
+      - GITEA__database__NAME=${MYSQL_DATABASE}
+      - GITEA__database__USER=${MYSQL_USER}
+      - GITEA__database__PASSWD=${MYSQL_PASSWORD}
+      - GITEA__server__SSH_DOMAIN=git.msws.xyz
+      - GITEA__server__SSH_PORT=22
+      - GITEA__server__SSH_LISTEN_PORT=22
+      - GITEA__actions__ENABLED=true
+      - GITEA__repository__ENABLE_PUSH_CREATE_USER=true
+      - GITEA__repository.pull-request__WORK_IN_PROGRESS_PREFIXES="WIP,[WIP]"
+      - GITEA__repository.signing__DEFAULT_TRUST_MODEL=collaboratorcomitter
+      - GITEA__security__PASSWORD_COMPLEXITY=lower,upper,digit
+      - GITEA__security__PASSWORD_CHECK_PWN=true
+      - GITEA__openid__ENABLE_OPENID_SIGNIN=false
+      - GITEA__other__SHOW_FOOTER_POWERED_BY=false
+      - GITEA__indexer__ISSUE_INDEXER_TYPE=elasticsearch
+      - GITEA__indexer__ISSUE_INDEXER_CONN_STR=http://gitea-elastic-1:9200
+      - GITEA__indexer__REPO_INDEXER_ENABLED=true
+      - GITEA__indexer__REPO_INDEXER_TYPE=elasticsearch
+      - GITEA__indexer__REPO_INDEXER_CONN_STR=http://gitea-elastic-1:9200
+      - GITEA__service__ENABLE_CAPTCHA=true
+      - GITEA__service__REQUIRE_CAPTCHA_FOR_LOGIN=true
+      - GITEA__service__CAPTCHA_TYPE=cfturnstile
+      - GITEA__service__CF_TURNSTILE_SECRET=${CF_TURNSTILE_SECRET}
+      - GITEA__service__CF_TURNSTILE_SITEKEY=${CF_TURNSTILE_SITEKEY}
+    volumes:
+      - gitea-data:/var/lib/gitea
+      - gitea-config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - cloudflared
+      - gitea
+      - elastic
+    healthcheck:
+      test: ["CMD", "curl", "-s", "https://git.msws.xyz/api/healthz"] 
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  runner:
+    image: gitea/act_runner:nightly
+    restart: always
+    depends_on:
+      server:
+        condition: service_healthy
+    environment:
+      GITEA_INSTANCE_URL: https://git.msws.xyz
+      GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - gitea-db:/var/lib/mysql
+    networks:
+      - gitea
+
+  elastic:
+    image: elasticsearch:8.17.3
+    restart: always
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    networks:
+      - elastic
+
+volumes:
+  gitea-data:
+  gitea-config:
+  gitea-db:
+
+networks:
+  cloudflared:
+    external: true
+  gitea:
+  elastic:
