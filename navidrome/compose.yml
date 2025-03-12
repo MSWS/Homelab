@@ -39,7 +39,6 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/radarr/data:/config"
-      # - "/home/iboaz/jellyfin/media/movies:/movies"
       - "${PWD}/downloads:/downloads"
       - "/mnt/usb/media/jellyfin/movies:/movies"
     restart: always
@@ -56,7 +55,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/sonarr/data:/config"
-      - "/home/iboaz/jellyfin/media/shows:/shows"
+      - "/mnt/usb/media/jellyfin/shows:/shows"
       - "${PWD}/downloads:/downloads"
     restart: always
     networks:

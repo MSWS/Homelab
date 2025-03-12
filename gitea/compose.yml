@@ -81,6 +81,10 @@ services:
       - xpack.security.enabled=false
     networks:
       - elastic
+    deploy:
+      resources:
+        limits:
+          memory: 1gb
 
 volumes:
   gitea-data:

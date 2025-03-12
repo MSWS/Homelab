@@ -17,7 +17,7 @@ services:
       - "VALIDATION=dns"
       - "DNSPLUGIN=cloudflare"
       - "EMAIL=imodmaker@gmail.com"
-      - "PROPOGATION=60"
+      - "PROPAGATION=20"
     volumes:
       - "${PWD}/config:/config"
     networks:
