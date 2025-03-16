@@ -2,20 +2,23 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    restart: unless-stopped
-    network_mode: "host"
+    network_mode: host
     environment:
       TZ: "America/Los_Angeles"  # Change this to your timezone
       WEBPASSWORD: ${WEB_PASSWORD} # Set the Pi-hole admin password
-      DNSMASQ_LISTENING: "all"
       PIHOLE_DNS_: "1.1.1.1;1.0.0.1"  # Upstream DNS (Cloudflare)
       VIRTUAL_HOST: "pi.hole"
+      FTLCONF_webserver_port: 3141
     volumes:
       - etc-pihole:/etc/pihole
       - etc-dnsmasq:/etc/dnsmasq.d
     cap_add:
-      - NET_ADMIN
+      - SYS_NICE
 
 volumes:
   etc-pihole:
   etc-dnsmasq:
+
+networks:
+  cloudflared:
+    external: true

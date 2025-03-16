@@ -8,6 +8,8 @@ services:
       - /home/iboaz/jellyfin/config:/config
       - /home/iboaz/jellyfin/cache:/cache
       - /mnt/usb/media/jellyfin:/usbmedia
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
       - type: bind
         source: /home/iboaz/jellyfin/media
         target: /media

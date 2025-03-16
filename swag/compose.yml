@@ -7,13 +7,14 @@ services:
     ports:
       - 443:443
       - 22:22
+      - 80:80
     environment:
       - PUID=1000
       - PGID=1000
       - "TZ=Europe/Berlin"
       - "URL=msws.xyz"
       - "SUBDOMAINS=wildcard"
-      - "EXTRA_DOMAINS=*.code.msws.xyz"
+      - "EXTRA_DOMAINS=*.code.msws.xyz,*.local.msws.xyz"
       - "VALIDATION=dns"
       - "DNSPLUGIN=cloudflare"
       - "EMAIL=imodmaker@gmail.com"
