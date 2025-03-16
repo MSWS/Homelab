@@ -16,28 +16,32 @@ git.msws.xyz, git.local.msws.xyz, registry.msws.xyz {
   reverse_proxy gitea-server-1:3000
 }
 
-yt.local.msws.xyz {
+yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
 
-pass.local.msws.xyz {
+pass.local.msws.xyz, pass.msws.xyz {
   reverse_proxy vaultwarden:80
 }
 
-code.local.msws.xyz {
+code.local.msws.xyz, code.msws.xyz {
   reverse_proxy code-server:8443
 }
 
-music.local.msws.xyz {
+music.local.msws.xyz, music.msws.xyz {
   reverse_proxy navidrome:4533
 }
 
-watch.local.msws.xyz {
+watch.local.msws.xyz, watch.msws.xyz {
   reverse_proxy jellyfin:8096
 }
 
 stats.local.msws.xyz {
   reverse_proxy grafana:3000
+}
+
+photos.local.msws.xyz, photos.msws.xyz {
+  reverse_proxy immich_server:2283
 }
 
 :443, :80 {
