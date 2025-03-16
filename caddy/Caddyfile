@@ -1,0 +1,43 @@
+{
+  email imodmaker@gmail.com
+  acme_ca https://acme-v02.api.letsencrypt.org/directory
+  acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+  
+  layer4 {
+    0.0.0.0:22 {
+      route {
+        proxy gitea-server-1:22
+      }
+    }
+  }
+}
+
+git.msws.xyz, git.local.msws.xyz, registry.msws.xyz {
+  reverse_proxy gitea-server-1:3000
+}
+
+yt.local.msws.xyz {
+  reverse_proxy invidious:3000
+}
+
+pass.local.msws.xyz {
+  reverse_proxy vaultwarden:80
+}
+
+code.local.msws.xyz {
+  reverse_proxy code-server:8443
+}
+
+:443, :80 {
+  handle_path /resume* {
+    rewrite * /MSWS/Resume/main/Resume.pdf 
+    reverse_proxy https://raw.githubusercontent.com {
+      header_up Host raw.githubusercontent.com
+      header_down Content-Type application/pdf
+    }
+  }
+
+  reverse_proxy https://msws.github.io {
+    header_up Host msws.github.io
+  }
+}
