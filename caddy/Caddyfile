@@ -44,7 +44,7 @@ pass.local.msws.xyz, pass.msws.xyz {
   reverse_proxy vaultwarden:80
 }
 
-code.local.msws.xyz, code.msws.xyz {
+code.local.msws.xyz, code.msws.xyz, *.code.msws.xyz {
   reverse_proxy code-server:8443
 }
 
