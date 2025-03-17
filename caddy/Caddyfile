@@ -12,7 +12,23 @@
   }
 }
 
-git.msws.xyz, git.local.msws.xyz, registry.msws.xyz {
+
+registry.msws.xyz {
+  @docker {
+      path_regexp ^.*/[^/]+(:[^/]+)?(/.*)?$
+      header User-Agent *docker/*
+  }
+
+  handle @docker {
+    reverse_proxy gitea-server-1:3000
+  }
+
+  handle {
+    respond "Access Denied" 403
+  }
+}
+
+git.msws.xyz, git.local.msws.xyz {
   reverse_proxy gitea-server-1:3000
 }
 
