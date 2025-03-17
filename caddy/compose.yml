@@ -17,6 +17,7 @@ services:
       - caddy_config:/config
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+      - CADDY_ADMIN=caddy-caddy-1:2019
     networks:
       - cloudflared
 

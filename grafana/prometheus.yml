@@ -37,3 +37,6 @@ scrape_configs:
     bearer_token: 'ZmNmZjkxZDktODU0YS00NDRiLWE2N2YtZTRkZjY5ZGZiZDI4Cg=='
     static_configs:
       - targets: [ 'wakapi:3002' ]
+  - job_name: caddy
+    static_configs:
+      - targets: [ 'caddy-caddy-1:2019' ]
