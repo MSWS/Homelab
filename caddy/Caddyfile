@@ -77,6 +77,11 @@ photos.local.msws.xyz, photos.msws.xyz {
     }
   }
 
+  handle_path /s/* {
+    rewrite /s/ /
+    reverse_proxy chhoto-url:4567
+  }
+
   reverse_proxy https://msws.github.io {
     header_up Host msws.github.io
   }

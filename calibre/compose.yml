@@ -28,6 +28,7 @@ services:
       FLASK_PORT: 8084
       FLASK_DEBUG: false
       BOOK_LANGUAGE: en
+      SUPPORTED_FORMATS: epub
     #ports:
     #  - 8084:8084
     # Uncomment the following lines if you want to enable healthcheck
