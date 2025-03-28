@@ -36,13 +36,13 @@ git.msws.xyz {
   reverse_proxy gitea-server-1:3000
 }
 
-*.code.msws.xyz {
-  reverse_proxy code-server:8443
-}
-
 yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
+
+#*.code.msws.xyz {
+#  auto_https disable_redirects
+#}
 
 music.local.msws.xyz, music.msws.xyz {
   reverse_proxy navidrome:4533
@@ -54,6 +54,12 @@ watch.local.msws.xyz, watch.msws.xyz {
 
 photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy immich_server:2283
+}
+
+*.code.msws.xyz {
+  handle_path /* {
+    redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
+  }
 }
 
 :443, :80 {
