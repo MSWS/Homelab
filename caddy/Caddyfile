@@ -32,6 +32,14 @@ registry.msws.xyz {
   }
 }
 
+git.msws.xyz {
+  reverse_proxy gitea-server-1:3000
+}
+
+*.code.msws.xyz {
+  reverse_proxy code-server:8443
+}
+
 yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
@@ -65,4 +73,5 @@ photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy https://msws.github.io {
     header_up Host msws.github.io
   }
+  # redir / https://msws.github.io{uri}
 }

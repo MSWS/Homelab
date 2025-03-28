@@ -3,6 +3,7 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     network_mode: host
+    restart: always
     environment:
       TZ: "America/Los_Angeles"  # Change this to your timezone
       WEBPASSWORD: ${WEB_PASSWORD} # Set the Pi-hole admin password
