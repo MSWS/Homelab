@@ -1,6 +1,7 @@
 services:
   cloudflared-public:
     image: cloudflare/cloudflared:latest
+    container_name: cf-tunnel-public
     restart: always 
     command: tunnel --no-autoupdate run
     environment:
@@ -11,6 +12,7 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
   cloudflared-internal:
     image: cloudflare/cloudflared:latest
+    container_name: cf-tunnel-internal
     restart: always
     command: tunnel --no-autoupdate run
     environment:
