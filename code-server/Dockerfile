@@ -10,10 +10,12 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:git-core/ppa && \
-    add-apt-repository ppa:neovim-ppa/unstable && \
     apt-get update && \
-    apt-get install -y texlive-full curl wget git zoxide && \
+    apt-get install -y texlive-full curl wget git zoxide cargo && \
     rm -rf /var/lib/apt/lists/*
+
+ENV PATH="$PATH:/config/.cargo/bin"
+RUN cargo install --locked gptcommit
 
 # Set global git config
 RUN git config --global user.name MSWS && \
@@ -22,7 +24,9 @@ RUN git config --global user.name MSWS && \
     git config --global push.autoSetupRemote true && \
     git config --global user.signingKey ~/.ssh/github && \
     git config --global commit.gpgsign true && \
-    git config --global gpg.format ssh
+    git config --global gpg.format ssh && \
+    git config --global alias.ca "commit -ca" && \
+    git config --global alias.c "commit -a"
 
 RUN git clone https://github.com/MSWS/nvim-config.git /config/.config/nvim
 
@@ -30,17 +34,18 @@ RUN git clone https://github.com/MSWS/nvim-config.git /config/.config/nvim
 RUN mkdir -p /config/.ssh/ && chmod 0700 /config/.ssh/
 
 COPY --chown=abc:abc .ssh /config/.ssh
+COPY --chown=abc:abc .config /config/.config
 COPY extensions /extensions
 
 RUN echo "eval \"\$(zoxide init bash)\"" >> /config/.bashrc
 
 # Install VSCode extensions
-RUN /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension James-Yu.latex-workshop && \
-    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension WakaTime.vscode-wakatime && \
-    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension ms-python.python && \
-    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension ms-vscode.live-server && \
-    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension vscodevim.vim && \
-    /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension asvetliakov.vscode-neovim && \
-    for file in ./extensions/*.vsix; do \
-        /app/code-server/lib/vscode/bin/remote-cli/code-server --install-extension $file; \
-    done
+# RUN /usr/local/bin/install-extension James-Yu.latex-workshop && \
+#     /usr/local/bin/install-extension WakaTime.vscode-wakatime && \
+#     /usr/local/bin/install-extension ms-python.python && \
+#     /usr/local/bin/install-extension ms-vscode.live-server && \
+#     /usr/local/bin/install-extension vscodevim.vim && \
+#     /usr/local/bin/install-extension asvetliakov.vscode-neovim && \
+#     for file in ./extensions/*.vsix; do \
+#         /usr/local/bin/install-extension $file; \
+#     done
