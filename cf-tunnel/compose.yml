@@ -3,7 +3,7 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: cf-tunnel-public
     restart: always 
-    command: tunnel --no-autoupdate run
+    command: tunnel run
     environment:
       TUNNEL_TOKEN: "${PUBLIC_TUNNEL_TOKEN}"
     networks:
@@ -14,7 +14,7 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: cf-tunnel-internal
     restart: always
-    command: tunnel --no-autoupdate run
+    command: tunnel run
     environment:
       TUNNEL_TOKEN: "${PRIVATE_TUNNEL_TOKEN}"
     network_mode: "host"
