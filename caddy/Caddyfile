@@ -20,7 +20,7 @@
 registry.msws.xyz {
   @docker {
       path_regexp ^.*/[^/]+(:[^/]+)?(/.*)?$
-      header User-Agent *docker/*
+      header_regexp User-Agent .*(buildkit|docker|containerd).*
   }
 
   handle @docker {
@@ -30,6 +30,10 @@ registry.msws.xyz {
   handle {
     respond "Access Denied" 403
   }
+}
+
+pass.local.msws.xyz {
+  reverse_proxy vaultwarden:80
 }
 
 git.msws.xyz {
@@ -43,6 +47,10 @@ yt.local.msws.xyz, yt.msws.xyz {
 #*.code.msws.xyz {
 #  auto_https disable_redirects
 #}
+
+code.local.msws.xyz {
+  reverse_proxy code-server:8443
+}
 
 music.local.msws.xyz, music.msws.xyz {
   reverse_proxy navidrome:4533
@@ -62,12 +70,20 @@ photos.local.msws.xyz, photos.msws.xyz {
   }
 }
 
-:443, :80 {
+
+:80, :443 {
   handle_path /resume* {
     rewrite * /MSWS/Resume/main/Resume.pdf 
     reverse_proxy https://raw.githubusercontent.com {
       header_up Host raw.githubusercontent.com
       header_down Content-Type application/pdf
+    }
+  }
+
+  handle_path /tetris {
+    rewrite * /font-tetris
+    reverse_proxy https://msws.github.io {
+      header_up Host msws.github.io
     }
   }
 
@@ -79,5 +95,4 @@ photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy https://msws.github.io {
     header_up Host msws.github.io
   }
-  # redir / https://msws.github.io{uri}
 }
