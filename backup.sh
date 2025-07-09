@@ -4,6 +4,11 @@ source /home/iboaz/.restic.sh
 
 exec > >(logger -t backup) 2>&1
 
+/usr/bin/docker image prune --filter "until=168h" --force
+/usr/bin/docker network prune -f
+/usr/bin/docker volume prune -f
+/usr/bin/docker builder prune -f
+
 /usr/bin/restic unlock
 /usr/bin/restic backup -o s3.storage-class=INTELLIGENT_TIERING --exclude-file=/home/iboaz/excludes.txt --one-file-system --verbose /
 /usr/bin/restic -r /mnt/usb/backups/ unlock
