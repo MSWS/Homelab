@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get install -y software-properties-common && \
     add-apt-repository -y ppa:git-core/ppa && \
     apt-get update && \
-    apt-get install -y texlive-full curl wget git zoxide cargo && \
+    apt-get install -y texlive-full curl wget git zoxide cargo vim && \
     rm -rf /var/lib/apt/lists/*
 
 ENV PATH="$PATH:/config/.cargo/bin"
@@ -22,7 +22,7 @@ RUN git config --global user.name MSWS && \
     git config --global user.email imodmaker@gmail.com && \
     git config --global init.defaultBranch main && \
     git config --global push.autoSetupRemote true && \
-    git config --global user.signingKey ~/.ssh/github && \
+    git config --global user.signingKey ~/.ssh/id_ed25519 && \
     git config --global commit.gpgsign true && \
     git config --global gpg.format ssh && \
     git config --global alias.ca "commit -ca" && \
