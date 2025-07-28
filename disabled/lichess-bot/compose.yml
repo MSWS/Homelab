@@ -1,0 +1,6 @@
+services:
+  lichess-bot:
+    container_name: lichess-bot
+    image: registry.msws.xyz/ms/lichess-bot:latest
+    environment:
+      LICHESS_BOT_TOKEN: ${LICHESS_BOT_TOKEN}

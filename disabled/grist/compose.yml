@@ -1,0 +1,11 @@
+services:
+  grist:
+    image: gristlabs/grist-oss
+    container_name: grist
+    environment:
+      GRIST_DEFAULT_EMAIL: "grist@msws.xyz"
+    networks:
+      - cloudflared
+networks:
+  cloudflared:
+    external: true

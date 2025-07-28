@@ -1,0 +1,9 @@
+services:
+  site:
+    image: registry.msws.xyz/ms/kboaz:latest
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    external: true

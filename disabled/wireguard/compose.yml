@@ -1,0 +1,20 @@
+# WARNING: Suspected network misconfiguration
+
+services:
+  wireguard:
+    image: ghcr.io/wfg/wireguard
+    container_name: wireguard
+    cap_add:
+    - NET_ADMIN
+    sysctls:
+    - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+    - ./wireguard.conf:/etc/wireguard/wg0.conf
+    restart: unless-stopped
+    environment:
+      ALLOWED_SUBNETS: "192.168.0.0/24,172.17.0.0/16"
+    networks:
+      - qbittorrent_net
+networks:
+  qbittorrent_net:
+    external: true
