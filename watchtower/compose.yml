@@ -7,12 +7,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       WATCHTOWER_SCHEDULE: "0 0 18 * * *"
-  watchtower-kboaz:
-    image: containrrr/watchtower
-    restart: always
-    container_name: watchtower-kboaz
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      WATCHTOWER_SCHEDULE: "0 * * * * *"
-    command: "kboaz-site-1"
+  #  watchtower-kboaz:
+  #    image: containrrr/watchtower
+  #    restart: always
+  #    container_name: watchtower-kboaz
+  #    volumes:
+  #      - /var/run/docker.sock:/var/run/docker.sock
+  #    environment:
+  #      WATCHTOWER_SCHEDULE: "0 * * * * *"
+  #    command: "kboaz-site-1"
