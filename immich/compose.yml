@@ -41,6 +41,10 @@ services:
     restart: always
     networks:
       - immich-internal
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
 
   redis:
     container_name: immich_redis
