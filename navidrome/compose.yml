@@ -28,7 +28,7 @@ services:
     restart: always
     networks:
       - cloudflared
-      - tor
+      - torrent
 
   radarr:
     image: lscr.io/linuxserver/radarr:latest
@@ -44,7 +44,7 @@ services:
     restart: always
     networks:
         - cloudflared
-        - tor
+        - torrent
 
   sonarr:
     image: lscr.io/linuxserver/sonarr:latest
@@ -60,7 +60,7 @@ services:
     restart: always
     networks:
         - cloudflared
-        - tor
+        - torrent
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -75,9 +75,7 @@ services:
       - "${PWD}/bittorrent/config"
       - "${PWD}/downloads:/downloads"
     restart: always
-    networks:
-      - cloudflared
-      - tor
+    network_mode: "service:gluetun"
 
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
@@ -90,7 +88,7 @@ services:
       - ${PWD}/prowlar/config:/config
     restart: always
     networks:
-      - tor
+      - torrent
       - cloudflared
 
   gluetun:
