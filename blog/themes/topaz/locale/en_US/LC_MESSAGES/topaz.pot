@@ -1,0 +1,483 @@
+#. This file is distributed under the same license as the Chyrp Lite package.
+
+#: themes/topaz/content/comment.twig:4
+#, php-format
+msgid "%s:"
+msgstr ""
+
+#: themes/topaz/content/comment.twig:6
+#, php-format
+msgid "%s said:"
+msgstr ""
+
+#: themes/topaz/content/comment.twig:9
+msgid "This comment is awaiting moderation."
+msgstr ""
+
+#: themes/topaz/content/post.twig:6
+msgid "Tags"
+msgstr ""
+
+#: themes/topaz/content/post.twig:15
+#: themes/topaz/feathers/audio.twig:7
+#: themes/topaz/feathers/photo.twig:7
+#: themes/topaz/feathers/quote.twig:7
+#: themes/topaz/feathers/text.twig:7
+#: themes/topaz/feathers/uploader.twig:7
+#: themes/topaz/feathers/video.twig:7
+#: themes/topaz/pages/archive.twig:29
+#: themes/topaz/pages/page.twig:7
+#: themes/topaz/pages/search.twig:19
+#, php-format
+msgid "Permanent link to &#8220;%s&#8221;"
+msgstr ""
+
+#: themes/topaz/content/post.twig:17
+#: themes/topaz/content/sidebar.twig:29
+msgid "Draft"
+msgstr ""
+
+#: themes/topaz/content/post.twig:19
+msgid "Scheduled"
+msgstr ""
+
+#: themes/topaz/content/post.twig:21
+msgid "Pinned"
+msgstr ""
+
+#: themes/topaz/content/post.twig:29
+#: themes/topaz/content/sidebar.twig:55
+#: themes/topaz/pages/view.twig:14
+msgid "[Untitled]"
+msgstr ""
+
+#: themes/topaz/content/post.twig:37
+msgid "View webmentions"
+msgstr ""
+
+#: themes/topaz/content/post.twig:38
+#, php-format
+msgid "%s webmention"
+msgid_plural "%s webmentions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/topaz/content/post.twig:43
+msgid "Comments closed"
+msgstr ""
+
+#: themes/topaz/content/post.twig:46
+msgid "View comments"
+msgstr ""
+
+#: themes/topaz/content/post.twig:47
+#, php-format
+msgid "%s comment"
+msgid_plural "%s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: themes/topaz/content/sidebar.twig:4
+msgid "Search&hellip;"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:4
+msgid "Search this blog"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:5
+msgid "Search"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:7
+#: themes/topaz/content/sidebar.twig:8
+msgid "Menu"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:8
+msgid "Close menu"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:9
+msgid "Links"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:11
+msgid "Blog"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:14
+#: themes/topaz/forms/user/controls.twig:9
+#: themes/topaz/forms/user/register.twig:13
+msgid "Email"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:17
+msgid "Feed"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:21
+msgid "Admin"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:25
+msgid "Write"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:34
+#: themes/topaz/forms/user/controls.twig:5
+msgid "Controls"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:37
+msgid "Log out"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:42
+#: themes/topaz/forms/user/register.twig:5
+#: themes/topaz/forms/user/register.twig:19
+msgid "Register"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:46
+#: themes/topaz/forms/user/login.twig:5
+#: themes/topaz/forms/user/login.twig:14
+msgid "Log in"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:51
+msgid "Categories"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:61
+msgid "Pages"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:71
+msgid "Related Posts"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:80
+msgid "Recent Posts"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:91
+msgid "Archive"
+msgstr ""
+
+#: themes/topaz/content/sidebar.twig:96
+#: themes/topaz/pages/archive.twig:11
+msgid "F Y"
+msgstr ""
+
+#: themes/topaz/feathers/audio.twig:10
+#: themes/topaz/feathers/link.twig:9
+#: themes/topaz/feathers/photo.twig:10
+#: themes/topaz/feathers/quote.twig:10
+#: themes/topaz/feathers/text.twig:10
+#: themes/topaz/feathers/uploader.twig:10
+#: themes/topaz/feathers/video.twig:10
+#, php-format
+msgid "Written by %s"
+msgstr ""
+
+#: themes/topaz/feathers/audio.twig:15
+#: themes/topaz/feathers/link.twig:12
+#: themes/topaz/feathers/photo.twig:18
+#: themes/topaz/feathers/quote.twig:14
+#: themes/topaz/feathers/text.twig:14
+#: themes/topaz/feathers/uploader.twig:15
+#: themes/topaz/feathers/video.twig:15
+msgid "Text Content"
+msgstr ""
+
+#: themes/topaz/feathers/audio.twig:19
+#: themes/topaz/feathers/photo.twig:14
+#: themes/topaz/feathers/uploader.twig:21
+#: themes/topaz/feathers/uploader.twig:25
+#: themes/topaz/feathers/video.twig:19
+msgid "File Attachment"
+msgstr ""
+
+#: themes/topaz/feathers/missing.twig:4
+msgid "The post cannot be displayed because the theme does not support it."
+msgstr ""
+
+#: themes/topaz/feathers/uploader.twig:26
+msgid "File attachment:"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:2
+msgid "Comment"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:5
+msgid "Author"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:8
+msgid "Author's website"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:10
+msgid "Author's email"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:15
+msgid "Timestamp"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:18
+msgid "Status"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:20
+msgid "Approved"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:21
+msgid "Denied"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:22
+msgid "Spam"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:27
+msgid "Email Notifications"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:35
+msgid "Save"
+msgstr ""
+
+#: themes/topaz/forms/comment/edit.twig:36
+msgid "Cancel"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:3
+#, php-format
+msgid "%s's comment"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:5
+msgid "Your name"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:7
+msgid "Your email"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:9
+msgid "Your website"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:11
+msgid "Remember me"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:14
+msgid "Your comment"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:20
+msgid "Markdown is allowed."
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:23
+msgid "HTML is allowed."
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:25
+msgid "HTML is not allowed."
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:30
+msgid "Notify me when others comment"
+msgstr ""
+
+#: themes/topaz/forms/comment/new.twig:43
+msgid "Speak"
+msgstr ""
+
+#: themes/topaz/forms/user/controls.twig:7
+msgid "Full name"
+msgstr ""
+
+#: themes/topaz/forms/user/controls.twig:11
+msgid "Website"
+msgstr ""
+
+#: themes/topaz/forms/user/controls.twig:13
+#: themes/topaz/forms/user/reset_password.twig:7
+msgid "New password?"
+msgstr ""
+
+#: themes/topaz/forms/user/controls.twig:15
+#: themes/topaz/forms/user/reset_password.twig:9
+msgid "Confirm"
+msgstr ""
+
+#: themes/topaz/forms/user/controls.twig:20
+msgid "Update"
+msgstr ""
+
+#: themes/topaz/forms/user/login.twig:7
+#: themes/topaz/forms/user/lost_password.twig:7
+#: themes/topaz/forms/user/register.twig:7
+msgid "Username"
+msgstr ""
+
+#: themes/topaz/forms/user/login.twig:9
+#: themes/topaz/forms/user/register.twig:9
+#: themes/topaz/forms/user/register.twig:11
+msgid "Password"
+msgstr ""
+
+#: themes/topaz/forms/user/login.twig:15
+msgid "Help!"
+msgstr ""
+
+#: themes/topaz/forms/user/lost_password.twig:5
+msgid "Lost password"
+msgstr ""
+
+#: themes/topaz/forms/user/lost_password.twig:11
+#: themes/topaz/forms/user/reset_password.twig:16
+msgid "Submit"
+msgstr ""
+
+#: themes/topaz/forms/user/register.twig:11
+msgid "(again)"
+msgstr ""
+
+#: themes/topaz/forms/user/reset_password.twig:5
+msgid "Reset password"
+msgstr ""
+
+#: themes/topaz/info.php:3
+msgid "Topaz"
+msgstr ""
+
+#: themes/topaz/info.php:6
+msgid "A minimalist responsive theme for Chyrp Lite."
+msgstr ""
+
+#: themes/topaz/layouts/default.twig:8
+#, php-format
+msgid "Page %d"
+msgstr ""
+
+#: themes/topaz/layouts/default.twig:54
+msgid "Newer posts"
+msgstr ""
+
+#: themes/topaz/layouts/default.twig:55
+msgid "Older posts"
+msgstr ""
+
+#: themes/topaz/layouts/default.twig:65
+#, php-format
+msgid "Called from %s on line %d at %s seconds."
+msgstr ""
+
+#: themes/topaz/pages/403.twig:5
+msgid "Forbidden."
+msgstr ""
+
+#: themes/topaz/pages/404.twig:5
+msgid "Not found."
+msgstr ""
+
+#: themes/topaz/pages/archive.twig:40
+#: themes/topaz/pages/archive.twig:45
+#: themes/topaz/pages/archive.twig:54
+#, php-format
+msgid "Archive of %s"
+msgstr ""
+
+#: themes/topaz/pages/archive.twig:64
+msgid "There aren't any posts in the timeframe you specified."
+msgstr ""
+
+#: themes/topaz/pages/author.twig:6
+#, php-format
+msgid "Posts created by &#8220;%s&#8221;"
+msgstr ""
+
+#: themes/topaz/pages/author.twig:13
+msgid "This user hasn't created any posts."
+msgstr ""
+
+#: themes/topaz/pages/category.twig:5
+#, php-format
+msgid "Posts in category &#8220;%s&#8221;"
+msgstr ""
+
+#: themes/topaz/pages/drafts.twig:6
+msgid "Drafts"
+msgstr ""
+
+#: themes/topaz/pages/drafts.twig:13
+msgid "You don't have any drafts."
+msgstr ""
+
+#: themes/topaz/pages/index.twig:8
+#: themes/topaz/pages/tags.twig:20
+msgid "Nothing here yet!"
+msgstr ""
+
+#: themes/topaz/pages/search.twig:6
+#, php-format
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: themes/topaz/pages/search.twig:10
+msgid "Your search did not return any results."
+msgstr ""
+
+#: themes/topaz/pages/search.twig:15
+msgid "Pages containing the search term"
+msgstr ""
+
+#: themes/topaz/pages/tag.twig:5
+#, php-format
+msgid "Posts tagged with &#8220;%s&#8221;"
+msgstr ""
+
+#: themes/topaz/pages/tags.twig:6
+msgid "Tag cloud"
+msgstr ""
+
+#: themes/topaz/pages/updated.twig:6
+msgid "Updated posts"
+msgstr ""
+
+#: themes/topaz/pages/updated.twig:13
+msgid "There aren't any updated posts."
+msgstr ""
+
+#: themes/topaz/pages/view.twig:6
+msgid "Next post"
+msgstr ""
+
+#: themes/topaz/pages/view.twig:7
+msgid "Previous post"
+msgstr ""
+
+#: themes/topaz/pages/view.twig:10
+msgid "Webmentions"
+msgstr ""
+
+#: themes/topaz/pages/view.twig:20
+msgid "Comments"
+msgstr ""
+
+#: themes/topaz/pages/view.twig:36
+msgid "Newer comments"
+msgstr ""
+
+#: themes/topaz/pages/view.twig:37
+msgid "Older comments"
+msgstr ""
+

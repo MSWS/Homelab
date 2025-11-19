@@ -1,0 +1,95 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Manage Spam" | translate("comments") }}{% endblock %}
+
+{% block content %}
+<form class="filters" action="{{ url('manage_spam') }}" method="post" accept-charset="UTF-8" role="search">
+<fieldset role="presentation">
+<label for="query">
+{{ "Search&hellip;" | translate }}
+<a href="{{ url('help/id/filtering_results') }}" rel="help" target="_blank" class="help emblem">
+{{- icon_svg("help.svg", "Help" | translate) -}}
+</a>
+</label>
+<input class="text filter_text" type="text" name="query" value="{{ GET.query | fix(true, true) }}" id="query">
+<button type="submit" class="inline">{{ "Search" | translate }}</button>
+</fieldset>
+</form>
+<h2>{{ GET.query is not empty ? "Search Results" | translate : "Spam" | translate("comments") }}</h2>
+<form action="{{ url('bulk_comments') }}" method="post" accept-charset="UTF-8" data-toggler="spam_toggler">
+<table class="interactive{{ comments.paginated is empty ? ' empty' : '' }}">
+<thead>
+<tr class="head">
+<th class="toggler" id="spam_toggler"></th>
+<th class="comment_post title main">{{ "Post" | translate("comments") }}</th>
+<th class="comment_date date">{{ "Added" | translate("comments") }}</th>
+{{ trigger.call("manage_comments_column_header") }}
+<th class="controls" colspan="2">{{ "Controls" | translate }}</th>
+</tr>
+</thead>
+<tbody>
+{% for comment in comments.paginated %}
+<tr id="comment_{{ comment.id }}" class="comment {{ comment.status }}">
+<td rowspan="2" class="checkbox">
+<input type="checkbox" name="comment[{{ comment.id }}]" value="" id="comment_checkbox_{{ comment.id }}" aria-label="{{ 'Select' | translate | fix(true) }}">
+</td>
+<td class="comment_post title main"><a href="{{ comment.post.url() }}#comment_{{ comment.id }}">
+{{ comment.post.title() | striptags | oneof("[Untitled]" | translate) | truncate(40) }}</a>
+</td>
+<td class="comment_date date">
+{{ comment.created_at | time }}
+</td>
+{{ trigger.call("manage_comments_column", comment) }}
+<td class="controls">
+{%- if comment.editable() -%}
+{{ comment.edit_link(icon_svg("edit.svg", "Edit" | translate), null, null, "emblem") }}
+{%- else -%}
+{{ icon_svg("forbidden.svg", false, "emblem forbidden") }}
+{%- endif -%}
+</td>
+<td class="controls">
+{%- if comment.deletable() -%}
+{{ comment.delete_link(icon_svg("delete.svg", "Delete" | translate), null, null, "emblem") }}
+{%- else -%}
+{{ icon_svg("forbidden.svg", false, "emblem forbidden") }}
+{%- endif -%}
+</td>
+</tr>
+<tr class="comment_excerpt">
+<td class="main" colspan="5">{{ comment.body | striptags | truncate(100) }}</td>
+</tr>
+{% else %}
+<tr>
+<td class="placeholder">
+{{ icon_svg("failure.svg", false, "emblem") }}
+{{ "No results" | translate }}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<div class="controls">
+<label for="bulk_task">{{ "With selected:" | translate("comments") }}</label>
+<select name="task" id="bulk_task">
+<option value="deny" selected>
+{{ "Deny" | translate("comments") }}
+</option>
+<option value="approve">
+{{ "Approve" | translate("comments") }}
+</option>
+<option value="delete">
+{{ "Delete" | translate("comments") }}
+</option>
+</select>
+<button type="submit">{{ "Batch Process" | translate("comments") }}</button>
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</div>
+</form>
+{% if comments.paginated is not empty and comments.pages > 1 %}
+<div class="pagination">
+<span class="pages">{{ "Page %d of %s" | translate | format(comments.page, comments.final_link(comments.pages)) }}</span>
+{{ comments.prev_link }}
+{{ comments.next_link }}
+</div>
+{% endif %}
+{% endblock %}

@@ -70,7 +70,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
       - WEBUI_PORT=8080
-      - TORRENTING_PORT=6881
+      - TORRENTING_PORT=43652
     volumes:
       - "${PWD}/bittorrent/config"
       - "${PWD}/downloads:/downloads"
@@ -105,12 +105,27 @@ services:
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
       - FIREWALL_VPN_INPUT_PORTS=43652
       - TZ=America/Los_Angeles
+      - SERVER_REGIONS=
     restart: unless-stopped
     volumes:
       - gluetun:/gluetun
     networks:
       - cloudflared
       - torrent
+
+  nzbget:
+    image: lscr.io/linuxserver/nzbget:latest
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - NZBGET_USER=${NZBGET_USER} #optional
+      - NZBGET_PASS=${NZBGET_PASS} #optional
+    volumes:
+      - nzbget-config:/config
+      - "${PWD}/downloads:/downloads"
+    restart: unless-stopped
 
 networks:
   cloudflared:
@@ -119,3 +134,4 @@ networks:
 
 volumes:
   gluetun:
+  nzbget-config:

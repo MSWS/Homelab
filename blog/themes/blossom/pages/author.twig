@@ -1,0 +1,16 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block content %}
+{% if posts.paginated is not empty %}
+<div class="ribbon">
+{{ "Posts created by &#8220;%s&#8221;" | translate | format(author.name | fix) }}
+</div>
+{% endif %}
+{% for post in posts.paginated %}
+{% include(["feathers" ~ DIR ~ post.feather ~ ".twig", "feathers" ~ DIR ~ "missing.twig"]) %}
+{% else %}
+<div role="status" class="ribbon">
+{{ "This user hasn't created any posts." | translate }}
+</div>
+{% endfor %}
+{% endblock %}

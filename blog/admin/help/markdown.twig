@@ -1,0 +1,97 @@
+{% extends "layouts" ~ DIR ~ "help.twig" %}
+
+{% block title %}{{ "Markdown" | translate }}{% endblock %}
+
+{% block content %}
+<h1>{{ "Markdown" | translate }}</h1>
+<p>
+{{ "Markdown is a syntax for writing structured documents in plain text. Here are the basics to get you started:" | translate }}
+</p>
+<table>
+<thead>
+<tr>
+<th>{{ "Markdown" | translate }}</th>
+<th>{{ "Result" | translate }}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{ "### Heading" | translate }}</td>
+<td><h3>{{ "Heading" | translate }}</h3></td>
+</tr>
+<tr>
+<td>{{ "**Strong**" | translate }}</td>
+<td><strong>{{ "Strong" | translate }}</strong></td>
+</tr>
+<tr>
+<td>{{ "*Emphasis*" | translate }}</td>
+<td><em>{{ "Emphasis" | translate }}</em></td>
+</tr>
+<tr>
+<td>{{ "*_Citation_*" | translate }}</td>
+<td><cite>{{ "Citation" | translate }}</cite></td>
+</tr>
+<tr>
+<td>{{ "~~Strikethrough~~" | translate }}</td>
+<td><del>{{ "Strikethrough" | translate }}</del></td>
+</tr>
+<tr>
+<td>{{ "`Code`" | translate }}</td>
+<td><code>{{ "Code" | translate }}</code></td>
+</tr>
+<tr>
+<td>{{ "==Highlight==" | translate }}</td>
+<td><mark>{{ "Highlight" | translate }}</mark></td>
+</tr>
+</tr>
+<tr>
+<td>{{ "++Superscript++" | translate }}</td>
+<td><sup>{{ "Superscript" | translate }}</sup></td>
+</tr>
+<tr>
+<td>{{ "--Subscript--" | translate }}</td>
+<td><sub>{{ "Subscript" | translate }}</sub></td>
+</tr>
+<tr>
+<td>{{ "Blank line" | translate }}</td>
+<td>{{ "New paragraph" | translate }}</td>
+</tr>
+<tr>
+<td>{{ "[title](URL)" | translate }}</td>
+<td><a href="#">{{ "Hyperlink" | translate }}</a></td>
+</tr>
+<tr>
+<td>{{ "![description](URL)" | translate }}</td>
+<td>{{ "Image" | translate }}</td>
+</tr>
+<tr>
+<td>{{ "- List of items" | translate }}</td>
+<td><ul><li>{{ "List of items" | translate }}</li></ul></td>
+</tr>
+<tr>
+<td>{{ "1. List of items" | translate }}</td>
+<td><ol><li>{{ "List of items" | translate }}</li></ol></td>
+</tr>
+<tr>
+<td>{{ "> Blockquote" | translate }}</td>
+<td><blockquote>{{ "Blockquote" | translate }}</blockquote></td>
+</tr>
+<tr>
+<td>{{ "< Aside" | translate }}</td>
+<td><aside>{{ "Aside" | translate }}</aside></td>
+</tr>
+<tr>
+<td>{{ ": Figure" | translate }}<br>{{ ":: Caption" | translate }}</td>
+<td><figure>{{ "Figure" | translate }}<figcaption>{{ "Caption" | translate }}</figcaption></figure></td>
+</tr>
+<tr>
+<td>{{ "````<br>Code block<br>````" | translate }}</td>
+<td><pre><code>{{ "Code block" | translate }}</code></pre></td>
+</tr>
+<tr>
+<td>{{ "A footnote label. [^label]" | translate }}<br><br>{{ "[^label]: The footnote." | translate }}</td>
+<td>{{ "A footnote label." | translate }} <sup><a href="#">1</a></sup></td>
+</tr>
+</tbody>
+</table>
+{% endblock %}

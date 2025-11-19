@@ -1,0 +1,82 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Manage Groups" | translate }}{% endblock %}
+
+{% block content %}
+<form class="filters" action="{{ url('manage_groups') }}" method="post" accept-charset="UTF-8" role="search">
+<fieldset role="presentation">
+<label for="search">{{ "Search all groups for user&hellip;" | translate }}</label>
+<input class="text filter_text" type="text" name="search" value="{{ GET.search is defined ? GET.search | fix(true, true) : '' }}" id="search">
+<button type="submit">{{ "Search" | translate }}</button>
+{% if visitor.group.can("add_group") %}
+<a href="{{ url('new_group') }}" class="button yay">
+{{ icon_svg("add.svg") }}{{ "New Group" | translate }}
+</a>
+{% endif %}
+</fieldset>
+</form>
+<h2>{{ GET.search is defined ? "Search Results" | translate : "Groups" | translate }}</h2>
+<table>
+<thead>
+<tr class="head">
+<th class="group_name name main">{{ "Group" | translate }}</th>
+<th class="group_size value">{{ "Members" | translate }}</th>
+<th class="group_default emblem">{{ "Default?" | translate }}</th>
+<th class="group_guest emblem">{{ "Guests?" | translate }}</th>
+{{ trigger.call("manage_groups_column_header") }}
+<th class="controls" colspan="2">{{ "Controls" | translate }}</th>
+</tr>
+</thead>
+<tbody>
+{% for group in groups.paginated %}
+<tr id="group_{{ group.id }}" class="group">
+<td class="group_name name main">
+{{ group.name | fix(false, true) }}
+</td>
+<td class="group_size value">
+<a href="{{ url('manage_users/query/' ~ (('group:' ~ group.name) | url_encode)) }}">{{ group.size }}</a>
+</td>
+<td class="group_default emblem">
+{% if group.id == site.default_group %}
+{{ icon_svg("success.svg", "Yes" | translate, "emblem") }}
+{% endif %}
+</td>
+<td class="group_guest emblem">
+{% if group.id == site.guest_group %}
+{{ icon_svg("success.svg", "Yes" | translate, "emblem") }}
+{% endif %}
+</td>
+{{ trigger.call("manage_groups_column", groups) }}
+<td class="controls">
+{%- if visitor.group.can("edit_group") -%}
+{{ group.edit_link(icon_svg("edit.svg", "Edit" | translate), null, null, "emblem") }}
+{%- else -%}
+{{ icon_svg("forbidden.svg", false, "emblem forbidden") }}
+{%- endif -%}
+</td>
+<td class="controls">
+{%- if visitor.group.can("delete_group") -%}
+{{ group.delete_link(icon_svg("delete.svg", "Delete" | translate), null, null, "emblem") }}
+{%- else -%}
+{{ icon_svg("forbidden.svg", false, "emblem forbidden") }}
+{%- endif -%}
+</td>
+</tr>
+{% else %}
+<tr>
+<td class="placeholder">
+{{ icon_svg("failure.svg", false, "emblem") }}
+{{ "No results" | translate }}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% if groups.paginated is not empty and groups.pages > 1 %}
+<div class="pagination">
+<span class="pages">{{ "Page %d of %s" | translate | format(groups.page, groups.final_link(groups.pages)) }}</span>
+{{ groups.prev_link }}
+{{ groups.next_link }}
+</div>
+{% endif %}
+{% endblock %}

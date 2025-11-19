@@ -1,0 +1,10 @@
+#. This file is distributed under the same license as the Chyrp Lite package.
+
+#: modules/cacher/info.php:3
+msgid "Cacher"
+msgstr ""
+
+#: modules/cacher/info.php:6
+msgid "Caches pages, drastically reducing server load."
+msgstr ""
+

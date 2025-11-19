@@ -1,0 +1,41 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "New Category" | translate("categorize") }}{% endblock %}
+
+{% block content %}
+<h2>{{ "New Category" | translate("categorize") }}</h2>
+<form id="add_category" class="split" action="{{ url('add_category') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+<label for="name">{{ "Name" | translate("categorize") }}</label>
+{#- -#}
+<input class="text" type="text" name="name" value="" id="name" maxlength="128" required>
+</p>
+<p>
+<label for="clean">
+{{ "Slug" | translate("categorize") }}
+<span class="sub">{{ "(optional)" | translate }}</span>
+</label>
+{#- -#}
+<input class="text" type="text" name="clean" value="" id="clean" maxlength="128"{{ slug_pattern() }}>
+<small>
+{{ "The slug is the URL-friendly identifying name for this category." | translate("categorize") }}
+</small>
+</p>
+<p>
+<label for="show_on_home">{{ "Listed?" | translate("categorize") }}</label>
+{#- -#}
+<input class="checkbox" type="checkbox" name="show_on_home" id="show_on_home" checked="checked">
+<small>
+{{ "Do you want to include this category in the categories list?" | translate("categorize") }}
+</small>
+</p>
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Add Category" | translate("categorize") }}
+</button>
+</p>
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

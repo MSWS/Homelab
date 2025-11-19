@@ -1,0 +1,25 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Cascade Settings" | translate("cascade") }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Cascade Settings" | translate("cascade") }}</h2>
+<form id="cascade_settings" class="split" action="{{ url('cascade_settings') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+<label for="cascade_auto">{{ "Automatic" | translate("cascade") }}</label>
+{#- -#}
+<input type="checkbox" class="checkbox" name="auto" id="cascade_auto"{{ site.module_cascade.ajax_scroll_auto | checked }}>
+<small>
+{{ "Load more posts when the visitor scrolls to the bottom of the page?" | translate("cascade") }}
+</small>
+</p>
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Update" | translate }}
+</button>
+</p>
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

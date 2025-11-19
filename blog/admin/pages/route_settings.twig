@@ -1,0 +1,102 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Route Settings" | translate }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Route Settings" | translate }}</h2>
+<form id="route_settings" class="split" action="{{ url('route_settings') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+<label for="clean_urls">
+{{ "Clean URLs" | translate }}
+<a href="https://chyrplite.net/wiki/Supporting-Clean-URLs.html" rel="help" target="_blank" class="help emblem">
+{{- icon_svg("help.svg", "Help" | translate) -}}
+</a>
+</label>
+{#- -#}
+<input type="checkbox" name="clean_urls" id="clean_urls"{{ site.clean_urls | checked }}>
+<small>
+{{ "Gives your site prettier URLs." | translate }}
+<a href="{{ url('download_rewrites') }}">{{ "Download the URL rewrite files." | translate }}</a>
+</small>
+</p>
+<p>
+<label for="enable_homepage">
+{{ "Homepage" | translate }}
+</label>
+{#- -#}
+<input class="checkbox" type="checkbox" name="enable_homepage" id="enable_homepage"{{ site.enable_homepage | checked }}>
+<small>
+{{ "Make the default route a homepage instead of the blog index." | translate }}
+</small>
+</p>
+<p>
+<label for="post_url">
+{{ "Post View URL" | translate }}
+<span class="sub">{{ "(requires clean URLs)" | translate }}</span>
+</label>
+{#- -#}
+<input class="text" type="text" name="post_url" value="{{ site.post_url | fix(true, true) }}" size="30" id="post_url">
+</p>
+<h3>{{ "Syntax:" | translate }}</h3>
+<div class="split_block small">
+<ul>
+<li>
+<code class="syntax">(year)</code>
+{{ "Year submitted" | translate }} <span class="sub">{{ "(e.g. 2007)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(month)</code>
+{{ "Month submitted" | translate }} <span class="sub">{{ "(e.g. 12)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(day)</code>
+{{ "Day submitted" | translate }} <span class="sub">{{ "(e.g. 25)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(hour)</code>
+{{ "Hour submitted" | translate }} <span class="sub">{{ "(e.g. 03)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(minute)</code>
+{{ "Minute submitted" | translate }} <span class="sub">{{ "(e.g. 59)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(second)</code>
+{{ "Second submitted" | translate }} <span class="sub">{{ "(e.g. 30)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(id)</code>
+{{ "Post ID" | translate }}
+</li>
+<li>
+<code class="syntax">(author)</code>
+{{ "Post author (username)" | translate }} <span class="sub">{{ "(e.g. Alex)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(clean)</code>
+{{ "The non-unique slug" | translate }} <span class="sub">{{ "(e.g. this_is_clean)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(url)</code>
+{{ "The unique form of (clean)" | translate }} <span class="sub">{{ "(e.g. this_one_is_taken_2)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(feather)</code>
+{{ "The post's feather" | translate }} <span class="sub">{{ "(e.g. text)" | translate }}</span>
+</li>
+<li>
+<code class="syntax">(feathers)</code>
+{{ "The plural form of the post's feather" | translate }} <span class="sub">{{ "(e.g. links)" | translate }}</span>
+</li>
+</ul>
+</div>
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Update" | translate }}
+</button>
+</p>
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

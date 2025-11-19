@@ -1,0 +1,5 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block content %}
+<div role="status" class="filter">{{ reason is defined ? reason | fix : "Forbidden." | translate }}</div>
+{% endblock %}

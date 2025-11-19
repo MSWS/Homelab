@@ -1,0 +1,31 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Delete Page?" | translate }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Delete Page?" | translate }}</h2>
+<form class="delete split" action="{{ url('destroy_page') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+{{ "Are you sure you want to delete &#8220;%s&#8221;?" | translate | format(page.title | striptags | oneof("[Untitled]" | translate)) }}
+</p>
+{% if page.children is not empty %}
+<p>
+<label for="destroy_children">{{ "Delete children?" | translate }}</label>
+{#- -#}
+<input type="checkbox" name="destroy_children" id="destroy_children">
+</p>
+{% endif %}
+<div class="confirmation">
+<button name="destroy" value="indubitably" class="boo">
+{{ "Delete!" | translate }}
+</button>
+<button name="destroy" value="undecidedly" type="submit" class="yay">
+{{ "Cancel" | translate }}
+</button>
+</div>
+<input type="hidden" name="id" value="{{ page.id }}" id="id">
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

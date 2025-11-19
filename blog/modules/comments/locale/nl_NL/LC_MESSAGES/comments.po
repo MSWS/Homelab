@@ -1,0 +1,459 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+
+#. This file is distributed under the same license as the Chyrp Lite package.
+#: modules/comments/admin/pages/comment_settings.twig:3
+#: modules/comments/admin/pages/comment_settings.twig:6
+msgid "Comment Settings"
+msgstr "Opmerkingen Instellingen"
+
+#: modules/comments/admin/pages/comment_settings.twig:10
+msgid "Site Notifications"
+msgstr "Site notificaties"
+
+#: modules/comments/admin/pages/comment_settings.twig:14
+msgid "Notify the site contact by email when a comment is added."
+msgstr ""
+"Breng de contactpersoon van de site per email op de hoogte wanneer een "
+"opmerking wordt toegevoegd."
+
+#: modules/comments/admin/pages/comment_settings.twig:18
+msgid "Author Notifications"
+msgstr "Notificaties van auteurs"
+
+#: modules/comments/admin/pages/comment_settings.twig:21
+msgid "Notify the post author by email when a comment is added."
+msgstr ""
+"Breng de auteur van het bericht per email op de hoogte wanneer een opmerking "
+"wordt toegevoegd."
+
+#: modules/comments/admin/pages/comment_settings.twig:24
+msgid "Default Comment Status"
+msgstr "Standaard opmerkingen status"
+
+#: modules/comments/admin/pages/comment_settings.twig:36
+msgid "HTML in Comments"
+msgstr "HTML in opmerkingen"
+
+#: modules/comments/admin/pages/comment_settings.twig:39
+msgid "Allow some groups of users to enter HTML directly in comment text."
+msgstr ""
+"Sta sommige groepen gebruikers toe om HTML rechtstreeks in de reactietekst "
+"in te voeren."
+
+#: modules/comments/admin/pages/comment_settings.twig:43
+msgid "Allowed HTML"
+msgstr "Toegestane HTML"
+
+#: modules/comments/admin/pages/comment_settings.twig:44
+msgid "(comma separated)"
+msgstr "(komma gescheiden)"
+
+#: modules/comments/admin/pages/comment_settings.twig:49
+msgid "HTML tags that can be added by users, Markdown filtering, and modules."
+msgstr ""
+"HTML-codes die door gebruikers kunnen worden toegevoegd, Markdown-filtering "
+"en modules."
+
+#: modules/comments/admin/pages/comment_settings.twig:53
+msgid "Comments Per Page"
+msgstr "Opmerkingen per pagina"
+
+#: modules/comments/admin/pages/comment_settings.twig:57
+msgid "Themes decide whether or not to paginate comments."
+msgstr "Thema's bepalen of opmerkingen wel of niet gepagineerd moeten worden."
+
+#: modules/comments/admin/pages/comment_settings.twig:61
+msgid "Reload Comments"
+msgstr "Herlaadt Opmerkingen"
+
+#: modules/comments/admin/pages/comment_settings.twig:65
+msgid "Show newly added comments (up to the maximum number per page)."
+msgstr "Toon laatste opmerkingen (tot het maximum per pagina)."
+
+#: modules/comments/admin/pages/comment_settings.twig:69
+msgid "Reload Interval"
+msgstr "Herlaadt interval"
+
+#: modules/comments/admin/pages/comment_settings.twig:72
+msgid "(seconds)"
+msgstr "(secondes)"
+
+#: modules/comments/admin/pages/delete_comment.twig:3
+#: modules/comments/admin/pages/delete_comment.twig:6
+msgid "Delete Comment?"
+msgstr "Verwijder Opmerking?"
+
+#: modules/comments/admin/pages/delete_comment.twig:10
+#, php-format
+msgid "&#8220;%s&#8221; will be permanently deleted."
+msgstr "&#8220;%s&#8221; zal definitief worden verwijderd."
+
+#: modules/comments/admin/pages/edit_comment.twig:3
+msgid "Edit Comment"
+msgstr "Wijzig Opmerking"
+
+#: modules/comments/admin/pages/edit_comment.twig:6
+#, php-format
+msgid "Editing Comment on &#8220;%s&#8221;"
+msgstr "Wijzigen Opmerking op &#8220;%s&#8221;"
+
+#: modules/comments/admin/pages/edit_comment.twig:13
+msgid "Body"
+msgstr "Body"
+
+#: modules/comments/admin/pages/edit_comment.twig:27
+msgid "Author"
+msgstr "Schrijver"
+
+#: modules/comments/admin/pages/edit_comment.twig:32
+msgid "Author Email"
+msgstr "Schrijver email"
+
+#: modules/comments/admin/pages/edit_comment.twig:36
+msgid "Author Website"
+msgstr "Schrijver website"
+
+#: modules/comments/admin/pages/edit_comment.twig:43
+msgid "Timestamp"
+msgstr "Tijdstempel"
+
+#: modules/comments/admin/pages/edit_comment.twig:48
+#: modules/comments/admin/pages/manage_comments.twig:26
+msgid "Status"
+msgstr "Status"
+
+#: modules/comments/admin/pages/edit_comment.twig:51
+#: modules/comments/comments.php:756
+msgid "Approved"
+msgstr "Goedgekeurd"
+
+#: modules/comments/admin/pages/edit_comment.twig:53
+#: modules/comments/comments.php:757
+msgid "Denied"
+msgstr "Verworpen"
+
+#: modules/comments/admin/pages/edit_comment.twig:55
+#: modules/comments/admin/pages/manage_spam.twig:18
+#: modules/comments/comments.php:758
+msgid "Spam"
+msgstr "Spam"
+
+#: modules/comments/admin/pages/edit_comment.twig:62
+msgid "Email Notifications"
+msgstr "Notificaties per email"
+
+#: modules/comments/admin/pages/edit_comment.twig:72
+msgid "Save"
+msgstr "Sla op"
+
+#: modules/comments/admin/pages/edit_comment.twig:74
+#: modules/comments/admin/pages/manage_comments.twig:95
+#: modules/comments/admin/pages/manage_spam.twig:81
+msgid "Delete"
+msgstr "Verwijder"
+
+#: modules/comments/admin/pages/manage_comments.twig:3
+msgid "Manage Comments"
+msgstr "Beheer Opmerkingen"
+
+#: modules/comments/admin/pages/manage_comments.twig:18
+#: modules/comments/comments.php:827 modules/comments/comments.php:865
+#: modules/comments/comments.php:882 modules/comments/info.php:3
+msgid "Comments"
+msgstr "Opmerkingen"
+
+#: modules/comments/admin/pages/manage_comments.twig:24
+#: modules/comments/admin/pages/manage_spam.twig:24
+msgid "Post"
+msgstr "Blogpost"
+
+#: modules/comments/admin/pages/manage_comments.twig:25
+#: modules/comments/admin/pages/manage_spam.twig:25
+msgid "Added"
+msgstr "Toegevoegd"
+
+#: modules/comments/admin/pages/manage_comments.twig:47
+msgid "Webmention"
+msgstr "Webmention"
+
+#: modules/comments/admin/pages/manage_comments.twig:83
+#: modules/comments/admin/pages/manage_spam.twig:72
+msgid "With selected:"
+msgstr "Met geselecteerd:"
+
+#: modules/comments/admin/pages/manage_comments.twig:86
+#: modules/comments/admin/pages/manage_spam.twig:75
+msgid "Deny"
+msgstr "Verwerp"
+
+#: modules/comments/admin/pages/manage_comments.twig:89
+#: modules/comments/admin/pages/manage_spam.twig:78
+msgid "Approve"
+msgstr "Keur goed"
+
+#: modules/comments/admin/pages/manage_comments.twig:92
+msgid "Mark as Spam"
+msgstr "Markeer als spam"
+
+#: modules/comments/admin/pages/manage_comments.twig:98
+#: modules/comments/admin/pages/manage_spam.twig:84
+msgid "Batch Process"
+msgstr "Batch-proces"
+
+#: modules/comments/admin/pages/manage_spam.twig:3
+msgid "Manage Spam"
+msgstr "Beheer spam"
+
+#: modules/comments/comments.php:88
+msgid "Add Comments"
+msgstr "Voeg opmerkingen toe"
+
+#: modules/comments/comments.php:89
+msgid "Add Comments to Private Posts"
+msgstr "Opmerkingen toevoegen aan privé-berichten"
+
+#: modules/comments/comments.php:90
+msgid "Edit Comments"
+msgstr "Wijzig Opmerkingen"
+
+#: modules/comments/comments.php:91
+msgid "Edit Own Comments"
+msgstr "Wijzig Eigen Opmerkingen"
+
+#: modules/comments/comments.php:92
+msgid "Delete Comments"
+msgstr "Verwijder Opmerkingen"
+
+#: modules/comments/comments.php:93
+msgid "Delete Own Comments"
+msgstr "Verwijder Eigen Opmerkingen"
+
+#: modules/comments/comments.php:94
+msgid "Use HTML in Comments"
+msgstr "Gebruik HTML in opmerkingen"
+
+#: modules/comments/comments.php:103
+msgid "Please enter an ID to find a comment."
+msgstr "Geef alsjeblieft een ID in om een opmerking te vinden."
+
+#: modules/comments/comments.php:136
+msgid "Most commented on posts"
+msgstr "Meeste opmerkingen op blogposts"
+
+#: modules/comments/comments.php:158
+msgid "An ID is required to add a comment."
+msgstr "Een ID is verplicht om een opmerking toe te voegen."
+
+#: modules/comments/comments.php:172
+msgid "You cannot comment on this post."
+msgstr "Je kunt niet reageren op deze blogpost."
+
+#: modules/comments/comments.php:178 modules/comments/comments.php:285
+msgid "Message can't be blank."
+msgstr "Bericht kan niet leeg zijn."
+
+#: modules/comments/comments.php:184 modules/comments/comments.php:291
+msgid "Author can't be blank."
+msgstr "Schrijver kan niet leeg zijn."
+
+#: modules/comments/comments.php:190 modules/comments/comments.php:297
+msgid "Email address can't be blank."
+msgstr "Emailadres kan niet leeg zijn."
+
+#: modules/comments/comments.php:196 modules/comments/comments.php:303
+msgid "Invalid email address."
+msgstr "Ongeldig emailadres."
+
+#: modules/comments/comments.php:202 modules/comments/comments.php:309
+msgid "Invalid website URL."
+msgstr "Ongeldige website URL."
+
+#: modules/comments/comments.php:211
+msgid "Incorrect captcha response."
+msgstr "Onjuiste Captcha reactie."
+
+#: modules/comments/comments.php:243
+msgid "Comment added."
+msgstr "Opmerking toegevoegd."
+
+#: modules/comments/comments.php:244
+msgid "Your comment is awaiting moderation."
+msgstr "Je opmerking is in afwachting van goedkeuring."
+
+#: modules/comments/comments.php:259
+msgid "An ID is required to update a comment."
+msgstr "Een ID is noodzakelijk om een opmerking te updaten."
+
+#: modules/comments/comments.php:268 modules/comments/comments.php:390
+#: modules/comments/comments.php:420 modules/comments/comments.php:458
+#: modules/comments/comments.php:961 modules/comments/comments.php:994
+#: modules/comments/comments.php:1030
+msgid "Comment not found."
+msgstr "Opmerking niet gevonden."
+
+#: modules/comments/comments.php:274 modules/comments/comments.php:396
+#: modules/comments/comments.php:1000
+msgid "You do not have sufficient privileges to edit this comment."
+msgstr "Je hebt onvoldoende rechten om deze opmerking te wijzigen."
+
+#: modules/comments/comments.php:339
+msgid "Comment updated."
+msgstr "Opmerking bijgewerkt."
+
+#: modules/comments/comments.php:378 modules/comments/comments.php:982
+msgid "An ID is required to edit a comment."
+msgstr "Een ID is noodzakelijk om een opmerking te wijzigen."
+
+#: modules/comments/comments.php:411 modules/comments/comments.php:446
+#: modules/comments/comments.php:1021
+msgid "An ID is required to delete a comment."
+msgstr "Een ID is noodzakelijk om een opmerking te verwijderen."
+
+#: modules/comments/comments.php:426 modules/comments/comments.php:464
+#: modules/comments/comments.php:1036
+msgid "You do not have sufficient privileges to delete this comment."
+msgstr "Je hebt onvoldoende rechten om deze opmerking te verwijderen."
+
+#: modules/comments/comments.php:473 modules/comments/comments.php:1041
+msgid "Comment deleted."
+msgstr "Opmerking verwijderd."
+
+#: modules/comments/comments.php:482 modules/comments/comments.php:536
+msgid "You do not have sufficient privileges to manage any comments."
+msgstr "Je hebt onvoldoende rechten om opmerkingen te beheren."
+
+#: modules/comments/comments.php:617
+msgid "Selected comments deleted."
+msgstr "Geselecteerde opmerkingen verwijderd."
+
+#: modules/comments/comments.php:653
+msgid "Selected comments denied."
+msgstr "Geselecteerde opmerkingen verworpen."
+
+#: modules/comments/comments.php:689
+msgid "Selected comments approved."
+msgstr "Geselecteerde opmerkingen goedgekeurd."
+
+#: modules/comments/comments.php:723
+msgid "Selected comments marked as spam."
+msgstr "Geselecteerde opmerkingen als spam gemarkeerd."
+
+#: modules/comments/comments.php:850
+#, php-format
+msgid "Comments (%d)"
+msgstr "Opmerkingen (%d)"
+
+#: modules/comments/comments.php:856
+#, php-format
+msgid "Spam (%d)"
+msgstr "Spam (%d)"
+
+#: modules/comments/comments.php:901
+msgid "An ID is required to reload comments."
+msgstr "Een ID is noodzakelijk om opmerkingen te herladen."
+
+#: modules/comments/comments.php:919
+#, php-format
+msgid "Comments added since %s"
+msgstr "Opmerkingen toegevoegd vanaf %s"
+
+#: modules/comments/comments.php:952
+msgid "An ID is required to show a comment."
+msgstr "Een ID is noodzakelijk om een opmerking te tonen."
+
+#: modules/comments/comments.php:1141 modules/comments/comments.php:1259
+#, php-format
+msgid "Comments on &#8220;%s&#8221;"
+msgstr "Opmerkingen op &#8220;%s&#8221;"
+
+#: modules/comments/comments.php:1239
+msgid "You have unsubscribed from the conversation."
+msgstr "Je bent uitgeschreven van deze conversatie."
+
+#: modules/comments/comments.php:1282
+#, php-format
+msgid "Comment #%d"
+msgstr "Opmerking #%d"
+
+#: modules/comments/comments.php:1315
+msgid "A ping from your URL is already registered."
+msgstr "Een ping van je URL is reeds geregistreerd."
+
+#: modules/comments/comments.php:1322
+msgid "Your URL is too long to be stored in our database."
+msgstr "Je URL is te lang om in de database te worden opgeslagen."
+
+#: modules/comments/comments.php:1327
+msgid "Mentioned this post."
+msgstr "Heeft deze blogpost genoemd."
+
+#: modules/comments/comments.php:1350
+msgid "Open"
+msgstr "Open"
+
+#: modules/comments/comments.php:1357
+msgid "Closed"
+msgstr "Gesloten"
+
+#: modules/comments/comments.php:1364
+msgid "Private"
+msgstr "Privé"
+
+#: modules/comments/comments.php:1371
+msgid "Registered Only"
+msgstr "Uitsluitend geregistreerden"
+
+#: modules/comments/comments.php:1381
+msgid "Comment Status"
+msgstr "Status Opmerking"
+
+#: modules/comments/comments.php:1638 modules/comments/comments.php:1666
+#: modules/comments/comments.php:1699
+#, php-format
+msgid "New Comment at %s"
+msgstr "Nieuwe opmerking op %s"
+
+#: modules/comments/comments.php:1639 modules/comments/comments.php:1667
+#: modules/comments/comments.php:1700
+#, php-format
+msgid "%s commented on a blog post:"
+msgstr "%s heeft een opmerking geplaatst op een blogpost:"
+
+#: modules/comments/comments.php:1708
+msgid "Unsubscribe from this conversation:"
+msgstr "Schrijf je uit van deze conversatie:"
+
+#: modules/comments/info.php:6
+msgid "Adds commenting functionality to your posts, with webmention support."
+msgstr ""
+"Voegt de mogelijkheid toe om opmerkingen te plaatsen op je blogposts, met "
+"webmention ondersteuning."
+
+#: modules/comments/info.php:12
+msgid "Please remember to update the permission settings for each group."
+msgstr ""
+"Denk er alsjeblieft aan om de toestemmingen per gebruikersgroep ook aan te "
+"passen."
+
+#: modules/comments/info.php:14
+msgid "Do you want to remove comments from the database?"
+msgstr "Wil je opmerkingen uit de database verwijderen?"
+
+#: modules/comments/javascript.php:64
+msgid "Are you sure you want to permanently delete this comment?"
+msgstr "Weet je zeker dat je deze opmerking definitief wilt verwijderen?"
+
+#: modules/comments/model/Comment.php:584
+msgid "Anon"
+msgstr "Anoniem"

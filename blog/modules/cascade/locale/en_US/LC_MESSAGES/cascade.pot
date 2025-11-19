@@ -1,0 +1,24 @@
+#. This file is distributed under the same license as the Chyrp Lite package.
+
+#: modules/cascade/admin/pages/cascade_settings.twig:3
+#: modules/cascade/admin/pages/cascade_settings.twig:6
+msgid "Cascade Settings"
+msgstr ""
+
+#: modules/cascade/admin/pages/cascade_settings.twig:10
+msgid "Automatic"
+msgstr ""
+
+#: modules/cascade/admin/pages/cascade_settings.twig:14
+msgid "Load more posts when the visitor scrolls to the bottom of the page?"
+msgstr ""
+
+#: modules/cascade/cascade.php:52
+#: modules/cascade/info.php:3
+msgid "Cascade"
+msgstr ""
+
+#: modules/cascade/info.php:6
+msgid "Adds ajax-powered infinite scrolling to your blog."
+msgstr ""
+

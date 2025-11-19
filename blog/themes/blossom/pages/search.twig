@@ -1,0 +1,29 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block content %}
+{% if posts.paginated is not empty or pages is not empty %}
+<div class="ribbon">
+{{ "Search results for &#8220;%s&#8221;" | translate | format(search | fix) }}
+</div>
+{% else %}
+<div role="status" class="ribbon flash">
+{{ "Your search did not return any results." | translate }}
+</div>
+{% endif %}
+{% if pages is not empty %}
+<details{% if posts.paginated is empty %} open{% endif %}>
+<summary>{{ "Pages containing the search term" | translate }}</summary>
+{% for page in pages %}
+<article class="fragment">
+<h2 class="page_title">
+<a href="{{ page.url() }}" rel="bookmark" title="{{ 'Permanent link to &#8220;%s&#8221;' | translate | format(page.title | striptags | normalize | fix(true)) }}">{{ page.title }}</a>
+</h2>
+{{ page.body | striptags | truncate(200) }}
+</article>
+{% endfor %}
+</details>
+{% endif %}
+{% for post in posts.paginated %}
+{% include(["feathers" ~ DIR ~ post.feather ~ ".twig", "feathers" ~ DIR ~ "missing.twig"]) %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Edit Group" | translate }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Editing Group &#8220;%s&#8221;" | translate | format(group.name | fix(false, true)) }}</h2>
+<form id="group_edit" class="split" action="{{ url('update_group') }}" method="post" accept-charset="UTF-8" data-toggler="group_toggler"{% if group.id == visitor.group.id %} data-confirm="{{'Are you sure you want to make these changes to your group?' | translate | fix(true) }}"{% endif %}>
+<fieldset role="presentation">
+<p>
+<label for="name">{{ "Name" | translate }}</label>
+{#- -#}
+<input class="text" type="text" name="name" value="{{ group.name | fix(true, true) }}" id="name" maxlength="100" required>
+</p>
+<h3>{{ "Permissions" | translate }}</h3>
+<p class="toggler" id="group_toggler">
+</p>
+<hr>
+{% for permission in permissions %}
+<p>
+<label for="permission_{{ permission.id }}">{{ permission.name }}{# translation is done in Group #}</label>
+{#- -#}
+<input class="checkbox" type="checkbox" name="permissions[{{ permission.id }}]" id="permission_{{ permission.id }}"{{ group.can(permission.id) | checked }}>
+</p>
+{% endfor %}
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Update" | translate }}
+</button>
+</p>
+<input type="hidden" name="id" value="{{ group.id }}" id="id">
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Posts Tagged" | translate("tags") }}{% endblock %}
+
+{% block content %}
+<form class="filters" action="{{ url('posts_tagged') }}" method="post" accept-charset="UTF-8" role="search">
+<fieldset role="presentation">
+<label for="query">
+{{ "Search&hellip;" | translate }}
+<a href="{{ url('help/id/filtering_results') }}" rel="help" target="_blank" class="help emblem">
+{{- icon_svg("help.svg", "Help" | translate) -}}
+</a>
+</label>
+<input class="text filter_text" type="text" name="query" value="{{ GET.query | fix(true, true) }}" id="query">
+<button type="submit">{{ "Search" | translate }}</button>
+</fieldset>
+</form>
+<h2>
+{% if tag is not empty %}
+{{ "Posts tagged with &#8220;%s&#8221;" | translate("tags") | format(tag.name) }}
+{% else %}
+{{ GET.query is not empty ? "Search Results" | translate : "Posts" | translate }}
+{% endif %}
+</h2>
+<form action="{{ url('bulk_tag') }}" method="post" accept-charset="UTF-8" data-toggler="tag_toggler">
+<table class="interactive{{ posts.paginated is empty ? ' empty' : '' }}">
+<thead>
+<tr class="head">
+<th class="toggler" id="tag_toggler"></th>
+<th class="post_title title main">{{ "Post" | translate }}</th>
+<th class="post_status status">{{ "Status" | translate }}</th>
+<th class="post_tags list">{{ "Tags" | translate("tags") }}</th>
+<th class="controls">{{ "Controls" | translate }}</th>
+</tr>
+</thead>
+<tbody>
+{% for post in posts.paginated %}
+<tr id="post_{{ post.id }}" class="post {{ post_statuses.(post.id).classes | join(' ') }}">
+<td class="checkbox">
+<input type="checkbox" name="post[{{ loop.index0 }}]" value="{{ post.id }}" id="post_checkbox_{{ post.id }}" aria-label="{{ 'Select' | translate | fix(true) }}">
+</td>
+<td class="post_title title main">
+<a class="edit_tag" href="{{ post.url() }}">{{ post.title() | striptags | oneof("[Untitled]" | translate) | truncate(40) }}</a>
+</td>
+<td class="post_status status">
+{% for group in post_statuses.(post.id).groups %}
+<a href="{{ url('manage_users/query/' ~ (('group:' ~ group.name) | url_encode)) }}">{{ group.name }}</a>
+{% else %}
+{{ post_statuses.(post.id).name | oneof("[None]" | translate) }}
+{% endfor %}
+</td>
+<td class="post_tags list">
+{% for name, clean in post.tags %}
+<a class="tag" href="{{ url('posts_tagged/clean/' ~ (clean | url_encode)) }}">{{ name }}</a>
+{% endfor %}
+</td>
+<td class="controls">
+{%- if post.editable() -%}
+<a class="tags_edit_link edit_link emblem" href="{{ url('edit_tags/id/' ~ post.id) }}">
+{{ icon_svg("edit.svg", "Edit" | translate) }}
+</a>
+{%- else -%}
+{{ icon_svg("forbidden.svg", false, "emblem forbidden") }}
+{%- endif -%}
+</td>
+</tr>
+{% else %}
+<tr>
+<td class="placeholder">
+{{ icon_svg("failure.svg", false, "emblem") }}
+{{ "No results" | translate }}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<div class="controls">
+<label for="tag_name">{{ "Tag Selected Post(s) with:" | translate("tags") }}</label>
+<input type="text" name="name" value="" id="tag_name">
+<button type="submit">
+{{ "Add Tags" | translate("tags") }}
+</button>
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</div>
+</form>
+{% if posts.paginated is not empty and posts.pages > 1 %}
+<div class="pagination">
+<span class="pages">{{ "Page %d of %s" | translate | format(posts.page, posts.final_link(posts.pages)) }}</span>
+{{ posts.prev_link }}
+{{ posts.next_link }}
+</div>
+{% endif %}
+{% endblock %}

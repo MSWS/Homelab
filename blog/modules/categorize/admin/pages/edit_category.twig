@@ -1,0 +1,42 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Edit Category" | translate("categorize") }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Editing Category &#8220;%s&#8221;" | translate("categorize") | format(category.name | oneof("[Untitled]" | translate)) }}</h2>
+<form id="edit_category" class="split" action="{{ url('update_category') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+<label for="name">{{ "Name" | translate("categorize") }}</label>
+{#- -#}
+<input class="text" type="text" name="name" value="{{ category.name | fix(true, true) }}" id="name" maxlength="128" required>
+</p>
+<p>
+<label for="clean">
+{{ "Slug" | translate("categorize") }}
+<span class="sub">{{ "(optional)" | translate }}</span>
+</label>
+{#- -#}
+<input class="text" type="text" name="clean" value="{{ category.clean | fix(true) }}" id="clean" maxlength="128"{{ slug_pattern() }}>
+<small>
+{{ "The slug is the URL-friendly identifying name for this category." | translate("categorize") }}
+</small>
+</p>
+<p>
+<label for="show_on_home">{{ "Listed?" | translate("categorize") }}</label>
+{#- -#}
+<input class="checkbox" type="checkbox" name="show_on_home" id="show_on_home"{{ category.show_on_home | checked }}>
+<small>
+{{ "Do you want to include this category in the categories list?" | translate("categorize") }}
+</small>
+</p>
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Update" | translate("categorize") }}
+</button>
+</p>
+<input type="hidden" name="id" value="{{ category.id }}" id="id">
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

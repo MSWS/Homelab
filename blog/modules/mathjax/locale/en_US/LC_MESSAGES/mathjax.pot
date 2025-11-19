@@ -1,0 +1,24 @@
+#. This file is distributed under the same license as the Chyrp Lite package.
+
+#: modules/mathjax/admin/pages/mathjax_settings.twig:3
+#: modules/mathjax/admin/pages/mathjax_settings.twig:6
+msgid "MathJax Settings"
+msgstr ""
+
+#: modules/mathjax/admin/pages/mathjax_settings.twig:11
+msgid "TeX and LaTeX Support"
+msgstr ""
+
+#: modules/mathjax/admin/pages/mathjax_settings.twig:21
+msgid "MathML Support"
+msgstr ""
+
+#: modules/mathjax/info.php:3
+#: modules/mathjax/mathjax.php:85
+msgid "MathJax"
+msgstr ""
+
+#: modules/mathjax/info.php:6
+msgid "A JavaScript display engine for mathematics."
+msgstr ""
+

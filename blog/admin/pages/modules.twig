@@ -1,0 +1,112 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Modules" | translate }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Modules" | translate }}</h2>
+{% if enabled_modules is not empty %}
+<h3>{{ "Enabled" | translate }}</h3>
+<ul id="modules_enabled" class="extend modules">
+{% for safename, module in enabled_modules %}
+<li class="module{{ module.classes is defined ? ' ' ~ module.classes | join(' ') : '' }}" id="module_{{ safename }}">
+<h4>
+{{ module.name }}
+{# translation is done in the controller #}
+<a class="emblem module_url" rel="external" href="{{ module.url }}" target="_blank">
+{{- icon_svg("info.svg", "Info" | translate) -}}
+</a>
+</h4>
+<p class="module_description">
+{{ module.description }}{# translation is done in the controller #}
+</p>
+{% if module.conflicts is not empty %}
+<h5 class="module_conflicts_message">
+{{ "This module conflicts with the following modules:" | translate }}
+</h5>
+<ol class="module_conflicts_list">
+{% for conflict in module.conflicts %}
+<li class="{{ conflict }}">{{ conflict | camelize }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+{% if module.dependencies is not empty %}
+<h5 class="module_dependencies_message">
+{{ "This module requires the following modules to be enabled:" | translate }}
+</h5>
+<ol class="module_dependencies_list">
+{% for dependency in module.dependencies %}
+<li class="{{ dependency }}">{{ dependency | camelize }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+<div class="controls">
+<form class="module_disabler" action="{{ url('disable') }}" method="post" accept-charset="UTF-8">
+<input type="hidden" name="extension" value="{{ safename }}">
+<input type="hidden" name="type" value="module">
+<input type="hidden" name="hash" value="{{ authenticate() }}">
+{% if module.confirm is not empty %}
+<button name="confirm" value="1" type="submit" class="boo" data-confirm="{{ module.confirm | fix(true) }}">
+{{ "Uninstall" | translate }}
+</button>
+{% endif %}
+<button type="submit">
+{{ "Disable" | translate }}
+</button>
+</form>
+</div>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% if disabled_modules is not empty %}
+<h3>{{ "Disabled" | translate }}</h3>
+<ul id="modules_disabled" class="extend modules">
+{% for safename, module in disabled_modules %}
+<li class="module{{ module.classes is defined ? ' ' ~ module.classes | join(' ') : '' }}" id="module_{{ safename }}">
+<h4>
+{{ module.name }}
+{# translation is done in the controller #}
+<a class="emblem module_url" href="{{ module.url }}" target="_blank">
+{{- icon_svg("info.svg", "Info" | translate) -}}
+</a>
+</h4>
+<p class="module_description">
+{{ module.description }}{# translation is done in the controller #}
+</p>
+{% if module.conflicts is not empty %}
+<h5 class="module_conflicts_message">
+{{ "This module conflicts with the following modules:" | translate }}
+</h5>
+<ol class="module_conflicts_list">
+{% for conflict in module.conflicts %}
+<li class="{{ conflict }}">{{ conflict | camelize }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+{% if module.dependencies is not empty %}
+<h5 class="module_dependencies_message">
+{{ "This module requires the following modules to be enabled:" | translate }}
+</h5>
+<ol class="module_dependencies_list">
+{% for dependency in module.dependencies %}
+<li class="{{ dependency }}">{{ dependency | camelize }}</li>
+{% endfor %}
+</ol>
+{% endif %}
+{% if module.classes is defined and not (module.classes | contains("missing_dependency")) %}
+<div class="controls">
+<form class="module_enabler" action="{{ url('enable') }}" method="post" accept-charset="UTF-8">
+<input type="hidden" name="extension" value="{{ safename }}">
+<input type="hidden" name="type" value="module">
+<input type="hidden" name="hash" value="{{ authenticate() }}">
+<button type="submit">
+{{ "Enable" | translate }}
+</button>
+</form>
+</div>
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

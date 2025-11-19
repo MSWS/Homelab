@@ -1,0 +1,70 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Manage Tags" | translate("tags") }}{% endblock %}
+
+{% block content %}
+<form class="filters" action="{{ url('manage_tags') }}" method="post" accept-charset="UTF-8" role="search">
+<fieldset role="presentation">
+<label for="search">{{ "Search&hellip;" | translate }}</label>
+<input class="text filter_text" type="text" name="search" value="{{ GET.search is defined ? GET.search | fix(true, true) : '' }}" id="search">
+<button type="submit">{{ "Search" | translate }}</button>
+{% if visitor.group.can("edit_draft", "edit_post", "delete_draft", "delete_post") %}
+<a href="{{ url('posts_tagged') }}" class="button yay">
+{{ icon_svg("add.svg") }}{{ "Add Tags" | translate("tags") }}
+</a>
+{% endif %}
+</fieldset>
+</form>
+<h2>{{ "Tags" | translate("tags") }}</h2>
+<table class="interactive{{ tag_cloud is empty ? ' empty' : '' }}">
+<thead>
+<tr class="head">
+<th class="tag_name name main">{{ "Name" | translate("tags") }}</th>
+<th class="tag_count value">{{ "Posts Tagged" | translate("tags") }}</th>
+<th class="controls" colspan="2">{{ "Controls" | translate }}</th>
+</tr>   
+</thead>
+<tbody> 
+{% for tag in tag_cloud %}
+<tr>
+<td class="tag_name name main">
+<a class="tag" href="{{ url('posts_tagged/clean/' ~ (tag.clean | url_encode)) }}" title="{{ tag.title }}">{{ tag.name }}</a>
+</td>
+<td class="tag_count value">
+<a href="{{ tag.url }}">{{ tag.popularity }}</a>
+</td>
+<td class="controls">
+<a class="tag_edit_link edit_link emblem" href="{{ url('rename_tag/clean/' ~ (tag.clean | url_encode)) }}">
+{{ icon_svg("edit.svg", "Edit" | translate) }}
+</a>
+</td>
+<td class="controls">
+<a class="tag_delete_link delete_link emblem" href="{{ url('delete_tag/clean/' ~ (tag.clean | url_encode)) }}">
+{{ icon_svg("delete.svg", "Delete" | translate) }}
+</a>
+</td>
+</tr>
+{% else %}
+<tr>
+<td class="placeholder">
+{{ icon_svg("failure.svg", false, "emblem") }}
+{{ "No results" | translate }}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<div class="controls">
+<form action="{{ self_url() }}" method="post" accept-charset="UTF-8">
+<label for="tags_sort">{{ "Sort results by:" | translate("tags") }}</label>
+<select name="sort" id="tags_sort">
+{% for value, label in tags_columns %}
+<option value="{{ value }}"{{ value | selected(tags_sort) }}>
+{{ label }}
+</option>
+{% endfor %}
+</select>
+<button type="submit">{{ "Sort Results" | translate }}</button>
+</form>
+</div>
+{% endblock %}

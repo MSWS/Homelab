@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.6\n"
+
+#. This file is distributed under the same license as the Chyrp Lite package.
+#: feathers/photo/admin/help/photo_alt_text.twig:3
+#: feathers/photo/admin/help/photo_alt_text.twig:6 feathers/photo/photo.php:197
+msgid "Alternative Text"
+msgstr "替代文本"
+
+#: feathers/photo/admin/help/photo_alt_text.twig:8
+msgid ""
+"This text provides a brief description of the photo; it is useful for "
+"visually impaired visitors, and it will be displayed if the image format is "
+"not supported by the visitor's web browser or if the image has not yet "
+"downloaded."
+msgstr ""
+"这个文本提供了照片的简要说明; 对于有视觉障碍的访问者非常有用，如果访问者的Web"
+"浏览器不支持图像格式，或者图像尚未下载，则会显示它。"
+
+#: feathers/photo/admin/help/photo_source.twig:3
+#: feathers/photo/admin/help/photo_source.twig:6
+msgid "Photo Source"
+msgstr "照片来源"
+
+#: feathers/photo/admin/help/photo_source.twig:8
+msgid "This is a URL that will take visitors to the original resource."
+msgstr "这是一个将访问者带到原始资源的 URL。"
+
+#: feathers/photo/info.php:3 feathers/photo/photo.php:18
+msgid "Photo"
+msgstr ""
+
+#: feathers/photo/info.php:6
+msgid "Upload and display an image with a caption."
+msgstr "上传并显示带有标题的图像。"
+
+#: feathers/photo/photo.php:10
+msgid "Title"
+msgstr "标题"
+
+#: feathers/photo/photo.php:27
+msgid "Caption"
+msgstr "标题"
+
+#: feathers/photo/photo.php:70
+msgid "You did not select a photo to upload."
+msgstr "您没有选择上传的照片。"
+
+#: feathers/photo/photo.php:205
+msgid "Source"
+msgstr "来源"

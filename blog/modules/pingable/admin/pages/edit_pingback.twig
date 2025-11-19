@@ -1,0 +1,23 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Edit Webmention" | translate("pingable") }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Editing Webmention to &#8220;%s&#8221;" | translate("pingable") | format(pingback.post.title() | oneof("[Untitled]" | translate)) }}</h2>
+<form id="edit_pingback" class="split" action="{{ url('update_pingback') }}" method="post" accept-charset="UTF-8">
+<fieldset role="presentation">
+<p>
+<label for="title">{{ "Title" | translate("pingable") }}</label>
+{#- -#}
+<input class="text" type="text" name="title" value="{{ pingback.title | fix(true, true) }}" id="title" maxlength="2048" required>
+</p>
+<p class="buttons">
+<button type="submit" class="yay">
+{{ "Update" | translate("pingable") }}
+</button>
+</p>
+<input type="hidden" name="id" value="{{ pingback.id }}" id="id">
+<input type="hidden" name="hash" value="{{ authenticate() }}" id="hash">
+</fieldset>
+</form>
+{% endblock %}

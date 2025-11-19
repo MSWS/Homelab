@@ -1,0 +1,35 @@
+{% extends "layouts" ~ DIR ~ "default.twig" %}
+
+{% block title %}{{ "Themes" | translate }}{% endblock %}
+
+{% block content %}
+<h2>{{ "Blog Themes" | translate }}</h2>
+<ul id="blog_themes" class="extend themes">
+{% for safename, theme in themes %}
+<li class="theme{{ safename == site.theme ? ' current' : '' }}" id="{{ safename }}">
+<h3>
+{{ theme.name }}
+{# translation is done in the controller #}
+<a class="emblem module_author" rel="external" href="{{ theme.url }}" target="_blank">
+{{- icon_svg("info.svg", "Info" | translate) -}}
+</a>
+</h3>
+<p class="theme_description">
+{{ theme.description }}{# translation is done in the controller #}
+</p>
+<div class="controls">
+<form action="{{ url('change_theme') }}" method="post" accept-charset="UTF-8">
+<input type="hidden" name="theme" value="{{ safename }}">
+<input type="hidden" name="hash" value="{{ authenticate() }}">
+<button name="change" value="undecidedly"{{ safename | disabled(site.theme) }}>
+{{ "Preview" | translate }}
+</button>
+<button name="change" value="indubitably" type="submit"{{ safename | disabled(site.theme) }}>
+{{ "Select" | translate }}
+</button>
+</form>
+</div>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

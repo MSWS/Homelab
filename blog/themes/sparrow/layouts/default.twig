@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="{{ site.locale | lang_base }}" dir="{{ site.locale | text_direction }}">
+<head>
+<meta charset="UTF-8">
+<title>
+{%- block title -%}
+{%- if pagination is not empty and pagination.page > 1 -%}
+{{- "Page %d" | translate | format(pagination.page) -}}
+{{- " | " -}}
+{%- endif -%}
+{%- if title is not empty -%}
+{{- title | fix -}}
+{{- " | " -}}
+{%- endif -%}
+{{- site.name | fix -}}
+{%- endblock -%}
+</title>
+<meta name="description" content="{{ site.description }}">
+<meta name="generator" content="Chyrp Lite">
+<meta name="viewport" content="initial-scale=1.0">
+<link rel="icon" sizes="32x32" type="image/x-icon" href="{{ site.chyrp_url }}/favicon.ico">
+<link rel="icon" sizes="any" type="image/svg+xml" href="{{ site.chyrp_url }}/favicon.svg">
+<link rel="mask-icon" href="{{ site.chyrp_url }}/favicon.svg" color="#4f4f4f">
+{{ theme.feeds() }}
+{{ theme.stylesheets() }}
+{{ theme.javascripts() }}
+{{ trigger.call("end_head") }}
+</head>
+<body class="route_{{ route.action }}">
+<!-- Mast -->
+{% for notice in flash.notices %}
+<div role="alert" class="flash notice">
+{{ notice }}
+</div>
+{% endfor %}
+{% for warning in flash.warnings %}
+<div role="alert" class="flash warning">
+{{ warning }}
+</div>
+{% endfor %}
+{% for message in flash.messages %}
+<div role="alert" class="flash message">
+{{ message }}
+</div>
+{% endfor %}
+<div id="mast" role="banner">
+<h1 class="banner"><a href="{{ url('/') }}">{{ site.name }}</a></h1>
+<ul class="navigation" aria-label="{{ 'Links' | translate }}">
+{% for more in theme.pages_list() %}
+{% if more.depth == 1 %}
+<li>
+<a href="{{ more.url() }}">{{ more.title }}</a>
+</li>
+{% endif %}
+{% endfor %}
+<li>
+<a href="{{ mailto(site.email) }}">{{ "Email" | translate }}</a>
+</li>
+<li>
+<a href="{{ url('feed') }}">{{ "Feed" | translate }}</a>
+</li>
+<li>
+<a href="{{ url('archive') }}" rel="archives">{{ "Archive" | translate }}</a>
+</li>
+{% if visitor.group.can("change_settings", "toggle_extensions") %}
+<li>
+<a href="{{ url('/', 'AdminController') }}">{{ "Admin" | translate }}</a>
+</li>
+{% elseif visitor.group.can("add_post") %}
+<li>
+<a href="{{ url('/', 'AdminController') }}">{{ "Write" | translate }}</a>
+</li>
+{% elseif visitor.group.can("add_draft") %}
+<li>
+<a href="{{ url('/', 'AdminController') }}">{{ "Draft" | translate }}</a>
+</li>
+{% endif %}
+{% if visitor.logged_in %}
+<li>
+<a href="{{ url('controls') }}">{{ "Controls" | translate }}</a>
+</li>
+<li>
+<a href="{{ url('logout') }}">{{ "Log out" | translate }}</a>
+</li>
+{% else %}
+{% if site.can_register %}
+<li>
+<a href="{{ url('register') }}">{{ "Register" | translate }}</a>
+</li>
+{% endif %}
+<li>
+<a href="{{ url('login') }}">{{ "Log in" | translate }}</a>
+</li>
+{% endif %}
+</ul>
+<form class="search_box" action="{{ url('search') }}" method="post" accept-charset="UTF-8" role="search">
+<input type="text" id="search_field" name="query" value="{{ search is defined ? search | fix(true, true) : '' }}" placeholder="{{ 'Search&hellip;' | translate }}" aria-label="{{ 'Search this blog' | translate }}">
+<button type="submit" id="search_submit">{{ "Search" | translate }}</button>
+</form>
+</div>
+{% if posts.paginated is defined and posts.prev_page() %}
+<!-- Navigation -->
+<div role="navigation" class="prev traversal">
+{{ posts.prev_link("&larr; Newer posts" | translate) }}
+</div>
+{% endif %}
+<!-- Content -->
+<div id="main" role="main">
+{% block content %}{% endblock %}
+</div>
+{% if posts.paginated is defined and posts.next_page() %}
+<!-- Navigation -->
+<div role="navigation" class="next traversal">
+{{ posts.next_link("Older posts &rarr;" | translate) }}
+</div>
+{% endif %}
+<!-- Footer -->
+{{ trigger.call("end_content") }}
+</body>
+<!-- Queries: {{ sql_queries }} | Load Time: {{ theme.load_time() }} -->
+{% if debug %}
+<!--
+{% for caller in sql_debug %}
+{{ caller.query | replace({"\t": "    "}) | fix }}
+{{ "Called from %s on line %d at %s seconds." | translate | format(caller.file, caller.line, caller.time) }}
+
+{% endfor %}
+-->
+{% endif %}
+</html>

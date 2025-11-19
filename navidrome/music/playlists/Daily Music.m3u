@@ -1,5 +1,7 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:279,Dayglow - Dayglow - Mindless Creatures (Official Lyric Video)
+/music/metube/Dayglow - Mindless Creatures (Official Lyric Video).opus
 #EXTINF:181,5 Seconds of Summer - Social Casualty
 /music/5 Seconds of Summer/13 - Social Casualty.mp3
 #EXTINF:190,Maroon 5 - Memories
@@ -22,7 +24,7 @@
 /music/AJR/AJR - Netflix Trip (Official Audio).opus
 #EXTINF:179,The Chalkeaters - Roll out the Fallout!
 /music/metube/Roll out the Fallout!.opus
-#EXTINF:278,Fun. - Carry On
+#EXTINF:278,Fun - Carry On
 /music/fun/Carry On.opus
 #EXTINF:154,Jeff Lewis, Mitchell Hope, Disney - Did I Mention
 /music/metube/Did I Mention.opus
@@ -162,14 +164,10 @@
 /music/metube/Renegades.opus
 #EXTINF:177,The Irish Rovers - Drunken Sailor
 /music/metube/Drunken Sailor.opus
-#EXTINF:230,Bruno Mars - Marry You
-/music/metube/Marry You.opus
 #EXTINF:221,Zedd, Jasmine Thompson - Funny
 /music/metube/Funny.opus
 #EXTINF:171,Camille - Le Festin
 /music/metube/Le Festin.opus
-#EXTINF:175,One Direction - Happily
-/music/metube/Happily.opus
 #EXTINF:310,Dan Bull, The Stupendium, Dan Bull, Dan Bull, Gregory Holgate - A Purpose for New London (feat. The Stupendium)
 /music/metube/A Purpose for New London (feat. The Stupendium).opus
 #EXTINF:178,Dominic Fike - 3 Nights
@@ -468,12 +466,16 @@
 /music/metube/Dynamite.opus
 #EXTINF:216,Minute MineCraft Parodies - Modageddon
 /music/metube/Modageddon.opus
-#EXTINF:245,One Direction - Story of My Life
-/music/metube/Story of My Life.opus
 #EXTINF:199,The Wanted - Glad You Came (2012 Remaster)
 /music/metube/Glad You Came (2012 Remaster).opus
-#EXTINF:200,One Direction - Best Song Ever
-/music/metube/Best Song Ever.opus
 #EXTINF:189,MC Jams - Hacker
 /music/metube/Hacker.opus
+#EXTINF:246,One Direction - Story of My Life
+/music/One Direction/02. Story Of My Life.mp3
+#EXTINF:200,One Direction - Best Song Ever
+/music/One Direction/01. Best Song Ever.mp3
+#EXTINF:176,One Direction - Happily
+/music/One Direction/08. Happily.mp3
+#EXTINF:230,Bruno Mars - Marry You
+/music/Bruno Mars/06 Marry You.mp3
 
