@@ -64,15 +64,12 @@ photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy immich_server:2283
 }
 
-torrent.local.msws.xyz {
-  reverse_proxy gluetun:8080
-}
-
 *.code.msws.xyz {
   handle_path /* {
     redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
   }
 }
+
 
 :80, :443 {
   handle_path /resume* {
