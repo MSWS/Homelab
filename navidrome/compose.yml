@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
       - "${PWD}/data:/data"
-      - "${PWD}/music:/music"
+      - "/mnt/usb/media/navidrome/music:/music"
     networks:
         - cloudflared
     environment:
@@ -23,7 +23,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/lidarr/config:/config"
-      - "${PWD}/music:/music"
+      - "/mnt/usb/media/navidrome/music:/music"
       - "${PWD}/downloads:/downloads"
     restart: always
     networks:
@@ -72,7 +72,7 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=43652
     volumes:
-      - "${PWD}/bittorrent/config"
+      - "${PWD}/bittorrent:/config"
       - "${PWD}/downloads:/downloads"
     restart: always
     network_mode: "service:gluetun"
@@ -105,7 +105,7 @@ services:
       - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
       - FIREWALL_VPN_INPUT_PORTS=43652
       - TZ=America/Los_Angeles
-      - SERVER_REGIONS=
+      - SERVER_REGIONS=America
     restart: unless-stopped
     volumes:
       - gluetun:/gluetun
