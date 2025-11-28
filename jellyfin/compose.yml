@@ -8,11 +8,9 @@ services:
       - /home/iboaz/jellyfin/config:/config
       - /home/iboaz/jellyfin/cache:/cache
       - /mnt/usb/media/jellyfin:/usbmedia
+      - /mnt/samsung/media/jellyfin:/samsungmedia
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - type: bind
-        source: /home/iboaz/jellyfin/media
-        target: /media
     restart: always
     environment:
       - JELLYFIN_PublishedServerUrl=https://watch.msws.xyz

@@ -162,8 +162,7 @@ def main():
 
             start_fields = [
                 ("Destination", destination, True),
-                ("Transferred", f"{human_bytes(bytes_done)}" + (f" / {human_bytes(total_bytes)}" if total_bytes else ""), True),
-                ("Files total", str(total_files), True),
+                ("Total Files", str(total_files), True),
             ]
             start_payload = {
                 "username": USERNAME,
@@ -186,10 +185,8 @@ def main():
             in_title = f"Backup in progress ({percent * 100:5.2f}%)"
             in_fields = [
                 ("Destination", destination, True),
-                ("Transferred", f"{human_bytes(bytes_done)}" + (f" / {human_bytes(total_bytes)}" if total_bytes else ""), True),
+                ("Processed", f"{human_bytes(bytes_done)}" + (f" / {human_bytes(total_bytes)}" if total_bytes else ""), True),
                 ("Files", str(total_files), True),
-                ("Elapsed", "0:00:00", True),
-                ("ETA", "calculating", True),
             ]
             in_payload = {
                 "username": USERNAME,
@@ -234,8 +231,8 @@ def main():
             elapsed_hms = nice_hms(elapsed_s)
             fields = [
                 ("Destination", destination, True),
-                ("Transferred", f"{human_bytes(bytes_done)}" + (f" / {human_bytes(total_bytes)}" if total_bytes else ""), True),
-                ("Files processed", f"{files_done or '?'} / {files_total}", True),
+                ("Processed", f"{human_bytes(bytes_done)}" + (f" / {human_bytes(total_bytes)}" if total_bytes else ""), True),
+                ("Files Processed", f"{files_done or '?'} / {files_total}", True),
                 ("Elapsed", elapsed_hms, True),
                 ("ETA", eta_str, True),
             ]
@@ -303,9 +300,9 @@ def main():
             fields = [
                 ("Destination", destination, True),
                 ("Duration", duration_str, True),
-                ("Backup size delta", size_str, True),
-                ("Files changed/new/unmodified", f"{files_changed} / {files_new} / {files_unmodified}", False),
-                ("Total files processed", str(total_files_processed), True),
+                ("Backup Size Delta", size_str, True),
+                ("Files Changed/New/Unmodified", f"{files_changed} / {files_new} / {files_unmodified}", False),
+                ("Files Processed", str(total_files_processed), True),
             ]
             payload = {
                 "embeds": [
