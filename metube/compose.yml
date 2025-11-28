@@ -4,7 +4,8 @@ services:
     container_name: metube
     restart: always
     volumes:
-      - /home/iboaz/navidrome/music/metube:/downloads
+      - /home/iboaz/navidrome/music/metube:/downloads/music
+      - /mnt/usb/media/jellyfin/youtube:/downloads/video
     networks:
       - cloudflared
     environment:

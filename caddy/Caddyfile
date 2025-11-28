@@ -44,6 +44,10 @@ yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
 
+files.msws.xyz {
+  reverse_proxy copyparty:3923
+}
+
 #*.code.msws.xyz {
 #  auto_https disable_redirects
 #}
