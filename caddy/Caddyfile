@@ -44,8 +44,10 @@ yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
 
-files.msws.xyz {
-  reverse_proxy copyparty:3923
+files.local.msws.xyz {
+  reverse_proxy copyparty:3923 {
+    header_up CF-CONNECTING-IP 10.0.0.140
+  }
 }
 
 #*.code.msws.xyz {

@@ -10,13 +10,13 @@ services:
       - cloudflared
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
-  cloudflared-internal:
+  cloudflared-ssh-infra:
     image: cloudflare/cloudflared:latest
-    container_name: cf-tunnel-internal
+    container_name: cf-tunnel-ssh-infra
     restart: always
     command: tunnel run
     environment:
-      TUNNEL_TOKEN: "${PRIVATE_TUNNEL_TOKEN}"
+      TUNNEL_TOKEN: "${SSH_INFRA_TUNNEL_TOKEN}"
     network_mode: "host"
     labels:
       - "com.centurylinklabs.watchtower.enable=false"

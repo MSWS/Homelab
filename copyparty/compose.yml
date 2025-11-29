@@ -3,10 +3,11 @@ services:
     image: copyparty/ac:latest
     container_name: copyparty
     user: "1000:1000"
+    restart: always
     volumes:
       - ${PWD}/cfg:/cfg:z
-      - ${PWD}/data/public:/public:z
-      - ${PWD}/data/private:/private:z
+      - /mnt/samsung/copyparty/public:/public:z
+      - /mnt/samsung/copyparty/private:/private:z
 
     environment:
       LD_PRELOAD: /usr/lib/libmimalloc-secure.so.2
@@ -24,8 +25,8 @@ services:
       retries: 5
       start_period: 15s
     networks:
-      - copyparty
+      - cloudflared
 
 networks:
-  copyparty:
+  cloudflared:
     external: true
