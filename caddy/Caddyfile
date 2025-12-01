@@ -80,6 +80,10 @@ torrent.local.msws.xyz {
   }
 }
 
+discourse.msws.xyz {
+  reverse_proxy discourse:80
+}
+
 :80, :443 {
   handle_path /resume* {
     rewrite * /MSWS/Resume/main/Resume.pdf 
