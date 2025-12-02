@@ -80,7 +80,7 @@ torrent.local.msws.xyz {
   }
 }
 
-discourse.msws.xyz {
+galaqi.com {
   reverse_proxy discourse:80
 }
 
