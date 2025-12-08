@@ -16,6 +16,10 @@ services:
       - JELLYFIN_PublishedServerUrl=https://watch.msws.xyz
     extra_hosts:
       - 'host.docker.internal:host-gateway'
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
 
 networks:
   cloudflared:
