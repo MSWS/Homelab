@@ -6,7 +6,7 @@ services:
     restart: always
     volumes:
       - "${PWD}/data:/data"
-      - "/mnt/usb/media/navidrome/music:/music"
+      - "/mnt/samsung/media/navidrome/music:/music"
     networks:
         - cloudflared
     environment:
@@ -23,7 +23,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/lidarr/config:/config"
-      - "/mnt/usb/media/navidrome/music:/music"
+      - "/mnt/samsung/media/navidrome/music:/music"
       - "${PWD}/downloads:/downloads"
     restart: always
     networks:
@@ -40,7 +40,7 @@ services:
     volumes:
       - "${PWD}/radarr/data:/config"
       - "${PWD}/downloads:/downloads"
-      - "/mnt/usb/media/jellyfin/movies:/movies"
+      - "/mnt/samsung/media/jellyfin/movies:/movies"
     restart: always
     networks:
         - cloudflared
@@ -55,7 +55,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - "${PWD}/sonarr/data:/config"
-      - "/mnt/usb/media/jellyfin/shows:/shows"
+      - "/mnt/samsung/media/jellyfin/shows:/shows"
       - "${PWD}/downloads:/downloads"
     restart: always
     networks:
