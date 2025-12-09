@@ -1,0 +1,24 @@
+services:
+  anubis:
+    container_name: anubis
+    image: ghcr.io/techarohq/anubis:latest
+    environment:
+      BIND: ":3000"
+      TARGET: http://gitea-server-1:3000
+      POLICY_FNAME: "/anubis.yml"
+      SERVE_ROBOTS_TXT: true
+    networks:
+      - cloudflared
+      - redis
+    volumes:
+      - ./anubis.yml:/anubis.yml:ro
+  cache:
+    container_name: anubis_cache
+    image: redis:8-alpine
+    networks:
+      - redis
+
+networks:
+  cloudflared:
+    external: true
+  redis:

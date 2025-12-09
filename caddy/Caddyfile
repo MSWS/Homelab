@@ -37,7 +37,10 @@ pass.local.msws.xyz {
 }
 
 git.msws.xyz {
-  reverse_proxy gitea-server-1:3000
+  reverse_proxy anubis:3000 {
+    header_up X-Real-Ip {remote_host}
+		header_up X-Http-Version {http.request.proto}
+  }
 }
 
 yt.local.msws.xyz, yt.msws.xyz {

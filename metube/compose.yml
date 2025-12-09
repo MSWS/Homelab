@@ -4,8 +4,8 @@ services:
     container_name: metube
     restart: always
     volumes:
-      - /mnt/usb/media/navidrome/music/metube:/downloads/music
-      - /mnt/usb/media/jellyfin/youtube:/downloads/video
+      - /mnt/samsung/media/navidrome/music/metube:/downloads/music
+      - /mnt/samsung/media/jellyfin/youtube:/downloads/video
     networks:
       - cloudflared
     environment:
