@@ -9,6 +9,11 @@ services:
     networks:
       - cloudflared
       - chyrp_internal
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+
   database:
     image: mariadb
     restart: always
