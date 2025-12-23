@@ -125,7 +125,7 @@ services:
     volumes:
       - nzbget-config:/config
       - "${PWD}/downloads:/downloads"
-    restart: unless-stopped
+    restart: always
 
 networks:
   cloudflared:

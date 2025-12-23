@@ -16,6 +16,7 @@ services:
   cache:
     container_name: anubis_cache
     image: redis:8-alpine
+    restart: always
     networks:
       - redis
 

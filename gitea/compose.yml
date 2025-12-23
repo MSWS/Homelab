@@ -60,7 +60,7 @@ services:
       server:
         condition: service_healthy
     environment:
-      GITEA_INSTANCE_URL: gitea-gitea-1:3000
+      GITEA_INSTANCE_URL: http://server:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
