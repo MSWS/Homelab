@@ -2,6 +2,7 @@ services:
   anubis:
     container_name: anubis
     image: ghcr.io/techarohq/anubis:latest
+    restart: always
     environment:
       BIND: ":3000"
       TARGET: http://gitea-server-1:3000
