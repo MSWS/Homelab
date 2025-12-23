@@ -1,7 +1,0 @@
-{% extends "layouts" ~ DIR ~ "default.twig" %}
-
-{% block content %}
-<div role="status" class="ribbon flash">
-{{ reason is defined ? reason | fix : "Forbidden." | translate }}
-</div>
-{% endblock %}

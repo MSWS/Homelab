@@ -41,6 +41,7 @@ services:
       - cloudflared
       - gitea
       - elastic
+      - runner
     healthcheck:
       test: ["CMD", "curl", "-s", "https://git.msws.xyz/api/healthz"] 
       interval: 30s
@@ -59,10 +60,12 @@ services:
       server:
         condition: service_healthy
     environment:
-      GITEA_INSTANCE_URL: https://git.msws.xyz
+      GITEA_INSTANCE_URL: gitea-gitea-1:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - runner
   
   db:
     image: mariadb
@@ -100,3 +103,4 @@ networks:
     external: true
   gitea:
   elastic:
+  runner:
