@@ -61,6 +61,14 @@ code.local.msws.xyz {
   reverse_proxy code-server:8443
 }
 
+getshows.local.msws.xyz {
+  reverse_proxy sonarr:8989
+}
+
+getmusic.local.msws.xyz {
+  reverse_proxy lidarr:8686
+}
+
 music.local.msws.xyz, music.msws.xyz {
   reverse_proxy navidrome:4533
 }
