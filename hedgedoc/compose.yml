@@ -1,0 +1,45 @@
+services:
+  database:
+    image: postgres:17.7-alpine
+    environment:
+      - POSTGRES_USER=hedgedoc
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=hedgedoc
+    volumes:
+      - database:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - db
+  app:
+    # Make sure to use the latest release from https://hedgedoc.org/latest-release
+    image: quay.io/hedgedoc/hedgedoc:1.10.5
+    environment:
+      - CMD_DB_URL=postgres://hedgedoc:${POSTGRES_PASSWORD}@database:5432/hedgedoc
+      - CMD_DOMAIN=notes.msws.xyz
+      - CMD_URL_ADDPORT=False
+      - CMD_ALLOW_ANONYMOUS=False
+      - CMD_ALLOW_FREEURL=True
+      - CMD_DEFAULT_PERMISSION=locked
+      - CMD_GITHUB_CLIENTID=${CMD_GITHUB_CLIENTID}
+      - CMD_GITHUB_CLIENTSECRET=${CMD_GITHUB_CLIENTSECRET}
+      - CMD_PROTOCOL_USESSL=True
+      - CMD_CSP_ENABLE=True
+      - CMD_HSTS_ENABLE=True
+      - CMD_ALLOW_EMAIL_REGISTER=False
+      - CMD_EMAIL=False
+    volumes:
+      - uploads:/hedgedoc/public/uploads
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - db
+      - cloudflared
+volumes:
+  database:
+  uploads:
+
+networks:
+  db:
+  cloudflared:
+    external: true
