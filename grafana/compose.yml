@@ -10,7 +10,7 @@ services:
       - grafana-data:/var/lib/grafana
     networks:
       - cloudflared
-      - grafana
+      - prometheus
 
   prometheus:
     image: prom/prometheus:latest
@@ -24,7 +24,7 @@ services:
       - '--storage.tsdb.retention.time=365d'
     networks:
       - cloudflared
-      - grafana
+      - prometheus
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -36,13 +36,27 @@ services:
     volumes:
       - '/:/host:ro,rslave'
     networks:
-      - grafana
+      - prometheus
+
+  restic-exporter:
+    image: ngosang/restic-exporter
+    container_name: restic-exporter
+    environment:
+      - TZ=America/Los_Angeles
+      - RESTIC_REPOSITORY=/data
+      - RESTIC_PASSWORD=${RESTIC_PASSWORD}
+      - REFRESH_INTERVAL=3600 # 1 hour
+    volumes:
+      - /mnt/usb/backups:/data
+    restart: unless-stopped
+    networks:
+      - prometheus
 
 volumes:
-    grafana-data:
-    prometheus-data:
+  grafana-data:
+  prometheus-data:
 
 networks:
   cloudflared:
     external: true
-  grafana:
+  prometheus:

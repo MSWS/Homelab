@@ -1,0 +1,10 @@
+{
+  "name": "Rated 4★+",
+  "comment": "Tracks I've rated 4 stars or higher",
+  "all": [
+    { "gt": { "rating": 3 } }
+  ],
+  "sort": "-rating,title",
+  "limit": 1000
+}
+

@@ -69,10 +69,6 @@ getmusic.local.msws.xyz {
   reverse_proxy lidarr:8686
 }
 
-getmovies.local.msws.xyz {
-  reverse_proxy radarr:7878
-}
-
 music.local.msws.xyz, music.msws.xyz {
   reverse_proxy navidrome:4533
 }
@@ -87,10 +83,6 @@ photos.local.msws.xyz, photos.msws.xyz {
 
 torrent.local.msws.xyz {
   reverse_proxy gluetun:8080
-}
-
-nzbget.local.msws.xyz {
-  reverse_proxy gluetun:6789
 }
 
 *.code.msws.xyz {
