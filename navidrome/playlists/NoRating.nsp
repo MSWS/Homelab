@@ -1,0 +1,13 @@
+{
+  "name": "Unrated Songs",
+  "comment": "Tracks with no rating (rating 0)",
+  "all": [
+    {
+      "is": {
+        "rating": 0
+      }
+    }
+  ],
+  "sort": "title",
+  "order": "asc"
+}

@@ -8,11 +8,28 @@ services:
       - "${PWD}/data:/data"
       - "/mnt/samsung/media/navidrome/music:/music"
     networks:
-        - cloudflared
+      - cloudflared
     environment:
       ND_SPOTIFY_ID: "${ND_SPOTIFY_ID}"
       ND_SPOTIFY_SECRET: "${ND_SPOTIFY_SECRET}"
       ND_PLAYLISTSPATH: "playlists"
+
+  magiclists:
+    image: rickysynnot/magic-lists-for-navidrome:latest
+    container_name: magiclists
+    environment:
+      - NAVIDROME_URL=http://navidrome:4533
+      - NAVIDROME_USERNAME=${NAVIDROME_USERNAME}
+      - NAVIDROME_PASSWORD=${NAVIDROME_PASSWORD}
+      - DATABASE_PATH=/app/data/magiclists.db # Required: Database location
+      - AI_PROVIDER=openrouter               # Optional: openrouter, groq, google, ollama
+      - AI_API_KEY=${AI_API_KEY}  # Optional, for OpenRouter/Groq/Google
+      - AI_MODEL=openai/gpt-oss-120b:free # Optional, for AI providers
+    volumes:
+      - magiclists-data:/app/data          # Persist configuration
+    restart: unless-stopped
+    networks:
+      - cloudflared
 
   lidarr:
     image: lscr.io/linuxserver/lidarr:latest
@@ -153,3 +170,4 @@ volumes:
   gluetun:
   nzbget-config:
   flare-config:
+  magiclists-data:

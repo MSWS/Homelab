@@ -1,6 +1,6 @@
 {
-  "name": "Rated 4★+",
-  "comment": "Tracks I've rated 4 stars or higher",
+  "name": "Bangers",
+  "comment": "4-5 ★",
   "all": [
     { "gt": { "rating": 3 } }
   ],
