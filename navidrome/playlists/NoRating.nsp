@@ -1,13 +1,15 @@
 {
   "name": "Unrated Songs",
-  "comment": "Tracks with no rating (rating 0)",
+  "comment": "Tracks with no rating (rating 0), excluding a playlist and specific artists",
   "all": [
-    {
-      "is": {
-        "rating": 0
-      }
-    }
+    { "is": { "rating": 0 } },
+    { "notInPlaylist": { "id": "zBdVHQzTVDYdK22PgwNIc2" } },
+    { "isNot": { "artist": "DougDoug" } },
+    { "isNot": { "artist": "Markiplier" } },
+    { "isNot": { "artist": "tomatoanus" } }
   ],
-  "sort": "title",
-  "order": "asc"
+  "sort": "random",
+  "order": "asc",
+  "limit": 100
 }
+

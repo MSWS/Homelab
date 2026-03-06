@@ -1,4 +1,5 @@
 /home/iboaz/jellyfin/media
+/home/iboaz/navidrome/downloads
 /proc
 /sys
 /tmp
