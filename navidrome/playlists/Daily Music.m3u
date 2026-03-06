@@ -1,5 +1,19 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:211,Supersister - Coffee (Radio Edit)
+/music/Supersister (British girl band)/Coffee.mp3
+#EXTINF:212,Little Mix - Black Magic
+/music/Little Mix/Get Weird (2015)/Little Mix - Get Weird - 01 - Black Magic.flac
+#EXTINF:182,American Authors - Right Here Right Now
+/music/American Authors/What We Live For (2016)/American Authors - What We Live For - 04 - Right Here Right Now.mp3
+#EXTINF:235,Taylor Swift - Opalite
+/music/Taylor Swift/The Life of a Showgirl (2025)/Taylor Swift - The Life of a Showgirl - 03 - Opalite.mp3
+#EXTINF:171,Imagine Dragons - Warriors
+/music/Imagine Dragons/Smoke + Mirrors (2015)/CD 02/Imagine Dragons - Smoke + Mirrors - 05 - Warriors.flac
+#EXTINF:225,Maisie Peters - Villain
+/music/Maisie Peters/You Signed Up for This (2021)/Maisie Peters - You Signed Up for This - 09 - Villain.mp3
+#EXTINF:173,OneRepublic - Run
+/music/OneRepublic/Human (2021)/OneRepublic - Human - 01 - Run.opus
 #EXTINF:171,Shaboozey - A Bar Song (Tipsy)
 /music/Shaboozey/Where I’ve Been, isn’t Where I’m Going (2024)/Shaboozey - Where I’ve Been, isn’t Where I’m Going - 02 - A Bar Song (Tipsy).mp3
 #EXTINF:279,Dayglow - Dayglow - Mindless Creatures (Official Lyric Video)
@@ -69,7 +83,7 @@
 #EXTINF:180,The High Kings - Irish Pub Song
 /music/metube/Irish Pub Song.opus
 #EXTINF:194,The Longest Johns - Bones in the Ocean
-/music/The Longest Johns/Bones in the Ocean (2013)/The Longest Johns - Bones in the Ocean - 03 - Bones in the Ocean.opus
+/music/The Longest Johns/Bones in the Ocean (2013)/The Longest Johns - Bones in the Ocean - 03 - Bones in the Ocean.mp3
 #EXTINF:192,SwaySounnds - George Ezra - Shotgun (Jesse Bloch Bootleg) [FREE DOWNLOAD]
 /music/metube/George Ezra - Shotgun (Jesse Bloch Bootleg) [FREE DOWNLOAD].opus
 #EXTINF:195,The Longest Johns - Leave Her Johnny | The Longest Johns | Mass Choir Community Video Project
@@ -84,8 +98,6 @@
 /music/WALK THE MOON/Talking Is Hard (2014)/WALK THE MOON - Talking Is Hard - 08 - Work This Body.opus
 #EXTINF:201,Zara Larsson - Lush Life
 /music/Zara Larsson/So Good (2017)/Zara Larsson - So Good - 02 - Lush Life.opus
-#EXTINF:214,Little Mix - Sweet Melody
-/music/Little Mix/Confetti (2020)/Little Mix - Confetti - 03 - Sweet Melody.opus
 #EXTINF:180,The Chalkeaters, The Stupendium, Ellen McLain - Count to Three (feat. The Stupendium & Ellen McLain)
 /music/metube/Count to Three (feat. The Stupendium & Ellen McLain).opus
 #EXTINF:220,BANNERS - Someone to You
@@ -93,7 +105,7 @@
 #EXTINF:181,Jonas Brothers - What a Man Gotta Do
 /music/Jonas Brothers/What a Man Gotta Do (2020)/Jonas Brothers - What a Man Gotta Do - 01 - What a Man Gotta Do.opus
 #EXTINF:249,The Longest Johns - Oak & Ash & Thorn
-/music/The Longest Johns/Cures What Ails Ya (2020)/The Longest Johns - Cures What Ails Ya - 08 - Oak & Ash & Thorn.opus
+/music/The Longest Johns/Cures What Ails Ya (2020)/The Longest Johns - Cures What Ails Ya - 08 - Oak & Ash & Thorn.mp3
 #EXTINF:146,Pentatonix - We Need a Little Christmas
 /music/Pentatonix/We Need a Little Christmas (2020)/Pentatonix - We Need a Little Christmas - 12 - We Need a Little Christmas.opus
 #EXTINF:150,Supergrass - Grace
@@ -108,8 +120,6 @@
 /music/Michael Giacchino/Ratatouille (2007)/Michael Giacchino - Ratatouille - 01 - Le Festin.opus
 #EXTINF:178,Dominic Fike - 3 Nights
 /music/Dominic Fike/Don't Forget About Me, Demos (2018)/Dominic Fike - Don't Forget About Me, Demos - 01 - 3 Nights.opus
-#EXTINF:211,Sia - The Greatest
-/music/Sia/This Is Acting (2016)/Sia - This Is Acting - 14 - The Greatest.opus
 #EXTINF:212,Rudimental, Jess Glynne, Macklemore, Dan Caplen - These Days (feat. Jess Glynne, Macklemore & Dan Caplen)
 /music/metube/These Days (feat. Jess Glynne, Macklemore & Dan Caplen).opus
 #EXTINF:270,Halsey - Colors (Audien remix)
@@ -148,8 +158,6 @@
 /music/The Score/ATLAS (2017)/The Score - ATLAS - 13 - Money Run Low.opus
 #EXTINF:182,Avicii, Sandro Cavazza - Without You
 /music/metube/Without You.opus
-#EXTINF:197,Panic! at the Disco - LA Devotee
-/music/Panic! at the Disco/Death of a Bachelor (2016)/Panic! at the Disco - Death of a Bachelor - 07 - LA Devotee.opus
 #EXTINF:212,Rihanna - Shut Up and Drive
 /music/Rihanna/Good Girl Gone Bad + Rated R (2012)/CD 01/Rihanna - Good Girl Gone Bad + Rated R - 05 - Shut Up and Drive.opus
 #EXTINF:161,Eric Hutchinson - Tell the World
@@ -166,8 +174,6 @@
 /music/Coldplay/Viva la Vida or Death and All His Friends (2008)/Digital Media 01/Coldplay - Viva la Vida or Death and All His Friends - 07 - Viva la Vida.opus
 #EXTINF:218,Charlie Puth - We Don’t Talk Anymore
 /music/Charlie Puth/Nine Track Mind (2016)/Charlie Puth - Nine Track Mind - 05 - We Don’t Talk Anymore.mp3
-#EXTINF:191,Panic! at the Disco - High Hopes
-/music/Panic! at the Disco/Pray for the Wicked (2018)/Panic! at the Disco - Pray for the Wicked - 04 - High Hopes.opus
 #EXTINF:211,Imagine Dragons - Zero (From the Original Motion Picture "Ralph Breaks The Internet")
 /music/metube/Zero (From the Original Motion Picture ＂Ralph Breaks The Internet＂).opus
 #EXTINF:212,Hot Chelle Rae - Don't Say Goodnight
@@ -184,8 +190,6 @@
 /music/Various Artists/Phineas and Ferb - Summer Belongs to You! (2012)/Various Artists - Phineas and Ferb - Summer Belongs to You! - 06 - Summer Belongs to You.opus
 #EXTINF:215,P!NK - So What
 /music/metube/So What.opus
-#EXTINF:270,Mark Ronson - Uptown Funk
-/music/Mark Ronson/Uptown Special (2015)/Mark Ronson - Uptown Special - 04 - Uptown Funk.opus
 #EXTINF:177,Avicii - The Nights
 /music/Avicii/The Days + Nights EP (2014)/Avicii - The Days + Nights EP - 02 - The Nights.opus
 #EXTINF:206,Galantis, Hook N Sling - Love on Me
@@ -238,4 +242,7 @@
 /music/One Direction/Midnight Memories (2013)/One Direction - Midnight Memories - 08 - Happily.mp3
 #EXTINF:230,Bruno Mars - Marry You
 /music/Bruno Mars/Doo-Wops & Hooligans (2010)/Bruno Mars - Doo-Wops & Hooligans - 06 - Marry You.mp3
-
+#EXTINF:167,Imagine Dragons - Take Me to the Beach
+/music/Imagine Dragons/LOOM (2024)/Imagine Dragons - LOOM - 04 - Take Me to the Beach.mp3
+#EXTINF:200,One Direction - What Makes You Beautiful
+/music/One Direction/Up All Night (2011)/One Direction - Up All Night - 01 - What Makes You Beautiful.mp3
