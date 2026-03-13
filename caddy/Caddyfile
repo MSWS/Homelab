@@ -53,6 +53,10 @@ files.local.msws.xyz {
   }
 }
 
+wiki.local.msws.xyz {
+  reverse_proxy mediawiki-mediawiki-1:80
+}
+
 #*.code.msws.xyz {
 #  auto_https disable_redirects
 #}

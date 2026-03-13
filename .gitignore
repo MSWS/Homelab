@@ -22,3 +22,4 @@ reportgen.sh
 copyparty/cfg
 discourse
 blog/
+mediawiki/LocalSettings.php

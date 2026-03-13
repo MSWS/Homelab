@@ -20,6 +20,7 @@ services:
       - CADDY_ADMIN=caddy-caddy-1:2019
     networks:
       - cloudflared
+      - local
 
 volumes:
   caddy_data:
@@ -27,4 +28,6 @@ volumes:
 
 networks:
   cloudflared:
+    external: true
+  local:
     external: true
