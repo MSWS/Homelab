@@ -234,21 +234,20 @@ store:
 # information.
 thresholds:
   # By default Anubis ships with the following thresholds:
-  - name: minimal-suspicion # This client is likely fine, its soul is lighter than a feather
-    expression: weight <= 0 # a feather weighs zero units
-    action: ALLOW # Allow the traffic through
+  # - name: minimal-suspicion # This client is likely fine, its soul is lighter than a feather
+  #   expression: weight <= 0 # a feather weighs zero units
+  #   action: ALLOW # Allow the traffic through
   # For clients that had some weight reduced through custom rules, give them a
   # lightweight challenge.
   - name: mild-suspicion
     expression:
       all:
-        - weight > 0
         - weight < 10
     action: CHALLENGE
     challenge:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/metarefresh
-      algorithm: metarefresh
-      difficulty: 1
+      algorithm: fast
+      difficulty: 2
   # For clients that are browser-like but have either gained points from custom rules or
   # report as a standard browser.
   - name: moderate-suspicion
@@ -260,7 +259,7 @@ thresholds:
     challenge:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
-      difficulty: 2 # two leading zeros, very fast for most clients
+      difficulty: 4 # two leading zeros, very fast for most clients
   - name: mild-proof-of-work
     expression:
       all:
@@ -270,7 +269,7 @@ thresholds:
     challenge:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
-      difficulty: 4
+      difficulty: 6
   # For clients that are browser like and have gained many points from custom rules
   - name: extreme-suspicion
     expression: weight >= 30
@@ -278,5 +277,5 @@ thresholds:
     challenge:
       # https://anubis.techaro.lol/docs/admin/configuration/challenges/proof-of-work
       algorithm: fast
-      difficulty: 6
+      difficulty: 8
 

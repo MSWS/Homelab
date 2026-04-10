@@ -62,8 +62,11 @@ services:
     environment:
       GITEA_INSTANCE_URL: http://gitea-server-1:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
+      CONFIG_FILE: "/config/config.yaml"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - gitea-runner:/data
+      - ./runner-config.yaml:/config/config.yaml
     networks:
       - runner
   
@@ -97,6 +100,7 @@ volumes:
   gitea-data:
   gitea-config:
   gitea-db:
+  gitea-runner:
 
 networks:
   cloudflared:

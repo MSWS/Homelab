@@ -14,19 +14,31 @@
   metrics {
     per_host
   }
+
+  log {
+    output stdout
+    format console
+  }
 }
 
-
 registry.msws.xyz {
-  @docker {
-      path_regexp ^.*/[^/]+(:[^/]+)?(/.*)?$
-      header_regexp User-Agent .*(buildkit|docker|containerd).*
+  log {
+    output stdout
+    format console
   }
-
+  @docker {
+    path_regexp ^.*/[^/]+(:[^/]+)?(/.*)?$
+    header_regexp User-Agent .*(buildkit|docker|containerd).*
+  }
+  @local {
+    remote_ip 192.168.0.0/16 10.0.0.0/8 172.16.0.0/12
+  }
   handle @docker {
     reverse_proxy gitea-server-1:3000
   }
-
+  handle @local {
+    reverse_proxy gitea-server-1:3000
+  }
   handle {
     respond "Access Denied" 403
   }
@@ -38,9 +50,13 @@ pass.local.msws.xyz {
 
 git.msws.xyz {
   reverse_proxy anubis:3000 {
-    header_up X-Real-IP {remote_host}
-		header_up X-Http-Version {http.request.proto}
+    header_up X-Real-Ip {remote_host}
+    header_up X-Http-Version {http.request.proto}
   }
+}
+
+git.local.msws.xyz {
+  reverse_proxy gitea-server-1:3000
 }
 
 yt.local.msws.xyz, yt.msws.xyz {
@@ -101,6 +117,10 @@ nzbget.local.msws.xyz {
   handle_path /* {
     redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
   }
+}
+
+rcw.local.msws.xyz {
+  reverse_proxy rcw-rcw-reader-1:3000
 }
 
 galaqi.com {

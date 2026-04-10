@@ -13,6 +13,7 @@ services:
     networks:
       - local
       - db
+      - cloudflared
   database: # <- This key defines the name of the database during setup
     image: mariadb
     restart: always
@@ -34,4 +35,6 @@ volumes:
 networks:
   db:
   local:
+    external: true
+  cloudflared:
     external: true
