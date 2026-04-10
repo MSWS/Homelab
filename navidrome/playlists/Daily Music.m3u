@@ -1,5 +1,11 @@
 #EXTM3U
 #PLAYLIST:Daily Music
+#EXTINF:213,Teddy Swims - The Door
+/music/Teddy Swims/I've Tried Everything but Therapy (Part 1) (2023)/Teddy Swims - I've Tried Everything but Therapy (Part 1) - 04 - The Door.flac
+#EXTINF:237,Crowded House - Don’t Dream It’s Over
+/music/Crowded House/Crowded House (1986)/Crowded House - Crowded House - 04 - Don’t Dream It’s Over.flac
+#EXTINF:337,Daedron12 - Bayonetta 2 - Battle OST 1 - Moon River ( Climax Mix )
+/music/metube/Bayonetta/Bayonetta 2 - Battle OST 1 - Moon River ( Climax Mix ).opus
 #EXTINF:211,Supersister - Coffee (Radio Edit)
 /music/Supersister (British girl band)/Coffee.mp3
 #EXTINF:212,Little Mix - Black Magic
@@ -97,7 +103,7 @@
 #EXTINF:176,WALK THE MOON - Work This Body
 /music/WALK THE MOON/Talking Is Hard (2014)/WALK THE MOON - Talking Is Hard - 08 - Work This Body.opus
 #EXTINF:201,Zara Larsson - Lush Life
-/music/Zara Larsson/So Good (2017)/Zara Larsson - So Good - 02 - Lush Life.opus
+/music/Zara Larsson/So Good (2017)/Zara Larsson - So Good - 02 - Lush Life.mp3
 #EXTINF:180,The Chalkeaters, The Stupendium, Ellen McLain - Count to Three (feat. The Stupendium & Ellen McLain)
 /music/metube/Count to Three (feat. The Stupendium & Ellen McLain).opus
 #EXTINF:220,BANNERS - Someone to You
@@ -106,8 +112,6 @@
 /music/Jonas Brothers/What a Man Gotta Do (2020)/Jonas Brothers - What a Man Gotta Do - 01 - What a Man Gotta Do.opus
 #EXTINF:249,The Longest Johns - Oak & Ash & Thorn
 /music/The Longest Johns/Cures What Ails Ya (2020)/The Longest Johns - Cures What Ails Ya - 08 - Oak & Ash & Thorn.mp3
-#EXTINF:146,Pentatonix - We Need a Little Christmas
-/music/Pentatonix/We Need a Little Christmas (2020)/Pentatonix - We Need a Little Christmas - 12 - We Need a Little Christmas.opus
 #EXTINF:150,Supergrass - Grace
 /music/Supergrass/Life on Other Planets (2002)/CD 01/Supergrass - Life on Other Planets - 09 - Grace.opus
 #EXTINF:194,X Ambassadors - Renegades
