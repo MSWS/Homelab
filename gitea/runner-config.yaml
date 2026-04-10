@@ -1,0 +1,3 @@
+# runner-config.yaml
+container:
+  network: gitea_runner  # compose project prefix + network name
