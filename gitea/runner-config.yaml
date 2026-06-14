@@ -1,3 +1,13 @@
-# runner-config.yaml
 container:
-  network: gitea_runner  # compose project prefix + network name
+  network: "host"          # act_runner creates one automatically; fine for DinD
+  privileged: true     # required for DinD
+  options:             # e.g. --add-host if needed
+  workdir_parent:      # defaults to /workspace
+  valid_volumes:
+    - /workspace/**    # must allow the workspace path when using bind_workdir
+  docker_host: ""      # auto-detected
+  force_pull: true
+  force_rebuild: false
+  require_docker: false
+  docker_timeout: 0s
+  bind_workdir: true   # required for DinD when jobs use docker compose with bind mounts (e.g. ".:/app")

@@ -1,0 +1,31 @@
+# Template to enable clean URLs for the Caddy web server v2.
+#
+# Usage:
+#
+#     example.com {
+#         #...
+#         import filesystem/path/to/caddyfile
+#         #...
+#     }
+
+@twigs {
+    path *.twig
+}
+
+@admin {
+    path /admin/*
+    file {
+        try_files {path} {path}/ /admin/index.php
+    }
+}
+
+@chyrp {
+    path /*
+    file { 
+      try_files {path} {path}/ /index.php
+    }
+}
+
+rewrite @twigs /index.php
+rewrite @admin {http.matchers.file.relative}
+rewrite @chyrp {http.matchers.file.relative}

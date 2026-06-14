@@ -12,7 +12,7 @@ services:
       - GITEA__database__USER=${MYSQL_USER}
       - GITEA__database__PASSWD=${MYSQL_PASSWORD}
       - GITEA__server__SSH_DOMAIN=git.msws.xyz
-      - GITEA__server__SSH_PORT=22
+      - GITEA__server__SSH_PORT=443
       - GITEA__server__SSH_LISTEN_PORT=22
       - GITEA__actions__ENABLED=true
       - GITEA__repository__ENABLE_PUSH_CREATE_USER=true
@@ -54,19 +54,21 @@ services:
           cpus: "1"
 
   runner:
-    image: gitea/act_runner:nightly
-    restart: always
+    image: gitea/act_runner:nightly-dind
+    privileged: true
     depends_on:
       server:
         condition: service_healthy
+    restart: always
     environment:
       GITEA_INSTANCE_URL: http://gitea-server-1:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
       CONFIG_FILE: "/config/config.yaml"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
       - gitea-runner:/data
       - ./runner-config.yaml:/config/config.yaml
+      - /workspace:/workspace
     networks:
       - runner
   

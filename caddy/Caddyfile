@@ -3,11 +3,17 @@
   acme_ca https://acme-v02.api.letsencrypt.org/directory
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
   
-  layer4 {
-    0.0.0.0:22 {
-      route {
-        proxy gitea-server-1:22
+  servers {
+    listener_wrappers {
+      layer4 {
+        # Check traffic for ssh and route it to forgejo:2240 if it matches
+        @ssh ssh
+        route @ssh {
+          proxy gitea-server-1:22
+        }
+        route
       }
+      tls
     }
   }
 
@@ -105,6 +111,10 @@ photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy immich_server:2283
 }
 
+blog.msws.xyz {
+  reverse_proxy https://kagi.com
+}
+
 torrent.local.msws.xyz {
   reverse_proxy gluetun:8080
 }
@@ -121,6 +131,10 @@ nzbget.local.msws.xyz {
 
 rcw.local.msws.xyz {
   reverse_proxy rcw-rcw-reader-1:3000
+}
+
+stonks.local.msws.xyz {
+  reverse_proxy better-front-1:3000
 }
 
 galaqi.com {

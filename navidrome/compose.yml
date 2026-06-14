@@ -142,6 +142,7 @@ services:
     restart: always
     networks:
       - flaresolverr
+      - cloudflared
 
 networks:
   cloudflared:
@@ -153,4 +154,3 @@ volumes:
   gluetun:
   nzbget-config:
   flare-config:
-  magiclists-data:

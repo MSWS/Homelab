@@ -23,13 +23,13 @@ services:
         - cloudflared
 
   calibre-web-automated-book-downloader:
-    image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
+    image: ghcr.io/calibrain/shelfmark:latest
     container_name: calibre-downloader
     environment:
       FLASK_PORT: 8084
       FLASK_DEBUG: false
       BOOK_LANGUAGE: en
-      SUPPORTED_FORMATS: epub
+      SUPPORTED_FORMATS: epub,cbz
     #ports:
     #  - 8084:8084
     # Uncomment the following lines if you want to enable healthcheck
@@ -43,11 +43,14 @@ services:
     volumes:
     # This is where the books will be downloaded to, usually it would be 
     # the same as whatever you gave in "calibre-web-automated"
-      - calibre-downloads:/cwa-book-ingest
+      - calibre-downloads:/books
+      - config:/config
+      - /home/iboaz/navidrome/downloads:/home/iboaz/navidrome/downloads
     networks:
         - cloudflared
 
 volumes:
+  config:  
   calibre-downloads:
 
 networks:
