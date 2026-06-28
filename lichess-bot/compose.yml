@@ -1,6 +1,8 @@
 services:
   lichess-bot:
     container_name: lichess-bot
-    image: registry.msws.xyz/ms/lichess-bot:latest
+    image: registry.msws.xyz/ms/c-chess/bot
     environment:
       LICHESS_BOT_TOKEN: ${LICHESS_BOT_TOKEN}
+    volumes:
+      - ./config.yml:/lichess-bot/config/config.yml:ro

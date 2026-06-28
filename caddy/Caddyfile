@@ -32,19 +32,15 @@ registry.msws.xyz {
     output stdout
     format console
   }
-  @docker {
-    path_regexp ^.*/[^/]+(:[^/]+)?(/.*)?$
-    header_regexp User-Agent .*(buildkit|docker|containerd).*
+
+  @registry_api {
+    path /v2/*
   }
-  @local {
-    remote_ip 192.168.0.0/16 10.0.0.0/8 172.16.0.0/12
-  }
-  handle @docker {
+
+  handle @registry_api {
     reverse_proxy gitea-server-1:3000
   }
-  handle @local {
-    reverse_proxy gitea-server-1:3000
-  }
+
   handle {
     respond "Access Denied" 403
   }
@@ -56,7 +52,7 @@ pass.local.msws.xyz {
 
 git.msws.xyz {
   reverse_proxy anubis:3000 {
-    header_up X-Real-Ip {remote_host}
+    header_up X-Real-Ip {client_ip}
     header_up X-Http-Version {http.request.proto}
   }
 }

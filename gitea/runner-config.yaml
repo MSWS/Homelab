@@ -1,4 +1,5 @@
 container:
+  capacity: 2
   network: "host"          # act_runner creates one automatically; fine for DinD
   privileged: true     # required for DinD
   options:             # e.g. --add-host if needed

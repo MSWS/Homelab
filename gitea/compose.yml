@@ -60,6 +60,8 @@ services:
       server:
         condition: service_healthy
     restart: always
+    deploy:
+      replicas: 2
     environment:
       GITEA_INSTANCE_URL: http://gitea-server-1:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}
