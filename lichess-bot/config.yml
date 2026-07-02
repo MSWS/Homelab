@@ -3,10 +3,10 @@ url: "https://lichess.org/"
 engine:
   dir: "/usr/local/bin/"
   name: "chess-release"              # Binary name of the engine to use.
-  debug: true
   working_dir: ""         
   protocol: "uci"       
   uci_ponder: true     
+  debug: true
 
   draw_or_resign:
     resign_enabled: false          # Whether or not the bot should resign.
@@ -14,36 +14,36 @@ engine:
     resign_for_egtb_minus_two: true # If true the bot will resign in positions where the online_egtb returns a wdl of -2.
     resign_moves: 3                # How many moves in a row the score has to be below the resign value.
     offer_draw_enabled: true       # Whether or not the bot should offer/accept draw.
-    offer_draw_score: 100            # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp).
+    offer_draw_score: 30            # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp).
     offer_draw_for_egtb_zero: true # If true the bot will offer/accept draw in positions where the online_egtb returns a wdl of 0.
     offer_draw_moves: 10           # How many moves in a row the absolute value of the score has to be below the draw value.
     offer_draw_pieces: 10          # Only if the pieces on board are less than or equal to this value, the bot offers/accepts draw.
 
   online_moves:
-    max_out_of_book_moves: 10      # Stop using online opening books after they don't have a move for 'max_out_of_book_moves' positions. Doesn't apply to the online endgame tablebases.
+    max_out_of_book_moves: 3      # Stop using online opening books after they don't have a move for 'max_out_of_book_moves' positions. Doesn't apply to the online endgame tablebases.
     max_retries: 2                 # The maximum amount of retries when getting an online move.
     # max_depth: 10                # How many moves from the start to take from online books. Default is no limit.
     chessdb_book:
-      enabled: false               # Whether or not to use chessdb book.
+      enabled: true               # Whether or not to use chessdb book.
       min_time: 20                 # Minimum time (in seconds) to use chessdb book.
-      move_quality: "good"         # One of "all", "good", "best".
-      min_depth: 20                # Only for move_quality: "best".
+      move_quality: "best"         # One of "all", "good", "best".
+      min_depth: 16                # Only for move_quality: "best".
     lichess_cloud_analysis:
       enabled: false               # Whether or not to use lichess cloud analysis.
       min_time: 20                 # Minimum time (in seconds) the bot must have to use cloud analysis.
       move_quality: "best"         # One of "good", "best".
       max_score_difference: 50     # Only for move_quality: "good". The maximum score difference (in cp) between the best move and the other moves.
-      min_depth: 20
+      min_depth: 16
       min_knodes: 0
     lichess_opening_explorer:
-      enabled: false
+      enabled: true
       min_time: 20
       source: "masters"            # One of "lichess", "masters", "player"
       player_name: ""              # The lichess username. Leave empty for the bot's username to be used. Used only when source is "player".
       sort: "winrate"              # One of "winrate", "games_played"
-      min_games: 10                # Minimum number of times a move must have been played to be chosen.
+      min_games: 35                # Minimum number of times a move must have been played to be chosen.
     online_egtb:
-      enabled: false               # Whether or not to enable online endgame tablebases.
+      enabled: true               # Whether or not to enable online endgame tablebases.
       min_time: 20                 # Minimum time (in seconds) the bot must have to use online EGTBs.
       max_pieces: 7                # Maximum number of pieces on the board to use endgame tablebases.
       source: "lichess"            # One of "lichess", "chessdb".
@@ -71,7 +71,9 @@ engine:
 #   Hash: 256
 
   uci_options:
-    Threads: 4                     # Max CPU threads the engine can use.
+    Threads: 2                     # Max CPU threads the engine can use.
+    EvalFile: "/nets/net_1.nnue"
+    UseNNUE: true
   silence_stderr: false            # Some engines (yes you, Leela) are very noisy.
 
 abort_time: 30                     # Time to abort a game in seconds when there is no activity.
@@ -140,7 +142,7 @@ greeting:
   # Any other words in curly braces will be removed.
   hello: "gl, hf!" # Message to send to opponent chat at the start of a game
   goodbye: "gg" # Message to send to opponent chat at the end of a game
-  hello_spectators: "gg" # Message to send to spectator chat at the start of a game
+  hello_spectators: "gl, hf!" # Message to send to spectator chat at the start of a game
   goodbye_spectators: "gg" # Message to send to spectator chat at the end of a game
 
 # pgn_directory: "game_records"    # A directory where PGN-format records of the bot's games are kept

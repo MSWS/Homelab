@@ -1,8 +1,55 @@
 services:
-  lichess-bot:
+  engine:
     container_name: lichess-bot
     image: registry.msws.xyz/ms/c-chess/bot
     environment:
       LICHESS_BOT_TOKEN: ${LICHESS_BOT_TOKEN}
+      OPTIONS: -v
     volumes:
       - ./config.yml:/lichess-bot/config/config.yml:ro
+      - ./nets:/nets:ro
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "3"
+
+  trainer:
+    container_name: trainer
+    image: registry.msws.xyz/ms/c-chess/trainer
+    # Runs `make train`, which forwards every TRAIN_<KNOB> below to the self-play
+    # loop as <KNOB> (see the Makefile). Long-term tuning: a long gated ratchet
+    # (ITERS) over large, diverse batches (GAMES) labelled by a deeper teacher
+    # (DEPTH/NODECAP), with a wide replay buffer (WINDOW) and SPRT gating so only
+    # proven-stronger nets are published.
+    environment:
+      # ── Training hyperparameters (TRAIN_* -> loop knob) ──
+      TRAIN_ITERS: "500"          # generations of the gated ratchet
+      TRAIN_GAMES: "8000"         # self-play games per generation
+      TRAIN_DEPTH: "9"            # teacher search depth for labels
+      TRAIN_NODECAP: "25000"      # per-search node cap (bounds tactical blowups)
+      TRAIN_EPOCHS: "25"          # training passes over the replay buffer
+      TRAIN_WINDOW: "8"           # replay buffer = last N generations' data
+      TRAIN_LAMBDA: "0.7"         # target mix: 0.7 search score / 0.3 game result
+      TRAIN_MAXSAMPLES: "8000000" # must exceed WINDOW*GAMES' positions
+      # ── Gating (SPRT) ──
+      TRAIN_MOVETIME: "100"       # ms/move in the promotion match
+      TRAIN_SPRT_ELO1: "10"       # promote only if proven >= this many Elo
+      TRAIN_SPRT_MAXGAMES: "1000" # cap; a worse net is rejected far sooner
+      # ── Operational (plain names; inherited by the loop directly) ──
+      OUTDIR: /nets               # shared with the bot (reads latest.nnue)
+      VALIDATE: "1"               # play the gating match each generation
+      GATE: "1"                   # publish only if the match passes
+      BOOTSTRAP: /nets/latest.nnue  # resume from the champion after a restart
+      # Parallel data-generation processes — the loop's main cost. Match it to
+      # the cpus limit below (nproc reports the host's cores, ignoring the cgroup
+      # quota, so it can't self-tune). Give long-term training real cores.
+      JOBS: "2"
+    volumes:
+      - ./nets:/nets
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+
