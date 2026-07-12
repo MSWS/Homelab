@@ -6,7 +6,7 @@ engine:
   working_dir: ""         
   protocol: "uci"       
   uci_ponder: true     
-  debug: true
+  debug: false
 
   draw_or_resign:
     resign_enabled: false          # Whether or not the bot should resign.
@@ -72,7 +72,7 @@ engine:
 
   uci_options:
     Threads: 2                     # Max CPU threads the engine can use.
-    EvalFile: "/nets/net_1.nnue"
+    EvalFile: "/nets/latest.nnue"
     UseNNUE: true
   silence_stderr: false            # Some engines (yes you, Leela) are very noisy.
 

@@ -4,36 +4,42 @@ services:
     image: registry.msws.xyz/ms/c-chess/bot
     environment:
       LICHESS_BOT_TOKEN: ${LICHESS_BOT_TOKEN}
-      OPTIONS: -v
     volumes:
       - ./config.yml:/lichess-bot/config/config.yml:ro
       - ./nets:/nets:ro
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: "3"
 
   trainer:
     container_name: trainer
     image: registry.msws.xyz/ms/c-chess/trainer
-    # Runs `make train`, which forwards every TRAIN_<KNOB> below to the self-play
-    # loop as <KNOB> (see the Makefile). Long-term tuning: a long gated ratchet
-    # (ITERS) over large, diverse batches (GAMES) labelled by a deeper teacher
-    # (DEPTH/NODECAP), with a wide replay buffer (WINDOW) and SPRT gating so only
-    # proven-stronger nets are published.
+    # Runs `make train`, which forwards every TRAIN_<KNOB> below to the loop as
+    # <KNOB> (see the Makefile). Trains on the bundled tools/positions.csv: the
+    # loop converts it once (quiet-filtered) and fits the whole set in a single
+    # pass (CHUNK=0, ITERS=1) with a single LR decay, then SPRT-gates the result.
+    # (Chunked warm-start streaming was tried and degraded the net across the
+    # pass — repeated LR restarts on tiny batches caused catastrophic forgetting.)
     environment:
-      # ── Training hyperparameters (TRAIN_* -> loop knob) ──
-      TRAIN_ITERS: "500"          # generations of the gated ratchet
-      TRAIN_GAMES: "8000"         # self-play games per generation
-      TRAIN_DEPTH: "9"            # teacher search depth for labels
-      TRAIN_NODECAP: "25000"      # per-search node cap (bounds tactical blowups)
-      TRAIN_EPOCHS: "25"          # training passes over the replay buffer
+      # ── Static-dataset training (TRAIN_* -> loop knob) ──
+      TRAIN_DATASET: /nets/positions.csv  # converted with `chess csvconv`
+      TRAIN_CHUNK: "0"            # 0 = fit the whole file at once (no streaming)
+      TRAIN_SEEDPLAY: "1"         # 1 = self-play from dataset positions (RL) vs. train on labels
+      TRAIN_ITERS: "20"            # a single full-dataset fit (raise for SEEDPLAY)
+      TRAIN_EPOCHS: "30"          # passes over the whole set (one LR decay)
+      TRAIN_LAMBDA: "0.66"        # target mix: search score vs game result
+      TRAIN_MAXSAMPLES: "10000000" # cap on samples loaded (>= CHUNK)
+      # ── Self-play knobs (unused while TRAIN_DATASET is set) ──
+      TRAIN_GAMES: "2000"         # self-play games per generation
+      TRAIN_DEPTH: "6"            # teacher search depth ceiling (node cap binds first)
+      # Per-search node budget for labels. Fixed-depth was uncapped ("0"), but a
+      # depth-5 search runs ~12M nodes (~475ms) on a midgame position, which is
+      # why generation crawled at ~6 pos/s. A ~500k budget stops after the depth-4
+      # iteration (~1.6M nodes, ~72ms here) — ~6-7x cheaper per label and
+      # *adaptive*, spending nodes where the tree is sharp rather than at a flat
+      # depth. Raise (~5M) for depth-5 labels at ~2x; lower for faster generation.
+      TRAIN_NODECAP: "500000"
       TRAIN_WINDOW: "8"           # replay buffer = last N generations' data
-      TRAIN_LAMBDA: "0.7"         # target mix: 0.7 search score / 0.3 game result
-      TRAIN_MAXSAMPLES: "8000000" # must exceed WINDOW*GAMES' positions
       # ── Gating (SPRT) ──
-      TRAIN_MOVETIME: "100"       # ms/move in the promotion match
+      TRAIN_MOVETIME: "300"       # ms/move in the promotion match
       TRAIN_SPRT_ELO1: "10"       # promote only if proven >= this many Elo
       TRAIN_SPRT_MAXGAMES: "1000" # cap; a worse net is rejected far sooner
       # ── Operational (plain names; inherited by the loop directly) ──
@@ -44,12 +50,12 @@ services:
       # Parallel data-generation processes — the loop's main cost. Match it to
       # the cpus limit below (nproc reports the host's cores, ignoring the cgroup
       # quota, so it can't self-tune). Give long-term training real cores.
-      JOBS: "2"
+      JOBS: "1"
     volumes:
       - ./nets:/nets
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          cpus: "2"
+          cpus: "1"
 
