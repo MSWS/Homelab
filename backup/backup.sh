@@ -2,7 +2,7 @@
 
 source /home/iboaz/backup/.restic.sh
 
-exec > >(logger -t backup) 2>&1
+# exec > >(logger -t backup) 2>&1
 
 /usr/bin/docker image prune --filter "until=168h" --force
 /usr/bin/docker network prune -f
@@ -10,9 +10,9 @@ exec > >(logger -t backup) 2>&1
 /usr/bin/docker builder prune -f
 
 /usr/bin/restic -r /mnt/usb/backups/ unlock
-/usr/bin/restic -r /mnt/usb/backups/ backup --exclude-file=/home/iboaz/backup/excludes.txt --one-file-system --verbose --json / /mnt/samsung/copyparty /mnt/samsung/media/navidrome | python3 /home/iboaz/backup/backup_log.py "USB"
+/usr/bin/restic -r /mnt/usb/backups/ backup --exclude-file=/home/iboaz/backup/excludes.txt --one-file-system --verbose --json / | python3 /home/iboaz/backup/backup_log.py "USB"
 /usr/bin/restic -r b2:debian-homelab-backups:/  unlock
-/usr/bin/restic -r b2:debian-homelab-backups:/  backup --exclude-file=/home/iboaz/backup/excludes.txt --one-file-system --verbose --json / /mnt/samsung/copyparty /mnt/samsung/media/navidrome | python3 /home/iboaz/backup/backup_log.py "Backblaze"
+/usr/bin/restic -r b2:debian-homelab-backups:/  backup --exclude-file=/home/iboaz/backup/excludes.txt --one-file-system --verbose --json / | python3 /home/iboaz/backup/backup_log.py "Backblaze"
 /usr/bin/restic forget --keep-last 1 --keep-daily 3 --keep-weekly 4 --keep-monthly 3 --keep-yearly 3 --prune
 /usr/bin/restic -r /mnt/usb/backups/ forget --keep-last 1 --keep-daily 7 --keep-weekly 8 --keep-monthly 3 --keep-yearly 3 --prune
 /usr/bin/restic -r b2:debian-homelab-backups:/ forget --keep-last 1 --keep-daily 3 --keep-weekly 4 --keep-monthly 3 --keep-yearly 3 --prune

@@ -1,0 +1,79 @@
+blocked:
+- Axiom_BOT
+- DarkOnWeakBot
+- Demolito_L2
+- Demolito_L3
+- Demolito_L4
+- Demolito_L5
+- Demolito_L6
+- Imitator2000
+- Implosio
+- Oxybullet
+- PawnStar008
+- dala-2000
+- dumbotai
+- fathzer-jchess
+- hummus-bot
+- maia2200_10n
+- maia3-79m_1000
+- maia3-79m_1200
+- maia3-79m_1400
+- maia3-79m_1600
+- maia3-79m_800
+- maia9_10n
+- maia9_30n
+- piglet_engine
+- puisne
+declined_aspects:
+  DavidsGuterBot:
+  - chess960
+  GarboBot:
+  - chess960
+  Genetic_Chess_Bot:
+  - chess960
+  HardRok:
+  - rated
+  Joan_clone:
+  - rated
+  Rodent-IV:
+  - chess960
+  ScalaQueen:
+  - blitz
+  - bullet
+  Tigrament:
+  - rapid
+  Z-O_AspenLabs:
+  - blitz
+  deprutser:
+  - blitz
+  - bullet
+  - rapid
+  eubos:
+  - chess960
+  goldinho1bot:
+  - blitz
+  hodgeybot:
+  - bullet
+  malpamat:
+  - rapid
+  mochi_bot:
+  - bullet
+  neetroc-bot:
+  - bullet
+  notropis:
+  - blitz
+  schnecken_bot:
+  - chess960
+  uSunfish:
+  - bullet
+  uSunfish-l7:
+  - bullet
+  v7p3r_bot:
+  - blitz
+later_declines:
+  MateMakingMachine:
+  - 1785056559.104155
+  - 1785060424.108326
+  - 1785072026.286884
+  - 1785086670.743786
+  - 1785146322.019277

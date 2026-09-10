@@ -6,7 +6,6 @@
   servers {
     listener_wrappers {
       layer4 {
-        # Check traffic for ssh and route it to forgejo:2240 if it matches
         @ssh ssh
         route @ssh {
           proxy gitea-server-1:22
@@ -119,6 +118,10 @@ nzbget.local.msws.xyz {
   reverse_proxy gluetun:6789
 }
 
+compress.local.msws.xyz {
+  reverse_proxy tdarr:8265
+}
+
 *.code.msws.xyz {
   handle_path /* {
     redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
@@ -135,6 +138,22 @@ stonks.local.msws.xyz {
 
 galaqi.com {
   reverse_proxy discourse:80
+}
+
+chat.local.msws.xyz {
+    reverse_proxy open-webui:8080 {
+        flush_interval -1
+    }
+}
+
+ai.local.msws.xyz {
+    reverse_proxy llama-cpp:8080 {
+        flush_interval -1
+        transport http {
+            read_timeout 0
+            write_timeout 0
+        }
+    }
 }
 
 :80, :443 {

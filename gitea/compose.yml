@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.gitea.com/gitea:latest-rootless
+    image: gitea/gitea:latest-rootless
     restart: always
     depends_on:
       elastic:
@@ -43,7 +43,7 @@ services:
       - elastic
       - runner
     healthcheck:
-      test: ["CMD", "curl", "-s", "https://git.msws.xyz/api/healthz"] 
+      test: ["CMD", "curl", "-s", "http://127.0.0.1:3000/api/healthz"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -60,11 +60,6 @@ services:
       server:
         condition: service_healthy
     restart: always
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "1"
     environment:
       GITEA_INSTANCE_URL: http://gitea-server-1:3000
       GITEA_RUNNER_REGISTRATION_TOKEN: ${TOKEN}

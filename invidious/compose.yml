@@ -37,7 +37,7 @@ services:
     networks:
      - companion
      - invidious-db
-     - cloudflared
+     - local
 
   companion:
     image: quay.io/invidious/invidious-companion:latest
@@ -89,5 +89,5 @@ volumes:
 networks:
   invidious-db:
   companion:
-  cloudflared:
+  local:
     external: true

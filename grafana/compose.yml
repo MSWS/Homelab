@@ -47,7 +47,9 @@ services:
       - RESTIC_PASSWORD=${RESTIC_PASSWORD}
       - REFRESH_INTERVAL=3600 # 1 hour
     volumes:
-      - /mnt/usb/backups:/data
+      - /mnt/usb/backups:/data:ro
+      - /home/iboaz/.cache/restic:/root/.cache/restic
+
     restart: unless-stopped
     networks:
       - prometheus

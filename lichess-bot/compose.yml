@@ -4,58 +4,50 @@ services:
     image: registry.msws.xyz/ms/c-chess/bot
     environment:
       LICHESS_BOT_TOKEN: ${LICHESS_BOT_TOKEN}
+      OPTIONS: -v
     volumes:
       - ./config.yml:/lichess-bot/config/config.yml:ro
+      - ./blocklist.txt:/persistent/blocklist.txt
       - ./nets:/nets:ro
     restart: unless-stopped
 
-  trainer:
-    container_name: trainer
-    image: registry.msws.xyz/ms/c-chess/trainer
-    # Runs `make train`, which forwards every TRAIN_<KNOB> below to the loop as
-    # <KNOB> (see the Makefile). Trains on the bundled tools/positions.csv: the
-    # loop converts it once (quiet-filtered) and fits the whole set in a single
-    # pass (CHUNK=0, ITERS=1) with a single LR decay, then SPRT-gates the result.
-    # (Chunked warm-start streaming was tried and degraded the net across the
-    # pass — repeated LR restarts on tiny batches caused catastrophic forgetting.)
-    environment:
-      # ── Static-dataset training (TRAIN_* -> loop knob) ──
-      TRAIN_DATASET: /nets/positions.csv  # converted with `chess csvconv`
-      TRAIN_CHUNK: "0"            # 0 = fit the whole file at once (no streaming)
-      TRAIN_SEEDPLAY: "1"         # 1 = self-play from dataset positions (RL) vs. train on labels
-      TRAIN_ITERS: "20"            # a single full-dataset fit (raise for SEEDPLAY)
-      TRAIN_EPOCHS: "30"          # passes over the whole set (one LR decay)
-      TRAIN_LAMBDA: "0.66"        # target mix: search score vs game result
-      TRAIN_MAXSAMPLES: "10000000" # cap on samples loaded (>= CHUNK)
-      # ── Self-play knobs (unused while TRAIN_DATASET is set) ──
-      TRAIN_GAMES: "2000"         # self-play games per generation
-      TRAIN_DEPTH: "6"            # teacher search depth ceiling (node cap binds first)
-      # Per-search node budget for labels. Fixed-depth was uncapped ("0"), but a
-      # depth-5 search runs ~12M nodes (~475ms) on a midgame position, which is
-      # why generation crawled at ~6 pos/s. A ~500k budget stops after the depth-4
-      # iteration (~1.6M nodes, ~72ms here) — ~6-7x cheaper per label and
-      # *adaptive*, spending nodes where the tree is sharp rather than at a flat
-      # depth. Raise (~5M) for depth-5 labels at ~2x; lower for faster generation.
-      TRAIN_NODECAP: "500000"
-      TRAIN_WINDOW: "8"           # replay buffer = last N generations' data
-      # ── Gating (SPRT) ──
-      TRAIN_MOVETIME: "300"       # ms/move in the promotion match
-      TRAIN_SPRT_ELO1: "10"       # promote only if proven >= this many Elo
-      TRAIN_SPRT_MAXGAMES: "1000" # cap; a worse net is rejected far sooner
-      # ── Operational (plain names; inherited by the loop directly) ──
-      OUTDIR: /nets               # shared with the bot (reads latest.nnue)
-      VALIDATE: "1"               # play the gating match each generation
-      GATE: "1"                   # publish only if the match passes
-      BOOTSTRAP: /nets/latest.nnue  # resume from the champion after a restart
-      # Parallel data-generation processes — the loop's main cost. Match it to
-      # the cpus limit below (nproc reports the host's cores, ignoring the cgroup
-      # quota, so it can't self-tune). Give long-term training real cores.
-      JOBS: "1"
-    volumes:
-      - ./nets:/nets
-    restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          cpus: "1"
-
+  #  trainer:
+  #    container_name: trainer
+  #    image: registry.msws.xyz/ms/c-chess/trainer
+  #    # Runs `make train`, which forwards every TRAIN_<KNOB> below to the loop as
+  #    # <KNOB> (see the Makefile). Trains on the bundled tools/positions.csv: the
+  #    # loop converts it once (quiet-filtered) and fits the whole set in a single
+  #    # pass (CHUNK=0, ITERS=1) with a single LR decay, then SPRT-gates the result.
+  #    # (Chunked warm-start streaming was tried and degraded the net across the
+  #    # pass — repeated LR restarts on tiny batches caused catastrophic forgetting.)
+  #    environment:
+  #      # ── Self-play reinforcement loop (TRAIN_* -> loop knob) ──
+  #      TRAIN_DATASET: ""           # empty = self-play from startpos (no static set)
+  #      TRAIN_SEEDPLAY: "0"         # 1 = originate self-play from TRAIN_DATASET positions
+  #      TRAIN_CHUNK: "0"            # (static-dataset only) 0 = whole-file fit
+  #      TRAIN_ITERS: "35"           # self-play generations (generate -> train -> gate)
+  #      TRAIN_PLATEAU: "3"          # stop early after N generations with no promotion (reduced from 5)
+  #      TRAIN_GAMES: "1500"          # self-play games per generation (reduced from 1000 for faster iterations)
+  #      TRAIN_EPOCHS: "50"          # training passes per generation (reduced from 40)
+  #      TRAIN_LAMBDA: "0.66"        # target mix: search score vs game result
+  #      TRAIN_MAXSAMPLES: "2500000" # cap on samples loaded per generation
+  #      TRAIN_DEPTH: "6"            # teacher search depth ceiling (node cap binds first)
+  #      # Per-search node budget for labels. Reduced from 1M to 500k for faster generation.
+  #      # A 500k budget stops after depth-4 (~72ms), 6-7x cheaper per label vs uncapped.
+  #      TRAIN_NODECAP: "1000000"
+  #      TRAIN_WINDOW: "5"           # replay buffer = last N generations' data (reduced from 8)
+  #      # ── Gating (SPRT) ──
+  #      TRAIN_MOVETIME: "300"       # ms/move in the promotion match
+  #      TRAIN_SPRT_ELO1: "10"       # promote only if proven >= this many Elo
+  #      TRAIN_SPRT_MAXGAMES: "1000" # cap; a worse net is rejected far sooner
+  #      # ── Operational (plain names; inherited by the loop directly) ──
+  #      OUTDIR: /nets               # shared with the bot (reads latest.nnue)
+  #      VALIDATE: "1"               # play the gating match each generation
+  #      GATE: "1"                   # publish only if the match passes
+  #      BOOTSTRAP: /nets/latest.nnue  # resume from the champion after a restart
+  #      # Parallel data-generation processes. Match to host cores (32). JOBS=24 leaves
+  #      # headroom for I/O while maximizing CPU utilization.
+  #      JOBS: "24"
+  #    volumes:
+  #      - ./nets:/nets
+  #    restart: unless-stopped

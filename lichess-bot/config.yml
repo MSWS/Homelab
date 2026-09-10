@@ -6,13 +6,13 @@ engine:
   working_dir: ""         
   protocol: "uci"       
   uci_ponder: true     
-  debug: false
+  debug: true
 
   draw_or_resign:
-    resign_enabled: false          # Whether or not the bot should resign.
-    resign_score: 300            # If the score is less than or equal to this value, the bot resigns (in cp).
-    resign_for_egtb_minus_two: true # If true the bot will resign in positions where the online_egtb returns a wdl of -2.
-    resign_moves: 3                # How many moves in a row the score has to be below the resign value.
+    resign_enabled: true          # Whether or not the bot should resign.
+    resign_score: -300            # If the score is less than or equal to this value, the bot resigns (in cp).
+    resign_for_egtb_minus_two: false # If true the bot will resign in positions where the online_egtb returns a wdl of -2.
+    resign_moves: 5                # How many moves in a row the score has to be below the resign value.
     offer_draw_enabled: true       # Whether or not the bot should offer/accept draw.
     offer_draw_score: 30            # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp).
     offer_draw_for_egtb_zero: true # If true the bot will offer/accept draw in positions where the online_egtb returns a wdl of 0.
@@ -68,11 +68,11 @@ engine:
 #   cpuct: 3.1
 
   homemade_options:
-#   Hash: 256
 
   uci_options:
-    Threads: 2                     # Max CPU threads the engine can use.
-    EvalFile: "/nets/latest.nnue"
+    Threads: 16                     # Max CPU threads the engine can use.
+    Hash: 1024
+    # EvalFile: "/nets/latest.nnue"
     UseNNUE: true
   silence_stderr: false            # Some engines (yes you, Leela) are very noisy.
 
@@ -134,6 +134,8 @@ challenge:                         # Incoming challenges.
 # max_recent_bot_challenges: 2     # Maximum number of recent challenges that can be accepted from the same bot
   bullet_requires_increment: false # Require that bullet game challenges from bots have a non-zero increment
   max_simultaneous_games_per_user: 2  # Maximum number of simultaneous games with the same user
+# persistent_blocklist_file:       # Path to persist blocklist data across restarts (same as matchmaking section)
+#   - example.com/blocklist
 
 greeting:
   # Optional substitution keywords (include curly braces):
@@ -152,6 +154,8 @@ greeting:
                                    # "all" - every game is written to a single file named "{Bot name} games.pgn"
 
 matchmaking:
+  # blocklist_file: "/persistent/blocklist.yml"
+  challenge_decliner_file_name: "/persistent/blocklist.txt"
   allow_matchmaking: true         # Set it to 'true' to challenge other bots.
   allow_during_games: true        # Set it to 'true' to create challenges during long games.
   challenge_variant: "random"      # If set to 'random', the bot will choose one variant from the variants enabled in 'challenge.variants'.
@@ -178,6 +182,8 @@ matchmaking:
   rating_preference: "none"        # One of "none", "high", "low".
   challenge_mode: "rated"         # Set it to the mode in which challenges are sent. Possible options are 'casual', 'rated' and 'random'.
   challenge_filter: fine           # If a bot declines a challenge, do not issue a similar challenge to that bot. Possible options are 'none', 'coarse', and 'fine'.
+  challenge_filter_timeout_days: 1 # How many days to block a bot after it declines a challenge (default: 1)
+  persistent_blocklist_file: "/lichess-bot/blocklist.json"  # Path to persist blocklist data across restarts
   block_list:                      # The list of bots that will not be challenged
     - colinbot
     - ThinkingPileORubbish
