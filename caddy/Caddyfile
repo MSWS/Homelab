@@ -2,7 +2,32 @@
   email imodmaker@gmail.com
   acme_ca https://acme-v02.api.letsencrypt.org/directory
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-  
+
+  # Certificates for the layer4 mail servers below. The l4 `tls` handler only
+  # terminates TLS, it does not manage certificates, so these names are
+  # automated here rather than via a site block (requires Caddy >= 2.11.6).
+  tls_automate_names imap.local.msws.xyz smtp.local.msws.xyz
+
+  # protonmail-bridge speaks plaintext IMAP/SMTP on the `local` network and
+  # expects a TLS-terminating proxy in front; these are raw TCP protocols, not
+  # HTTP, so they are handled by the layer4 app, matched on TLS SNI.
+  layer4 {
+    :993 {
+      @imaps tls sni imap.local.msws.xyz
+      route @imaps {
+        tls
+        proxy protonmail-bridge:143
+      }
+    }
+    :465 {
+      @submissions tls sni smtp.local.msws.xyz
+      route @submissions {
+        tls
+        proxy protonmail-bridge:25
+      }
+    }
+  }
+
   servers {
     listener_wrappers {
       layer4 {
@@ -154,6 +179,68 @@ ai.local.msws.xyz {
             write_timeout 0
         }
     }
+}
+
+calendar.local.msws.xyz {
+  reverse_proxy carbonate:8080
+}
+
+nanobot.local.msws.xyz {
+  reverse_proxy nanobot-gateway:8765
+}
+
+http://superautopets.com, https://superautopets.com {
+    @discord  path /discord /discord/
+    @youtube  path /youtube /youtube/
+    @email    path /email /email/
+    @twitter  path /twitter /twitter/
+    @steam    path /steam /steam/
+    @android  path /android /android/
+    @ios      path /ios /ios/
+    @browser  path /browser /browser/
+
+    redir @discord  https://teamwood.games/discord/sap 302
+    redir @youtube  https://www.youtube.com/@teamwoodgames 302
+    redir @email    mailto:contact@teamwoodgames.com 302
+    redir @twitter  https://teamwood.games/twitter/sap 302
+    redir @steam    https://teamwood.games/steam 302
+    redir @android  https://teamwood.games/playstore 302
+    redir @ios      https://teamwood.games/appstore 302
+    redir @browser  https://teamwood.games/itch 302
+
+    handle {
+        header Content-Type "text/html; charset=utf-8"
+        respond <<HTML
+            <!doctype html>
+            <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>Super Auto Pets</title>
+              <style>
+                html, body { margin: 0; height: 100%; background: #000; }
+                iframe { border: 0; width: 100%; height: 100%; display: block; }
+              </style>
+            </head>
+            <body>
+              <iframe src="https://teamwoodgames.com/"
+                allow="fullscreen; autoplay; clipboard-write; gamepad"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-pointer-lock allow-downloads allow-modals"
+                allowfullscreen></iframe>
+            </body>
+            </html>
+            HTML 200
+    }
+}
+
+http://wiki.superautopets.com {
+  reverse_proxy https://superautopets.wiki.gg {
+    header_up Host superautopets.wiki.gg
+  }
+}
+
+*.superautopets.com {
+  respond 404
 }
 
 :80, :443 {

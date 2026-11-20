@@ -1,7 +1,7 @@
 services:
   anubis:
     container_name: anubis
-    image: ghcr.io/techarohq/anubis:latest
+    image: ghcr.io/techarohq/anubis:v1.27.0
     restart: always
     environment:
       BIND: ":3000"
