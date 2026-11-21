@@ -13,6 +13,12 @@ services:
       NOTIFY_MAX_DAYS: "30"
       # Optional one-JSON-object-per-line mirror of the store:
       # NOTIFY_JSONL: /data/notify.jsonl
+      NOTIFY_OIDC_ISSUER: ${NOTIFY_OIDC_ISSUER:-}
+      NOTIFY_OIDC_CLIENT_ID: ${NOTIFY_OIDC_CLIENT_ID:-}
+      NOTIFY_OIDC_CLIENT_SECRET: ${NOTIFY_OIDC_CLIENT_SECRET:-}
+      NOTIFY_OIDC_REDIRECT: ${NOTIFY_OIDC_REDIRECT:-}
+      NOTIFY_OIDC_ALLOWED_EMAILS: ${NOTIFY_OIDC_ALLOWED_EMAILS:-}
+      # NOTIFY_OIDC_SESSION_HOURS: "12"
     volumes:
       - notifyd-data:/data
 

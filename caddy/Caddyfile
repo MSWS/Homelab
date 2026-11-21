@@ -116,13 +116,7 @@ yt.local.msws.xyz, yt.msws.xyz {
   reverse_proxy invidious:3000
 }
 
-files.local.msws.xyz {
-  reverse_proxy copyparty:3923 {
-    header_up CF-CONNECTING-IP 10.0.0.140
-  }
-}
-
-code.local.msws.xyz, code.msws.xyz, *.code.msws.xyz {
+code.msws.xyz, *.code.msws.xyz {
   handle /auth* {
     authenticate with codeserver_portal
   }
@@ -137,62 +131,8 @@ wiki.local.msws.xyz {
   reverse_proxy mediawiki-mediawiki-1:80
 }
 
-#*.code.msws.xyz {
-#  auto_https disable_redirects
-#}
-
-getshows.local.msws.xyz {
-  reverse_proxy sonarr:8989
-}
-
-getmusic.local.msws.xyz {
-  reverse_proxy lidarr:8686
-}
-
-getmovies.local.msws.xyz {
-  reverse_proxy radarr:7878
-}
-
-music.local.msws.xyz, music.msws.xyz {
-  reverse_proxy navidrome:4533
-}
-
-watch.local.msws.xyz, watch.msws.xyz {
-  reverse_proxy jellyfin:8096
-}
-
 photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy immich_server:2283
-}
-
-torrent.local.msws.xyz {
-  reverse_proxy gluetun:8080
-}
-
-nzbget.local.msws.xyz {
-  reverse_proxy gluetun:6789
-}
-
-compress.local.msws.xyz {
-  reverse_proxy tdarr:8265
-}
-
-#*.code.msws.xyz {
-#  handle_path /* {
-#    redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
-#  }
-#}
-
-rcw.local.msws.xyz {
-  reverse_proxy rcw-rcw-reader-1:3000
-}
-
-stonks.local.msws.xyz {
-  reverse_proxy better-front-1:3000
-}
-
-galaqi.com {
-  reverse_proxy discourse:80
 }
 
 chat.local.msws.xyz {
