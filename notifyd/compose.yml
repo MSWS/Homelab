@@ -1,0 +1,25 @@
+services:
+  notifyd:
+    image: registry.msws.xyz/cora/notifyd:latest
+    container_name: notifyd
+    restart: always
+    networks:
+      - cloudflared
+    environment:
+      NOTIFY_TOKEN: ${NOTIFY_TOKEN:?set NOTIFY_TOKEN in the host .env file}
+      NOTIFY_BIND: 0.0.0.0
+      NOTIFY_PORT: "8080"
+      NOTIFY_MAX_BODY: "65536"
+      NOTIFY_MAX_DAYS: "30"
+      # Optional one-JSON-object-per-line mirror of the store:
+      # NOTIFY_JSONL: /data/notify.jsonl
+    volumes:
+      - notifyd-data:/data
+
+networks:
+  cloudflared:
+    external: true
+
+volumes:
+  notifyd-data:
+

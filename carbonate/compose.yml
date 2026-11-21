@@ -1,0 +1,21 @@
+services:
+  carbonate:
+    image: carbonate:local
+    container_name: carbonate
+    restart: unless-stopped
+    networks:
+      - local
+    volumes:
+      - carbonate-home:/home/carbonate
+    environment:
+      - CARBONATE_NO_INVITATIONS=1
+      - CARBONATE_BRIDGE_PASSWORD=${CARBONATE_BRIDGE_PASSWORD}
+
+networks:
+  local:
+    external: true
+
+volumes:
+  carbonate-home:
+    external: true
+    name: carbonate_carbonate-state

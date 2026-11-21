@@ -1,0 +1,25 @@
+services:
+  tools:
+    image: registry.msws.xyz/ms/tools/ci:latest
+    restart: unless-stopped
+    networks:
+      - cloudflared
+    volumes:
+      - data:/app/data
+    environment:
+      DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
+  tools-dev:
+    image: registry.msws.xyz/ms/tools/ci:dev
+    restart: unless-stopped
+    networks:
+      - cloudflared
+    volumes:
+      - data-dev:/app/data
+    environment:
+      DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL
+volumes:
+  data:
+  data-dev:
+networks:
+  cloudflared:
+    external: true
