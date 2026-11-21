@@ -3,14 +3,8 @@
   acme_ca https://acme-v02.api.letsencrypt.org/directory
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 
-  # Certificates for the layer4 mail servers below. The l4 `tls` handler only
-  # terminates TLS, it does not manage certificates, so these names are
-  # automated here rather than via a site block (requires Caddy >= 2.11.6).
   tls_automate_names imap.local.msws.xyz smtp.local.msws.xyz
 
-  # protonmail-bridge speaks plaintext IMAP/SMTP on the `local` network and
-  # expects a TLS-terminating proxy in front; these are raw TCP protocols, not
-  # HTTP, so they are handled by the layer4 app, matched on TLS SNI.
   layer4 {
     :993 {
       @imaps tls sni imap.local.msws.xyz
@@ -25,6 +19,39 @@
         tls
         proxy protonmail-bridge:25
       }
+    }
+  }
+
+  order authenticate before respond
+  order authorize before basicauth
+
+  security {
+    oauth identity provider pocketid {
+      realm pocketid
+      driver generic
+      client_id {env.POCKETID_CLIENT_ID}
+      client_secret {env.POCKETID_CLIENT_SECRET}
+      scopes openid email profile
+      base_auth_url https://id.msws.xyz
+      metadata_url https://id.msws.xyz/.well-known/openid-configuration
+    }
+
+    authentication portal codeserver_portal {
+      crypto default token lifetime 86400
+      crypto key sign-verify {env.AUTH_JWT_SECRET}
+      enable identity provider pocketid
+      trust login redirect uri domain suffix code.msws.xyz path prefix /
+      transform user {
+        match realm pocketid
+        action add role user
+      }
+    }
+
+    authorization policy codeserver_policy {
+      set auth url /auth/oauth2/pocketid
+      crypto key verify {env.AUTH_JWT_SECRET}
+      allow roles user
+      inject header "Remote-User" from email
     }
   }
 
@@ -95,6 +122,17 @@ files.local.msws.xyz {
   }
 }
 
+code.local.msws.xyz, code.msws.xyz, *.code.msws.xyz {
+  handle /auth* {
+    authenticate with codeserver_portal
+  }
+
+  handle {
+    authorize with codeserver_policy
+    reverse_proxy code-server:8443
+  }
+}
+
 wiki.local.msws.xyz {
   reverse_proxy mediawiki-mediawiki-1:80
 }
@@ -102,10 +140,6 @@ wiki.local.msws.xyz {
 #*.code.msws.xyz {
 #  auto_https disable_redirects
 #}
-
-code.local.msws.xyz {
-  reverse_proxy code-server:8443
-}
 
 getshows.local.msws.xyz {
   reverse_proxy sonarr:8989
@@ -143,11 +177,11 @@ compress.local.msws.xyz {
   reverse_proxy tdarr:8265
 }
 
-*.code.msws.xyz {
-  handle_path /* {
-    redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
-  }
-}
+#*.code.msws.xyz {
+#  handle_path /* {
+#    redir https://code.msws.xyz/proxy/{labels.3}{path}?{query} 302
+#  }
+#}
 
 rcw.local.msws.xyz {
   reverse_proxy rcw-rcw-reader-1:3000
@@ -264,3 +298,4 @@ http://wiki.superautopets.com {
     header_up Host msws.github.io
   }
 }
+

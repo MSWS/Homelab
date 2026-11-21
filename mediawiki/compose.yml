@@ -1,6 +1,6 @@
 services:
   mediawiki:
-    image: mediawiki
+    build: .
     restart: always
     links:
       - database
