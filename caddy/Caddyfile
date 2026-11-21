@@ -131,10 +131,6 @@ photos.local.msws.xyz, photos.msws.xyz {
   reverse_proxy immich_server:2283
 }
 
-blog.msws.xyz {
-  reverse_proxy https://kagi.com
-}
-
 torrent.local.msws.xyz {
   reverse_proxy gluetun:8080
 }

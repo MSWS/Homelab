@@ -5,10 +5,9 @@ services:
     user: 1000:1000
     volumes:
       - vaultwarden_data:/data/   
+    env_file: '.env'
     environment:
-      SIGNUPS_ALLOWED: false
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@vaultwarden_db/${MYSQL_DATABASE}"
-      ADMIN_TOKEN: "${ADMIN_TOKEN}"
     restart: always
     networks:
       - cloudflared

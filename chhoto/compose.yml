@@ -1,17 +1,22 @@
 services:
-    chhoto-url:
-        image: sintan1729/chhoto-url:latest
-        restart: always
-        container_name: chhoto-url
-        environment:
-            - db_url=/data/urls.sqlite
-            - site_url=https://msws.xyz/s
-            - password=${password}
-        volumes:
-            - "${PWD}:/data/"
-        networks:
-            - cloudflared
+  chhoto-url:
+    image: sintan1729/chhoto-url:latest
+    restart: always
+    container_name: chhoto-url
+    environment:
+      CHHOTO_DB_URL: /data/urls.sqlite
+      CHHOTO_SITE_URL: https://msws.xyz/s
+      CHHOTO_EXIT_ON_NO_AUTH: true
+      CHHOTO_OIDC_ISSUER_URL: https://id.msws.xyz
+      CHHOTO_OIDC_CLIENT_ID: 36d6902a-bfd7-4e78-9cfb-9dafd018dab6
+      CHHOTO_OIDC_EXTRA_ORIGINS: https://go.msws.xyz
+      CHHOTO_SQLITE_USE_WAL_MODE: "True"
+      CHHOTO_OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET}
+    volumes:
+        - "${PWD}:/data/"
+    networks:
+        - cloudflared
 
 networks:
-    cloudflared:
-        external: true
+  cloudflared:
+    external: true
