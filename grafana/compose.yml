@@ -46,7 +46,7 @@ services:
       - TZ=America/Los_Angeles
       - RESTIC_REPOSITORY=/data
       - RESTIC_PASSWORD=${RESTIC_PASSWORD}
-      - REFRESH_INTERVAL=3600 # 1 hour
+      - REFRESH_INTERVAL=43200 # 12 hours
     volumes:
       - /mnt/usb/backups:/data:ro
       - /home/iboaz/.cache/restic:/root/.cache/restic
@@ -60,8 +60,9 @@ services:
     container_name: cadvisor
     restart: unless-stopped
     privileged: true
-    #ports:
-    #  - "8080:8080"
+    command:
+      - "--docker_only"
+      - "--housekeeping_interval=1m"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro

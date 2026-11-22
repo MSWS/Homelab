@@ -1,0 +1,38 @@
+services:
+  llama-cpp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llama-cpp
+    restart: unless-stopped
+    volumes:
+      - /mnt/usb/gguf:/models:ro
+      - ../kv:/kv
+    devices:
+      - /dev/kfd
+      - /dev/dri
+    group_add:
+      - 105
+      - 44
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      DS4_METAL_DISABLE_BATCH_HC_NORM_FUSION: "1"
+    ipc: host
+    command: >
+      ds4-server
+      -m /models/Qwen3.8-Flash-Next-Q4.gguf
+      --vision /models/mmproj-Qwen3.8-Flash-Next-Q8_0.gguf
+      --mtp
+      --kv-disk-dir /kv
+      --kv-disk-space-mb 32768
+      --backend rocm
+      --host 0.0.0.0
+      --port 8080
+      -c 131072
+    networks:
+      - local
+
+networks:
+  local:
+    external: true

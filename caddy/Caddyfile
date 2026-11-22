@@ -159,6 +159,10 @@ nanobot.local.msws.xyz {
   reverse_proxy nanobot-gateway:8765
 }
 
+loki.local.msws.xyz {
+  reverse_proxy loki:3100
+}
+
 http://superautopets.com, https://superautopets.com {
     @discord  path /discord /discord/
     @youtube  path /youtube /youtube/
@@ -238,4 +242,3 @@ http://wiki.superautopets.com {
     header_up Host msws.github.io
   }
 }
-
